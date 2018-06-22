@@ -7,27 +7,16 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class User {
+@Entity
+public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @JoinColumn(name = "ACT_ID")
-    @ManyToOne
-    private Activity activity;
-
-    @JoinColumn(name = "ROLE_ID")
-    @OneToOne
-    private Role role;
+    @Column(name = "ROLE_NAME")
+    private String roleName;
 }

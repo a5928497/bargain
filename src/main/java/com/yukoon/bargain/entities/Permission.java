@@ -7,27 +7,20 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Accessors(chain = true)
-public class User {
+@Entity
+public class Permission {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Integer id;
+    private Integer Id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @JoinColumn(name = "ACT_ID")
-    @ManyToOne
-    private Activity activity;
+    @Column(name = "PERM_NAME")
+    private String permName;
 
     @JoinColumn(name = "ROLE_ID")
-    @OneToOne
+    @ManyToOne
     private Role role;
 }
