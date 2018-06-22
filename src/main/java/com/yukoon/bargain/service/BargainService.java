@@ -6,5 +6,4 @@ import org.springframework.stereotype.Service;
 public class BargainService {
     private double price;
     private int times;
-
 }

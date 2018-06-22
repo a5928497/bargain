@@ -8,22 +8,19 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Accessors(chain = true)
-public class User {
+public class Activity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "ACT_NAME")
+    private String act_name;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "ACT_STATUS")
+    private Integer act_status;
 
-    @JoinColumn(name = "ACT_ID")
-    @ManyToOne
-    private Activity activity;
 }

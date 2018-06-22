@@ -10,18 +10,27 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Accessors(chain = true)
-public class User {
+@Data
+public class Reward {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "REWARD_NAME")
+    private String rewardName;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "PRICE")
+    private double price;
+
+    @Column(name = "TIMES")
+    private Integer times;
+
+    @Column(name = "TOTAL")
+    private Integer total;
+
+    @Column(name = "SURPLUS")
+    private Integer surplus;
 
     @JoinColumn(name = "ACT_ID")
     @ManyToOne
