@@ -1,5 +1,6 @@
 package com.yukoon.bargain;
 
+import com.yukoon.bargain.repository.ActivityRepo;
 import com.yukoon.bargain.repository.RewardRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +11,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BargainApplicationTests {
-
 	@Autowired
-	private RewardRepo rewardRepo;
+	private ActivityRepo activityRepo;
+
 	@Test
 	public void contextLoads() {
-		System.out.println(rewardRepo.findByActid(1));
+		System.out.println(activityRepo.findAll());
 	}
 
 }

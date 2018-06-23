@@ -13,25 +13,32 @@ public class BargainService {
 	private Double priceLeft;
 	//砍价数额平均值的倍数，用于生成随机值
 	private final static Double MULTIPLE = 1.5;
+	//砍价数额平均值的百分数，用于生成随机值
+    private final static Double PRECENT = 0.6;
 	private final static DecimalFormat INTFORMAT = new DecimalFormat("######0");
 	private final static DecimalFormat DOUBLEFORMAT = new DecimalFormat("######0.00");
 
     //获得各项参数
 	public void initParams() {
-		this.price =100.2;
-		this.times = 20;
-		this.timesLeft =19;
-		this.priceLeft = 88.45;
+		this.price =6688.2;
+		this.times = 100;
+		this.timesLeft =1000;
+		this.priceLeft = 6688.2;
 	}
 
 	//随机生成砍价数额
-	public Double getRandomValue() {
+	public Double getRandomValue(Double price,int times) {
 		Random random = new Random();
 		Double average = (price/times)*MULTIPLE;
-		Integer range_max = Integer.parseInt(INTFORMAT.format(average));
-		Integer range_min = Integer.parseInt(INTFORMAT.format(range_max*0.5));
-		Double result = Double.parseDouble(DOUBLEFORMAT.format(random.nextInt(range_max-range_min)+range_min+Math.random()));
-		return result;
+		Double result;
+		if (average>=1.0) {
+			Integer range_max = Integer.parseInt(INTFORMAT.format(average));
+			Integer range_min = Integer.parseInt(INTFORMAT.format(range_max*PRECENT));
+			result = Double.parseDouble(DOUBLEFORMAT.format(random.nextInt(range_max-range_min)+range_min+Math.random()));
+			return result;
+		}else {
+			return random.nextDouble();
+		}
 	}
 
 	//获取最终砍价结果
@@ -40,9 +47,9 @@ public class BargainService {
 //		initParams();
 		if (timesLeft > 1) {
 			//若不是最后一次砍价
-			 result = getRandomValue();
+			 result = getRandomValue(this.priceLeft,this.timesLeft);
 			while (result > priceLeft) {
-				result = getRandomValue();
+				result = getRandomValue(this.priceLeft,this.timesLeft);
 			}
 		}else if (timesLeft == 1){
 			//若是最后一次减价，直接减去余数

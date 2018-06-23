@@ -1,0 +1,11 @@
+package com.yukoon.bargain.controllers;
+
+import com.yukoon.bargain.entities.services.ActivityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ActivityController {
+    @Autowired
+    private ActivityService activityService;
+}
