@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reward</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/footable/2.0.3/css/footable.core.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
+                    <h2>管理后台</h2>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <a th:href="@{/rewardToAdd/}+${act_id}"><button class="btn btn-primary">添加礼品</button></a>
+            <a th:href="@{/touploadimg/}+${act_id}+@{?act_status=}+${act_status}"><button class="btn btn-warning" th:if="${act_status != 2}">编辑转盘</button></a>
+            <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
+            <div class="border"></div>
+            <form>
+
+
+            </form>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>礼品管理</h5>
+
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                <thead>
+                                <tr>
+                                    <th data-hide="all">ID</th>
+                                    <th data-hide="all">礼品名</th>
+                                    <th data-hide="all">总数</th>
+                                    <th data-hide="all">剩余数</th>
+                                    <th data-hide="all">中奖概率</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="reward:${rewards}">
+                                    <td th:text="${reward.id}">id</td>
+                                    <td th:text="${reward.rewardName}">rewardName</td>
+                                    <td th:text="${reward.total}">total</td>
+                                    <td th:text="${reward.surplus}">surplus</td>
+                                    <td th:text="${reward.probability}">probability</td>
+                                    <td>
+                                        <a th:href="@{/reward/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-warning">编辑</button></a>
+
+                                        <button  th:attr="del_uri = @{/reward/}+${reward.id}" class="btn btn-sm btn-danger deleteBTN" th:if="${act_status==0}">删除</button>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    <!-- delete表单-->
+    <form id="deleteForm" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="act_id" th:value="${act_id}">
+    </form>
+
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+
+    <script>
+        $deleteBTNs = $(".deleteBTN")
+        $deleteForm = $("#deleteForm");
+        $border = $(".border");
+        $border.css("height",10);
+        $deleteBTNs.click(function () {
+            var isok = confirm("确定删除吗？");
+            if (isok) {
+                $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            }
+            return false;
+        });
+    </script>
+
+</body>
+
+</html>

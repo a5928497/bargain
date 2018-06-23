@@ -10,5 +10,5 @@ import java.util.List;
 public interface RewardRepo extends JpaRepository<Reward,Integer>{
 
 	@Query("select r from Reward r where act_id = :act_id")
-	public List<Reward> findByActid(@Param("act_id") Integer act_id);
+	public List<Reward> findAllByActid(@Param("act_id") Integer act_id);
 }

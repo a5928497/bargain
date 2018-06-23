@@ -53,7 +53,7 @@ public class ActivityController {
         return "redirect:/acts";
     }
 
-    //后台开启活动
+    //后台关闭活动
     @GetMapping("/actclose/{id}")
     public String close(@PathVariable("id")Integer id) {
         Activity activity = activityService.findById(id);
