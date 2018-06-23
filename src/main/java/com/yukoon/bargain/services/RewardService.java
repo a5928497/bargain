@@ -21,4 +21,9 @@ public class RewardService {
     public void saveReward(Reward reward) {
         rewardRepo.saveAndFlush(reward);
     }
+
+    @Transactional
+    public void deleteReward(Integer id) {
+        rewardRepo.delete(id);
+    }
 }

@@ -6,10 +6,7 @@ import com.yukoon.bargain.services.ActivityService;
 import com.yukoon.bargain.services.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -42,5 +39,13 @@ public class RewardController {
         System.out.println(reward);
         rewardService.saveReward(reward);
         return "redirect:/rewards/"+reward.getActivity().getId();
+    }
+
+    //后台删除某一活动下的礼品
+    @DeleteMapping("/reward/{id}")
+    public String delete(@PathVariable("id")Integer id,Integer act_id,Map<String,Object> map) {
+        map.put("rewards",rewardService.findAllByActid(act_id));
+        rewardService.deleteReward(id);
+        return "redirect:/rewards/"+act_id;
     }
 }
