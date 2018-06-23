@@ -63,7 +63,7 @@
                                 <div class="form-group"><label class="col-sm-2 control-label">剩余</label>
                                     <div class="col-sm-10"><input name="surplus" th:value="${reward!=null}?${reward.surplus}" type="text" class="form-control"></div>
                                 </div>
-                                <input type="hidden" id="act_id" name="act_id" th:value="${reward!=null}?${reward.act_id}:${act_id}" />
+                                <input type="hidden" id="act_id" name="activity.id" th:value="${reward!=null}?${reward.activity.id}:${act_id}" />
 
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">

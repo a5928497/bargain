@@ -16,4 +16,9 @@ public class RewardService {
     public List<Reward> findAllByActid(Integer act_id) {
         return rewardRepo.findAllByActid(act_id);
     }
+
+    @Transactional
+    public void saveReward(Reward reward) {
+        rewardRepo.saveAndFlush(reward);
+    }
 }
