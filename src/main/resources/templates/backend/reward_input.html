@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reward</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/iCheck/1.0.2/skins/green.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
+    <link th:href="@{/webjars/awesome-bootstrap-checkbox/1.0.0/awesome-bootstrap-checkbox.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
+                    <h2>编辑</h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>礼品编辑</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <form action="/reward" method="post" modelAttribute="reward" id="inputForm" class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-2 control-label">礼品名</label>
+                                    <div class="col-sm-10"><input name="rewardName" id="rewardname" type="text" th:value="${reward!=null}?${reward.rewardName}" class="form-control"></div>
+                                </div>
+                                <!--若为修改，加入id-->
+                                <input type="hidden" id="rewardId" th:name="id" th:value="${reward!=null}?${reward.id}" />
+                                <!--若为修改，插入put隐藏域-->
+                                <input type="hidden" th:name="_method" th:value="put" th:if="${reward!=null}"/>
+                                <div class="form-group"><label class="col-sm-2 control-label">价值</label>
+                                    <div class="col-sm-10"><input id="price" name="price" type="text" th:value="${reward!=null}?${reward.price}" class="form-control"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">人头数</label>
+                                    <div class="col-sm-10"><input id="times" name="times" type="text" th:value="${reward!=null}?${reward.times}" class="form-control"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">总数</label>
+                                    <div class="col-sm-10"><input id="total" name="total" type="text" th:value="${reward!=null}?${reward.total}" class="form-control"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">剩余</label>
+                                    <div class="col-sm-10"><input name="surplus" th:value="${reward!=null}?${reward.surplus}" type="text" class="form-control"></div>
+                                </div>
+                                <input type="hidden" id="act_id" name="act_id" th:value="${reward!=null}?${reward.act_id}:${act_id}" />
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button th:attr="back_uri = @{/rewards/}+${reward.act_id}" th:if="${reward!=null}" class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = @{/rewards/}+${act_id}" th:if="${reward==null}" class="btn btn-white backBTN" >取消</button>
+                                        <button class="btn btn-primary" type="submit">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+<script>
+    $backBTN = $(".backBTN");
+    $backBTN.click(function () {
+        var uri = $backBTN.attr("back_uri");
+        window.location.replace(uri);
+        return false;
+    })
+</script>
+</body>
+
+</html>
