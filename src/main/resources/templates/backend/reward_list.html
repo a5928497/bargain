@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -34,13 +33,8 @@
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <a th:href="@{/rewardToAdd/}+${act_id}"><button class="btn btn-primary">添加礼品</button></a>
-            <a th:href="@{/touploadimg/}+${act_id}+@{?act_status=}+${act_status}"><button class="btn btn-warning" th:if="${act_status != 2}">编辑转盘</button></a>
             <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
             <div class="border"></div>
-            <form>
-
-
-            </form>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -55,9 +49,10 @@
                                 <tr>
                                     <th data-hide="all">ID</th>
                                     <th data-hide="all">礼品名</th>
+                                    <th data-hide="all">原价</th>
+                                    <th data-hide="all">人头数</th>
                                     <th data-hide="all">总数</th>
                                     <th data-hide="all">剩余数</th>
-                                    <th data-hide="all">中奖概率</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -65,9 +60,10 @@
                                 <tr th:each="reward:${rewards}">
                                     <td th:text="${reward.id}">id</td>
                                     <td th:text="${reward.rewardName}">rewardName</td>
+                                    <td th:text="${reward.price}">price</td>
+                                    <td th:text="${reward.times}">times</td>
                                     <td th:text="${reward.total}">total</td>
                                     <td th:text="${reward.surplus}">surplus</td>
-                                    <td th:text="${reward.probability}">probability</td>
                                     <td>
                                         <a th:href="@{/reward/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-warning">编辑</button></a>
 

@@ -13,10 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class BargainApplicationTests {
 	@Autowired
 	private ActivityRepo activityRepo;
+	@Autowired
+	private RewardRepo rewardRepo;
 
 	@Test
 	public void contextLoads() {
-		System.out.println(activityRepo.findOne(2));
+		System.out.println(activityRepo.getActstatusById(4));
 	}
 
 }

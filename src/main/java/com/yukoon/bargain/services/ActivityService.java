@@ -28,4 +28,8 @@ public class ActivityService {
         return activityRepo.findOne(id);
     }
 
+    @Transactional
+    public Integer getActstatusByActid(Integer act_id) {
+        return activityRepo.getActstatusById(act_id);
+    }
 }
