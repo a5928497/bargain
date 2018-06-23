@@ -1,4 +1,4 @@
-package com.yukoon.bargain.entities.services;
+package com.yukoon.bargain.services;
 
 import com.yukoon.bargain.entities.Activity;
 import com.yukoon.bargain.repository.ActivityRepo;
@@ -16,5 +16,10 @@ public class ActivityService {
     @Transactional
     public List<Activity> findAll() {
         return activityRepo.findAll();
+    }
+
+    @Transactional
+    public void saveAct(Activity activity) {
+        activityRepo.saveAndFlush(activity);
     }
 }

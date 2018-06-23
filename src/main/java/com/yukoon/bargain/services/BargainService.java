@@ -1,4 +1,4 @@
-package com.yukoon.bargain.service;
+package com.yukoon.bargain.services;
 
 import org.springframework.stereotype.Service;
 

@@ -23,4 +23,6 @@ public class Activity {
     @Column(name = "ACT_STATUS")
     private Integer act_status;
 
+    @Column(name = "cashingInfo")
+    private String cashingInfo;
 }
