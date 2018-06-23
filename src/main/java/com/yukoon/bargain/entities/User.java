@@ -27,12 +27,6 @@ public class User {
     @ManyToOne
     private Activity activity;
 
-    @Column(name = "TIMES_LEFT")
-    private Integer timesLeft;
-
-    @Column(name = "PRICE_LEFT")
-    private double priceLeft;
-
     @JoinColumn(name = "ROLE_ID")
     @OneToOne
     private Role role;
