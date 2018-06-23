@@ -17,6 +17,16 @@ public class RewardController {
     @Autowired
     private ActivityService activityService;
 
+    //获取Reward对象
+    @ModelAttribute
+    public void getReward(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
+        //若为修改
+        if (id !=null) {
+            Reward reward = rewardService.findById(id);
+            map.put("reward",reward);
+        }
+    }
+
     //后台查看某一活动下所有礼品
     @GetMapping("/rewards/{act_id}")
     public String listAll(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
@@ -31,6 +41,20 @@ public class RewardController {
     public String toAdd(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
         map.put("act_id",act_id);
         return "backend/reward_input";
+    }
+
+    //后台前往某一活动编辑礼品
+    @GetMapping("/reward/{id}")
+    public String toEdit(@PathVariable("id")Integer id,Map<String,Object> map) {
+        map.put("reward",rewardService.findById(id));
+        return "backend/reward_input";
+    }
+
+    //后台编辑某一活动下礼品
+    @PutMapping("/reward")
+    public String edit(Reward reward) {
+        rewardService.saveReward(reward);
+        return "redirect:/rewards/"+reward.getActivity().getId();
     }
 
     //后台向某一活动添加礼品

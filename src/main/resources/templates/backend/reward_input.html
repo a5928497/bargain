@@ -67,7 +67,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button th:attr="back_uri = @{/rewards/}+${reward.act_id}" th:if="${reward!=null}" class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = @{/rewards/}+${reward.activity.id}" th:if="${reward!=null}" class="btn btn-white backBTN" >取消</button>
                                         <button th:attr="back_uri = @{/rewards/}+${act_id}" th:if="${reward==null}" class="btn btn-white backBTN" >取消</button>
                                         <button class="btn btn-primary" type="submit">保存</button>
                                     </div>

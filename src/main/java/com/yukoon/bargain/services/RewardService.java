@@ -26,4 +26,9 @@ public class RewardService {
     public void deleteReward(Integer id) {
         rewardRepo.delete(id);
     }
+
+    @javax.transaction.Transactional
+    public Reward findById(Integer id) {
+        return rewardRepo.findOne(id);
+    }
 }
