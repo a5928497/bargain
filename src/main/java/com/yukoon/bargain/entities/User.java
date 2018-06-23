@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -23,11 +24,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @JoinColumn(name = "ACT_ID")
-    @ManyToOne
-    private Activity activity;
-
     @JoinColumn(name = "ROLE_ID")
     @OneToOne
     private Role role;
+
+    //中间表主控方
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ACTIVITY",joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ACT_ID")})
+    private Set<Activity> actList;
 }

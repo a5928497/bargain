@@ -31,4 +31,6 @@ public class GameService {
 			gameInfoRepo.saveAndFlush(gameInfo);
 		}
 	}
+
+	//进行砍价
 }

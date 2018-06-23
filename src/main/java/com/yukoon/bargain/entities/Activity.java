@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -25,4 +26,8 @@ public class Activity {
 
     @Column(name = "cashingInfo")
     private String cashingInfo;
+
+    //中间表被控方
+    @ManyToMany(mappedBy = "actList",cascade = CascadeType.ALL)
+    private Set<User> userList;
 }
