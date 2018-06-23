@@ -4,8 +4,7 @@ import com.yukoon.bargain.entities.Activity;
 import com.yukoon.bargain.services.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -13,6 +12,16 @@ import java.util.Map;
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
+
+    //获取Activity对象
+    @ModelAttribute
+    public void getActivity(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
+        //若为修改
+        if (id !=null) {
+            Activity activity = activityService.findById(id);
+            map.put("activity",activity);
+        }
+    }
 
     //后台查询所有活动
     @GetMapping("/acts")
@@ -27,9 +36,45 @@ public class ActivityController {
         return "backend/act_input";
     }
 
+    //后台前往编辑活动
+    @GetMapping("/act/{id}")
+    public String toEdit(Map<String,Object> map, @PathVariable("id")Integer id) {
+        map.put("activity",activityService.findById(id));
+        return "backend/act_input";
+    }
+    //后台开启活动
+    @GetMapping("/actopen/{id}")
+    public String open(@PathVariable("id")Integer id) {
+        Activity activity = activityService.findById(id);
+        if (activity!=null) {
+            activity.setAct_status(1);
+            activityService.saveAct(activity);
+        }
+        return "redirect:/acts";
+    }
+
+    //后台开启活动
+    @GetMapping("/actclose/{id}")
+    public String close(@PathVariable("id")Integer id) {
+        Activity activity = activityService.findById(id);
+        if (activity!=null) {
+            activity.setAct_status(2);
+            activityService.saveAct(activity);
+        }
+        return "redirect:/acts";
+    }
+
+    //后台编辑活动
+    @PutMapping("/act")
+    public String edit(Activity activity) {
+        System.out.println(activity);
+        activityService.saveAct(activity);
+        return "redirect:/acts";
+    }
+
     //后台添加活动
     @PostMapping("/act")
-    public String Add(Activity activity) {
+    public String add(Activity activity) {
         activity.setAct_status(0);
         activityService.saveAct(activity);
         return "redirect:/acts";

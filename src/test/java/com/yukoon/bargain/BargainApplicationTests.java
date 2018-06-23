@@ -16,7 +16,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(activityRepo.findAll());
+		System.out.println(activityRepo.findOne(2));
 	}
 
 }

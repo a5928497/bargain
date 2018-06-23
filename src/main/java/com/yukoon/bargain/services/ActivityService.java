@@ -22,4 +22,10 @@ public class ActivityService {
     public void saveAct(Activity activity) {
         activityRepo.saveAndFlush(activity);
     }
+
+    @Transactional
+    public Activity findById(Integer id) {
+        return activityRepo.findOne(id);
+    }
+
 }
