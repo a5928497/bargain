@@ -29,6 +29,8 @@ public class UserService {
 	@Transactional
 	public User login(User user) {
 		User user_temp = userRepo.login(user.getUsername());
+		System.out.println(user);
+		System.out.println(user_temp);
 		if (user_temp != null && user_temp.getPassword().equals(user.getPassword())) {
 			return user_temp;
 		}
