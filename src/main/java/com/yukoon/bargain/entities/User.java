@@ -20,6 +20,12 @@ public class User {
         this.password = password;
     }
 
+    public User(Integer id,String username, Role role) {
+        this.id = id;
+        this.username = username;
+        this.role = role;
+    }
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;

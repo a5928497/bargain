@@ -5,6 +5,7 @@ import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.repository.ActivityRepo;
+import com.yukoon.bargain.repository.PermissionRepo;
 import com.yukoon.bargain.repository.RewardRepo;
 import com.yukoon.bargain.repository.UserRepo;
 import com.yukoon.bargain.services.GameService;
@@ -25,10 +26,12 @@ public class BargainApplicationTests {
 	private GameService gameService;
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired
+	private PermissionRepo permissionRepo;
 
 	@Test
 	public void contextLoads() {
-		System.out.println(userRepo.login("feili"));
+		System.out.println(permissionRepo.findPermNameByRoleid(2));
 	}
 
 }
