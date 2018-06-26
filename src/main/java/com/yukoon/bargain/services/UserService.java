@@ -12,7 +12,13 @@ public class UserService {
 	private UserRepo userRepo;
 
 	@Transactional
-	public void addUser(User user) {
-		userRepo.saveAndFlush(user);
+	public boolean addUser(User user) {
+		boolean flag = false;
+		//判断用户是否已经注册
+		if (userRepo.vaildateUsername(user.getUsername()) == null) {
+			userRepo.saveAndFlush(user);
+			flag = true;
+		}
+		return flag;
 	}
 }

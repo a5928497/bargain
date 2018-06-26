@@ -6,6 +6,7 @@ import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.repository.ActivityRepo;
 import com.yukoon.bargain.repository.RewardRepo;
+import com.yukoon.bargain.repository.UserRepo;
 import com.yukoon.bargain.services.GameService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,18 +23,12 @@ public class BargainApplicationTests {
 	private RewardRepo rewardRepo;
 	@Autowired
 	private GameService gameService;
+	@Autowired
+	private UserRepo userRepo;
 
 	@Test
 	public void contextLoads() {
-		User user = new User();
-		user.setId(1);
-		Reward reward = new Reward();
-		reward.setId(2);
-		Activity activity = new Activity();
-		activity.setId(1);
-		GameInfo gameInfo = new GameInfo();
-		gameInfo.setReward(reward).setUser(user).setActivity(activity);
-		gameService.joinIn(gameInfo);
+		System.out.println(userRepo.vaildateUsername("feili"));
 	}
 
 }
