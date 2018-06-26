@@ -28,7 +28,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(userRepo.vaildateUsername("feili"));
+		System.out.println(userRepo.login("feili"));
 	}
 
 }

@@ -14,6 +14,12 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 public class User {
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;

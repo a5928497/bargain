@@ -10,4 +10,7 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     //验证用户名是否存在
     @Query("select u.username from User u where u.username = :username")
     public String vaildateUsername(@Param("username") String username);
+
+    @Query("select new User(username,password) from User u where u.username = :username")
+    public User login(@Param("username") String username);
 }

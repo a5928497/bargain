@@ -28,7 +28,6 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(User user, RedirectAttributes attributes) {
-        user.setRole(new Role().setId(1));
         if (userService.addUser(user)) {
             attributes.addFlashAttribute("usr_msg","注册成功！");
             //注册成功后自动登录
