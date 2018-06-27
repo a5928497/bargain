@@ -32,7 +32,7 @@ public class UserController {
             attributes.addFlashAttribute("usr_msg","注册成功！");
             //注册成功后自动登录
             Subject currentUser  = SecurityUtils.getSubject();
-            if(!currentUser.isRemembered()) {
+            if(!currentUser.isAuthenticated()) {
                 //把用户名密码封装为Token对象
                 UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUsername(),user.getPassword());
                 //设置token的rememberme

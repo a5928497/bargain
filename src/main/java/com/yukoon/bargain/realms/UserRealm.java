@@ -30,6 +30,7 @@ public class UserRealm extends AuthorizingRealm {
 		UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
 		//2. 从 UsernamePasswordToken 中获取 username,password构建user
 		String username = upToken.getUsername();
+		System.out.println(upToken.getPassword());
 		User user = new User().setUsername(username).setPassword(String.valueOf(upToken.getPassword()));
 		//3. 从数据库获取User准备进行比对
 		User user_temp = userService.login(user);
