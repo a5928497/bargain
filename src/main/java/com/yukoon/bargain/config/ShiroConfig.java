@@ -32,7 +32,7 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager( manager);
 		//配置登录的url和登录成功的url
-		bean.setLoginUrl("/index");
+		bean.setLoginUrl("/login");
 		bean.setSuccessUrl("/users");
 		//配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
@@ -87,6 +87,7 @@ public class ShiroConfig {
 		SimpleCookie cookie = new SimpleCookie("rememberMe");
 		cookie.setHttpOnly(true);
 		cookie.setMaxAge(31536000);
+		cookie.setPath("/");
 		return cookie;
 	}
 
