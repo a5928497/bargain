@@ -29,29 +29,10 @@ public class GameService {
 	//用户加入活动
 	@Transactional
 	public void joinIn(Integer user_id,Integer act_id) {
-		User user = preJoinIn(user_id,act_id);
-		userRepo.saveAndFlush(user);
-	}
-
-	public User preJoinIn(Integer user_id,Integer act_id) {
 		User user = userService.findById(user_id);
-		Activity act = new Activity().setId(act_id);
-		Set<Activity> set = user.getActList();
-		boolean hadJoined = false;
-		for (Activity temp : set) {
-			//检查是否已经加入过活动
-			if (temp.getId() == act_id) {
-				hadJoined = true;
-				break;
-			}
-		}
-		if (!hadJoined) {
-			set.add(act);
-			user.setActList(set);
-		}else {
-			user = null;
-		}
-		return user;
+		Activity act = activityService.findById(act_id);
+		user.getActList().add(act);
+		userRepo.saveAndFlush(user);
 	}
 
 	//新加入游戏用户新开记录

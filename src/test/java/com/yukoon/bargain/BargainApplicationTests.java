@@ -31,7 +31,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(gameService.preJoinIn(2,3));
+		gameService.joinIn(2,3);
 	}
 
 }
