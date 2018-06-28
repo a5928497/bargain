@@ -7,10 +7,23 @@
 <body>
         <button>参加</button>
         <form id="joinForm">
-            <input type="hidden" name="act_id" th:value="${act_id}">
-            <input type="hidden" name="username" th:value="${session.username}" >
+            <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
+            <input type="hidden" id="username" name="username" th:value="${session.username}" >
+            <input type="hidden" id="url" name="url" >
         </form>
         <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+        <script type="text/javascript">
+            var username = $("#username").val();
+            //完整路径
+            var curWwwPath=window.document.location.href;
+            //后缀
+            var pathName=window.document.location.pathname;
+            //前缀
+            var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+            $("#url").val(pathName);
+            if (username == "") {
 
+            }
+        </script>
 </body>
 </html>
