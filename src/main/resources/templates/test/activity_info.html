@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-        <a th:href="@{/join}+${act_id}"><button>参加</button></a>
+        <button>参加</button>
+        <form id="joinForm">
+            <input type="hidden" name="act_id" th:value="${act_id}">
+            <input type="hidden" name="username" th:value="${session.username}" >
+        </form>
+        <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+
 </body>
 </html>

@@ -26,7 +26,7 @@ public class LoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(User user,String flag) {
+	public String login(User user,String flag,String url) {
 		//获得subject
 		Subject currentUser = SecurityUtils.getSubject();
 		if(!currentUser.isAuthenticated()){
@@ -49,6 +49,7 @@ public class LoginController {
 				}
 			}
 		}
+		System.out.println(url);
 		return "redirect:/acts";
 	}
 }

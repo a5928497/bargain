@@ -50,4 +50,9 @@ public class UserService {
 	public User findById(Integer id) {
 		return userRepo.findOne(id);
 	}
+
+	@Transactional
+	public Integer findIdByUsername(String username) {
+		return userRepo.findIdByUsername(username);
+	}
 }

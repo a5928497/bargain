@@ -31,7 +31,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		gameService.joinIn(2,3);
+		System.out.println(userRepo.findIdByUsername("feili"));
 	}
 
 }
