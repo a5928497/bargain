@@ -79,4 +79,11 @@ public class ActivityController {
         activityService.saveAct(activity);
         return "redirect:/acts";
     }
+
+    //前台前往活动详情页面
+    @GetMapping("/actInfo/{act_id}")
+    public String toActInfo(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
+        map.put("act_id",act_id);
+        return "test/activity_info";
+    }
 }

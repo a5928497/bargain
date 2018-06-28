@@ -24,7 +24,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println(subject.isAuthenticated());
         System.out.println(subject.isRemembered());
         if (!subject.isAuthenticated() && subject.isRemembered()){
-            System.out.println("333");
             Object principal = subject.getPrincipal();
             if (null != principal) {
                 User user = userService.autoLogin((String) principal);
@@ -43,7 +42,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         else {
-            System.out.println("222");
             flag = true;
         }
         return flag;

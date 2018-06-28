@@ -26,7 +26,7 @@ public class LoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(User user) {
+	public String login(User user,String flag) {
 		//获得subject
 		Subject currentUser = SecurityUtils.getSubject();
 		if(!currentUser.isAuthenticated()){
@@ -40,6 +40,13 @@ public class LoginController {
 				currentUser.login(usernamePasswordToken);
 			}catch (AuthenticationException ae){
 				System.out.println("登陆失败:"+ae.toString());
+				if (flag.equals("bg")) {
+					//若是从后台登录，返回backend登录
+					return "redirect:/backend";
+				}else {
+					//若是从前台登录，返回前台登录
+					return "redirect:/login";
+				}
 			}
 		}
 		return "redirect:/acts";
