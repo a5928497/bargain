@@ -1,5 +1,6 @@
 package com.yukoon.bargain.services;
 
+import com.yukoon.bargain.entities.Activity;
 import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 @Service
 public class GameService {
 	@Autowired
@@ -18,11 +21,37 @@ public class GameService {
 	private RewardRepo rewardRepo;
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private ActivityService activityService;
 
 	//用户加入活动
 	@Transactional
-	public void joinIn() {
+	public void joinIn(Integer user_id,Integer act_id) {
+		User user = preJoinIn(user_id,act_id);
+		userRepo.saveAndFlush(user);
+	}
 
+	public User preJoinIn(Integer user_id,Integer act_id) {
+		User user = userService.findById(user_id);
+		Activity act = new Activity().setId(act_id);
+		Set<Activity> set = user.getActList();
+		boolean hadJoined = false;
+		for (Activity temp : set) {
+			//检查是否已经加入过活动
+			if (temp.getId() == act_id) {
+				hadJoined = true;
+				break;
+			}
+		}
+		if (!hadJoined) {
+			set.add(act);
+			user.setActList(set);
+		}else {
+			user = null;
+		}
+		return user;
 	}
 
 	//新加入游戏用户新开记录

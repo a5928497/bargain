@@ -31,7 +31,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(permissionRepo.findPermNameByRoleid(2));
+		System.out.println(gameService.preJoinIn(2,3));
 	}
 
 }
