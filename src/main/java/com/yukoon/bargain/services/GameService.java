@@ -29,6 +29,7 @@ public class GameService {
 	//用户加入活动
 	@Transactional
 	public void joinIn(Integer user_id,Integer act_id) {
+		//user和act 必须从数据库查出，这样能直接去重
 		User user = userService.findById(user_id);
 		Activity act = activityService.findById(act_id);
 		user.getActList().add(act);
