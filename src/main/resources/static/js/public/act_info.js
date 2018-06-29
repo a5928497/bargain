@@ -22,14 +22,13 @@ $(function () {
             $.ajax({
                 type: "POST",   //提交的方法
                 url:"/joinIn", //提交的地址
-
                 data:$("#joinForm").serialize(),// 序列化表单值
                 async: false,
                 error: function (request) {
                     alert("连接超时！");
                 },
                 success: function (data) {
-                    console.log(data);
+                    console.log();
                 }
             });
         }

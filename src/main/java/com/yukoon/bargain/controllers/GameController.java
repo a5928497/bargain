@@ -1,5 +1,6 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.services.GameService;
 import com.yukoon.bargain.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,21 @@ public class GameController {
 
     @ResponseBody
     @PostMapping("/joinIn")
-    public boolean joinIn(Integer act_id,String username) {
-        boolean result = gameService.joinIn(userService.findIdByUsername(username),act_id);
+    public Boolean joinIn(Integer act_id,String username) {
+        Integer user_id = userService.findIdByUsername(username);
+        Boolean result = gameService.joinIn(user_id,act_id);
+        if (result) {
+            //如果加入成功，检查客户是否已经加入游戏并新开了记录，防止正常流程外的错误发生
+            GameInfo gameInfo = gameService.findByActIdAndUserId(act_id,user_id);
+            if (gameInfo != null) {
+                //若用户已经新开记录
+                result = false;
+            }
+        }else {
+            //若加入失败，result为空
+            result = null;
+        }
         return result;
     }
+
 }

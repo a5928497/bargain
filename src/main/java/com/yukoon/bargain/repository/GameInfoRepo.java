@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface GameInfoRepo extends JpaRepository<GameInfo,Integer>{
 
-//    @Query(value = "select user_id from user_activity where user_id = :user_id and act_id = :act_id")
-//    public Integer isJoined(@Param("user_id")Integer user_id,@Param("act_id")Integer act_id);
+	@Query("select g from GameInfo g where g.activity.id = :act_id and g.user.id = :user_id")
+	public GameInfo findGameInfoByActIdAndUserId(@Param("act_id") Integer act_id,@Param("user_id")Integer user_id);
 }
