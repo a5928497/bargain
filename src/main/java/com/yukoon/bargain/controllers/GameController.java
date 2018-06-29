@@ -18,6 +18,14 @@ public class GameController {
     @Autowired
     private UserService userService;
 
+    /*
+    * @return true
+    * 一切正常
+    * @return null
+    * 加入活动失败
+    * @return false
+    * 用户已经加入过记录了
+     */
     @ResponseBody
     @PostMapping("/joinIn")
     public Boolean joinIn(Integer act_id,String username) {

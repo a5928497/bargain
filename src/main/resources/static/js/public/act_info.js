@@ -28,7 +28,7 @@ $(function () {
                     alert("连接超时！");
                 },
                 success: function (data) {
-                    console.log();
+                    console.log(data);
                 }
             });
         }
