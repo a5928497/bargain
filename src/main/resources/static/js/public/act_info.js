@@ -28,7 +28,15 @@ $(function () {
                     alert("连接超时！");
                 },
                 success: function (data) {
-                    console.log(data);
+                    if (data == true) {
+                        //若加入活动成功且未加入活动，跳转至挑选奖品
+                    }else if (data == false){
+                        //若已经加入活动，则跳转至活动详情
+                    }else {
+                        //若加入活动失败，则返回错误信息并刷新页面
+                        alert("加入活动失败，请重试！");
+                        window.location.replace(pathName);
+                    }
                 }
             });
         }
