@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
@@ -21,8 +22,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         boolean flag = false;
         Subject subject = SecurityUtils.getSubject();
-        System.out.println(subject.isAuthenticated());
-        System.out.println(subject.isRemembered());
+        System.out.println("isAuthenticated:"+subject.isAuthenticated());
+        System.out.println("isRemembered"+subject.isRemembered());
         if (!subject.isAuthenticated() && subject.isRemembered()){
             Object principal = subject.getPrincipal();
             if (null != principal) {
@@ -32,6 +33,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                 try {
                     //执行登录
                     subject.login(upToken);
+                    //将手机号放进session
+                    HttpSession session = httpServletRequest.getSession();
+                    session.setAttribute("username",user.getUsername());
                     flag = true;
                 }catch (AuthenticationException ae){
                     System.out.println("没有权限请先登陆");

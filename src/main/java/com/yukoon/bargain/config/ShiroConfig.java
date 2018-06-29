@@ -40,7 +40,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/logout","logout");
 		filterChainDefinitionMap.put("/error/*.html","anon");
 		filterChainDefinitionMap.put("/css/**","anon");
-		filterChainDefinitionMap.put("/js/*.*","anon");
+		filterChainDefinitionMap.put("/js/**","anon");
 		filterChainDefinitionMap.put("/index","anon");
 		filterChainDefinitionMap.put("/webjars/**","anon");
 		filterChainDefinitionMap.put("/backend","anon");

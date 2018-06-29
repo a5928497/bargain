@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <form method="post" action="/login" ModelAttribute="user" th:fragment="loginForm">
+            <input type="text" name="username">
+            <input type="password" name="password">
+            <input type="hidden" name="url" id="login_back_url">
+            <input type="submit" th:value="submit">
+        </form>
+</body>
+</html>
