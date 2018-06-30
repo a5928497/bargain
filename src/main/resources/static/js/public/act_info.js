@@ -13,12 +13,6 @@ $(function () {
 
     //添加参与活动按钮监听
     $joinBTN.click(function () {
-        if (username == "") {
-            //若还没登录，显示登录按钮
-            $loginFormContainer.show();
-            $("#login_back_url").val(pathName);
-        }else {
-            //若已经登录
             $.ajax({
                 type: "POST",   //提交的方法
                 url:"/joinIn", //提交的地址
@@ -39,6 +33,5 @@ $(function () {
                     }
                 }
             });
-        }
     })
 })

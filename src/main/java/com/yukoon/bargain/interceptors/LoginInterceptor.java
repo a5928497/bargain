@@ -26,6 +26,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("isRemembered"+subject.isRemembered());
         if (!subject.isAuthenticated() && subject.isRemembered()){
             Object principal = subject.getPrincipal();
+            System.out.println(principal);
             if (null != principal) {
                 User user = userService.autoLogin((String) principal);
                 UsernamePasswordToken upToken = new UsernamePasswordToken(user.getUsername(),user.getPassword());
