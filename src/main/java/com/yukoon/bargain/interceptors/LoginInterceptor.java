@@ -34,9 +34,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                 try {
                     //执行登录
                     subject.login(upToken);
-                    //将手机号放进session
-                    HttpSession session = httpServletRequest.getSession();
-                    session.setAttribute("username",user.getUsername());
                     flag = true;
                 }catch (AuthenticationException ae){
                     System.out.println("没有权限请先登陆");

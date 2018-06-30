@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(User user, RedirectAttributes attributes, ModelMap modelMap, HttpServletRequest request) {
+    public String register(User user, RedirectAttributes attributes, ModelMap modelMap) {
         if (userService.addUser(user)) {
             attributes.addFlashAttribute("usr_msg","注册成功！");
             //注册成功后自动登录
@@ -44,9 +44,6 @@ public class UserController {
                 try {
                     //执行登录
                     currentUser.login(usernamePasswordToken);
-                    //将手机号放进session
-					HttpSession session = request.getSession();
-					session.setAttribute("username",user.getUsername());
                 }catch (AuthenticationException ae){
                     System.out.println("登陆失败:"+ae.toString());
                     //若从后台登录，则回后台登录界面
