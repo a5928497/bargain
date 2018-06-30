@@ -2,6 +2,7 @@ package com.yukoon.bargain.controllers;
 
 import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Reward;
+import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.services.GameService;
 import com.yukoon.bargain.services.RewardService;
 import com.yukoon.bargain.services.UserService;
@@ -57,7 +58,7 @@ public class GameController {
                 }
             }else {
                 //若加入失败，result为空，返回当前页面
-                result = null;
+                return "redirect:" + url;
             }
         }else {
             //若用户未登录，返回登录页面
@@ -69,6 +70,21 @@ public class GameController {
         map.put("act_id",act_id);
         map.put("rewards",rewards);
         return "test/option";
+    }
+
+    @PostMapping("/newRrcord")
+    public String newRecord(GameInfo gameInfo) {
+        //先验证用户是否登录
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.isAuthenticated() || currentUser.isRemembered()) {
+            //若用户已登录
+            String username = (String) currentUser.getPrincipal();
+            User user = userService.findByUsername(username);
+            gameInfo.setUser(user);
+            gameInfo.setReward(rewardService.findById(gameInfo.getReward().getId()));
+            gameService.newRecord(gameInfo);
+        }
+        return "redirect:/login";
     }
 
 }

@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    <form modelAttribute="gameInfo">
+    <form modelAttribute="gameInfo" action="/newRrcord" method="post">
         <select name="reward.id">
            <option th:each="reward:${rewards}" th:value="${reward.id}" th:text="${reward.rewardName}"></option>
         </select>
-        <input type="hidden" name="activity" th:value="${act_id}">
+        <input type="hidden" name="activity.id" th:value="${act_id}">
         <input type="submit" th:value="submit">
     </form>
 </body>
