@@ -6,8 +6,9 @@
 </head>
 <body>
         <button id="join_BTN">参加</button>
-        <form id="joinForm" method="post">
+        <form id="joinForm" method="post" action="/joinIn">
             <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
+            <input  type="hidden" id="join_back_url" name="url">
         </form>
         <!--登录窗口-->
         <div id="loginForm_container">

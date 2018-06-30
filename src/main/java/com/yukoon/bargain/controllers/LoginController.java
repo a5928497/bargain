@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Map;
+
 @Controller
 public class LoginController {
 
@@ -21,7 +23,10 @@ public class LoginController {
 
 	//跳转至登录首页
 	@GetMapping("/login")
-	public String toLogin() {
+	public String toLogin(String url, Map<String,Object> map) {
+		if (url != null) {
+			map.put("url",url);
+		}
 		return "test/login";
 	}
 
@@ -50,6 +55,6 @@ public class LoginController {
 			}
 		}
 		System.out.println(url);
-		return "redirect:/acts";
+		return "redirect:"+url;
 	}
 }

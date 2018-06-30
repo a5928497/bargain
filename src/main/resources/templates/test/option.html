@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-    <form>
-
-        <input type="hidden" name="act_id" th:value="">
-        <input type="hidden" id="username" name="username" th:value="${session.username}" >
+    <form modelAttribute="gameInfo">
+        <select name="reward.id">
+           <option th:each="reward:${rewards}" th:value="${reward.id}" th:text="${reward.rewardName}"></option>
+        </select>
+        <input type="hidden" name="activity" th:value="${act_id}">
+        <input type="submit" th:value="submit">
     </form>
 </body>
 </html>

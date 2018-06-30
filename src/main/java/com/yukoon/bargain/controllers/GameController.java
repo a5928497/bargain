@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -37,13 +38,13 @@ public class GameController {
     * 用户已经加入过记录了
      */
     @PostMapping("/joinIn")
-    public String joinIn(Integer act_id, Map<String,Object> map) {
+    public String joinIn(Integer act_id, Map<String,Object> map, String url, RedirectAttributes attributes) {
         Boolean result = null;
         //先验证用户是否登录
         Subject currentUser = SecurityUtils.getSubject();
-        String username = (String) currentUser.getPrincipal();
-        if (username != null) {
+        if (currentUser.isAuthenticated() || currentUser.isRemembered()) {
             //若用户已登录
+            String username = (String) currentUser.getPrincipal();
             Integer user_id = userService.findIdByUsername(username);
             result = gameService.joinIn(user_id,act_id);
             if (result) {
@@ -60,9 +61,12 @@ public class GameController {
             }
         }else {
             //若用户未登录，返回登录页面
+           attributes.addFlashAttribute("url",url);
+            return "redirect:/login";
         }
         //若加入成功且未开记录，前往奖品选择页面
         List<Reward> rewards = rewardService.findAllByActid(act_id);
+        map.put("act_id",act_id);
         map.put("rewards",rewards);
         return "test/option";
     }
