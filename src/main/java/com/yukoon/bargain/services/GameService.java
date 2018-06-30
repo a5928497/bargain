@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
 import java.util.Set;
 
 @Service
@@ -25,6 +26,8 @@ public class GameService {
 	private UserService userService;
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private BargainService bargainService;
 
 	//用户加入活动
 	@Transactional
@@ -61,4 +64,20 @@ public class GameService {
 	}
 
 	//进行砍价
+	@Transactional
+	public void bargain(GameInfo gameInfo) {
+		gameInfo = gameInfoRepo.findOne(gameInfo.getId());
+		if (gameInfo != null) {
+			DecimalFormat df = new DecimalFormat();
+			df.setMaximumFractionDigits(2);
+			//获得减价随机数
+			Double bargainPrice = bargainService.getBargain(gameInfo.getId());
+			//保留两位小数并更新数据
+			Double priceLeft = Double.parseDouble(df.format(gameInfo.getPriceLeft() - bargainPrice));
+			gameInfo.setPriceLeft(priceLeft);
+			gameInfo.setTimesLeft(gameInfo.getTimesLeft()-1);
+			gameInfoRepo.saveAndFlush(gameInfo);
+		}
+
+	}
 }

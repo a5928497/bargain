@@ -16,19 +16,23 @@ public class BargainService {
 	private final static Double MULTIPLE = 1.5;
 	//砍价数额平均值的百分数，用于生成随机值
     private final static Double PRECENT = 0.6;
-    //取整、保留小数位工具
-	private final static DecimalFormat INTFORMAT = new DecimalFormat("######0");
-	private final static DecimalFormat DOUBLEFORMAT = new DecimalFormat("######0.00");
+    //取整、保留小数位
+	private final static Integer INTFORMAT = 0;
+	private final static Integer DOUBLEFORMAT = 2;
 
 	//随机生成砍价数额，减价数额在平均值的MULTIPLE倍和PRECENT倍之间
 	public Double getRandomValue(Double priceLeft,int timesLeft) {
+		DecimalFormat df1 = new DecimalFormat();
+		DecimalFormat df2 = new DecimalFormat();
+		df1.setMaximumFractionDigits(INTFORMAT);
+		df2.setMaximumFractionDigits(DOUBLEFORMAT);
 		Random random = new Random();
 		Double average = (priceLeft/timesLeft)*MULTIPLE;
 		Double result;
 		if (average>=1.0) {
-			Integer range_max = Integer.parseInt(INTFORMAT.format(average));
-			Integer range_min = Integer.parseInt(INTFORMAT.format(range_max*PRECENT));
-			result = Double.parseDouble(DOUBLEFORMAT.format(random.nextInt(range_max-range_min)+range_min+Math.random()));
+			Integer range_max = Integer.parseInt(df1.format(average));
+			Integer range_min = Integer.parseInt(df1.format(range_max*PRECENT));
+			result = Double.parseDouble(df2.format(random.nextInt(range_max-range_min)+range_min+Math.random()));
 			return result;
 		}else {
 			return random.nextDouble();

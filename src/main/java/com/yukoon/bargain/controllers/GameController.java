@@ -80,10 +80,18 @@ public class GameController {
             //若用户已登录
             String username = (String) currentUser.getPrincipal();
             User user = userService.findByUsername(username);
-            gameInfo.setUser(user);
-            gameInfo.setReward(rewardService.findById(gameInfo.getReward().getId()));
-            gameService.newRecord(gameInfo);
-        }
+            GameInfo gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
+            if (gi_temp == null) {
+            	//若用户未开记录，则新开记录并作第一次砍价后到活动详情
+				gameInfo.setUser(user);
+				gameInfo.setReward(rewardService.findById(gameInfo.getReward().getId()));
+				gameService.newRecord(gameInfo);
+			}else {
+				//若用户已开记录，则直接到活动详情
+			}
+        }else {
+        	//若用户未登陆，则跳转到登陆页面
+		}
         return "redirect:/login";
     }
 

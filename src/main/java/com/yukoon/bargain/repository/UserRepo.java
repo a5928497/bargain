@@ -1,9 +1,12 @@
 package com.yukoon.bargain.repository;
 
+import com.yukoon.bargain.entities.Activity;
 import com.yukoon.bargain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.Set;
 
 public interface UserRepo extends JpaRepository<User,Integer>{
 
@@ -17,6 +20,10 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query("select new User (id,username,role) from User u where u.username = :username")
     public User findByUsername(@Param("username") String username);
 
+    @Query("select u.actList from User u where u.username = :username")
+    public Set<Activity> findActsByUsername(@Param("username") String username);
+
     @Query("select u.id from User u where u.username = :username")
     public Integer findIdByUsername(@Param("username")String username);
+
 }
