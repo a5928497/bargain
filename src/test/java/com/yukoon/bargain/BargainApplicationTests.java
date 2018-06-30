@@ -5,6 +5,7 @@ import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.repository.*;
+import com.yukoon.bargain.services.BargainService;
 import com.yukoon.bargain.services.GameService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +28,12 @@ public class BargainApplicationTests {
 	private PermissionRepo permissionRepo;
 	@Autowired
 	private GameInfoRepo gameInfoRepo;
+	@Autowired
+	private BargainService bargainService;
 
 	@Test
 	public void contextLoads() {
-		System.out.println(gameInfoRepo.findGameInfoByActIdAndUserId(2,2));
+		System.out.println(bargainService.getBargain(2));
 	}
 
 }
