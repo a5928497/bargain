@@ -87,6 +87,7 @@ public class GameController {
 				//第一次砍价
                 gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
                 gameService.bargain(gi_temp);
+                //跳转到活动详情
 			}else {
 				//若用户已开记录，则直接到活动详情
 			}

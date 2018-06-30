@@ -77,6 +77,7 @@ public class GameService {
 			gameInfo.setPriceLeft(priceLeft);
 			gameInfo.setTimesLeft(gameInfo.getTimesLeft()-1);
 			gameInfoRepo.saveAndFlush(gameInfo);
+			//记录砍价者信息
 		}
 
 	}
