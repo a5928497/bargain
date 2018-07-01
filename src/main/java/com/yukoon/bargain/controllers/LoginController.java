@@ -1,12 +1,14 @@
 package com.yukoon.bargain.controllers;
 
 import com.yukoon.bargain.entities.User;
+import com.yukoon.bargain.services.UserService;
 import com.yukoon.bargain.utils.EncodeUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,9 @@ import java.util.Map;
 
 @Controller
 public class LoginController {
+
+	@Autowired
+	private UserService userService;
 
 	//跳转至后台登陆页
 	@GetMapping("/backend")
@@ -59,6 +64,10 @@ public class LoginController {
 					return "redirect:/login";
 				}
 			}
+		}
+		user = userService.findByUsername(user.getUsername());
+		if (user.getRole().getId() == 2 ) {
+			return "redirect:/acts";
 		}
 		System.out.println();
 		return "redirect:"+url;
