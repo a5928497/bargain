@@ -1,6 +1,7 @@
 package com.yukoon.bargain.controllers;
 
 import com.yukoon.bargain.entities.GameInfo;
+import com.yukoon.bargain.entities.HelperInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.services.GameService;
@@ -86,7 +87,9 @@ public class GameController {
 				gameService.newRecord(gameInfo);
 				//第一次砍价
                 gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
-                gameService.bargain(gi_temp);
+                HelperInfo hi = new HelperInfo();
+                hi.setGameInfo(gi_temp).setHelper(user);
+                gameService.bargain(hi);
                 //跳转到活动详情
 			}else {
 				//若用户已开记录，则直接到活动详情

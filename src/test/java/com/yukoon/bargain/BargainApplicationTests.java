@@ -38,9 +38,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		for (int i = 0;i<10 ;i++) {
-			gameService.bargain(new GameInfo().setId(2));
-		}
+
 
 	}
 

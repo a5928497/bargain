@@ -1,10 +1,8 @@
 package com.yukoon.bargain.services;
 
-import com.yukoon.bargain.entities.Activity;
-import com.yukoon.bargain.entities.GameInfo;
-import com.yukoon.bargain.entities.Reward;
-import com.yukoon.bargain.entities.User;
+import com.yukoon.bargain.entities.*;
 import com.yukoon.bargain.repository.GameInfoRepo;
+import com.yukoon.bargain.repository.HelperInfoRepo;
 import com.yukoon.bargain.repository.RewardRepo;
 import com.yukoon.bargain.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +21,15 @@ public class GameService {
 	@Autowired
 	private UserRepo userRepo;
 	@Autowired
+	private HelperInfoRepo helperInfoRepo;
+	@Autowired
 	private UserService userService;
 	@Autowired
 	private ActivityService activityService;
 	@Autowired
 	private BargainService bargainService;
+	@Autowired
+	private HelperInfoService helperInfoService;
 
 	//用户加入活动
 	@Transactional
@@ -65,9 +67,10 @@ public class GameService {
 
 	//进行砍价
 	@Transactional
-	public void bargain(GameInfo gameInfo) {
-		gameInfo = gameInfoRepo.findOne(gameInfo.getId());
-		if (gameInfo != null) {
+	public void bargain(HelperInfo helperInfo) {
+		GameInfo gameInfo = gameInfoRepo.findOne(helperInfo.getGameInfo().getId());
+		//若记录存在且砍价者没帮这个用户进行过砍价
+		if (gameInfo != null && !helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId())) {
 			DecimalFormat df = new DecimalFormat();
 			df.setMaximumFractionDigits(2);
 			//获得减价随机数
@@ -78,6 +81,8 @@ public class GameService {
 			gameInfo.setTimesLeft(gameInfo.getTimesLeft()-1);
 			gameInfoRepo.saveAndFlush(gameInfo);
 			//记录砍价者信息
+			helperInfo.setBarginPrice(bargainPrice);
+			helperInfoRepo.saveAndFlush(helperInfo);
 		}
 
 	}
