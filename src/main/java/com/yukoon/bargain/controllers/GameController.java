@@ -96,20 +96,22 @@ public class GameController {
                 hi.setGameInfo(gi_temp).setHelper(user);
                 gameService.bargain(hi);
                 //跳转到活动详情
+                return "redirect:/game/"+ gi_temp.getId();
 			}else {
 				//若用户已开记录，则直接到活动详情
+                return "redirect:/game/" + gi_temp.getId();
 			}
         }else {
         	//若用户未登陆，则跳转到登陆页面
+            return "redirect:/login";
 		}
-        return "redirect:/login";
     }
 
-    @GetMapping("/game/{gameInfoId")
+    @GetMapping("/game/{gameInfoId}")
     public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId,Map<String,Object> map) {
         map.put("gameInfo",gameService.findById(gameInfoId));
         map.put("helpers",helperInfoService.getHelpers(gameInfoId));
-        return null;
+        return "test/details";
     }
 
 }

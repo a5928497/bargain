@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div id="reward_container">
+        <p th:text="${gameInfo.reward.rewardName}"></p>
+        <p th:text="原价+${gameInfo.reward.price}"></p>
+        <p th:text="现已砍至+${gameInfo.priceLeft}"></p>
+    </div>
+    <div id="helper_container">
+        <p th:each="helper:${helpers}">
+            <span th:text="${helper.helper.username}"></span>
+            <span>帮他砍了</span>
+            <span th:text="${helper.barginPrice}+元"></span>
+        </p>
+    </div>
+    <div id="BTN_container">
+        <button>帮他砍一刀</button>
+        <button>我也要参与</button>
+    </div>
 </body>
 </html>
