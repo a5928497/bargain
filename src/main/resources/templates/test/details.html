@@ -19,7 +19,7 @@
     </div>
     <div id="BTN_container">
         <a th:href="@{/bargain/}+${gameInfo.id}"><button>帮他砍一刀</button></a>
-        <button>我也要参与</button>
+        <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button>我也要参与</button></a>
     </div>
 </body>
 </html>

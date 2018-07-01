@@ -6,10 +6,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -23,10 +25,13 @@ public class LoginController {
 
 	//跳转至登录首页
 	@GetMapping("/login")
-	public String toLogin(String url, Map<String,Object> map) {
-		System.out.println(url);
+	public String toLogin(String url, Map<String,Object> map, HttpServletRequest request) {
 		if (url != null) {
 			map.put("url",url);
+		}
+		String requestUrl = WebUtils.getSavedRequest(request).getRequestUrl();
+		if (requestUrl != null && !requestUrl.equals("")) {
+			map.put("url",requestUrl);
 		}
 		return "test/login";
 	}
@@ -55,7 +60,7 @@ public class LoginController {
 				}
 			}
 		}
-		System.out.println(url);
+		System.out.println();
 		return "redirect:"+url;
 	}
 }

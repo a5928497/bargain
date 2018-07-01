@@ -43,7 +43,7 @@ public class GameController {
     * 用户已经加入过记录了
      */
     @PostMapping("/joinIn")
-    public String joinIn(Integer act_id, Map<String,Object> map, String url, RedirectAttributes attributes) {
+    public String joinIn(Integer act_id, Map<String,Object> map, String url) {
         Boolean result = null;
         //先验证用户是否登录
         Subject currentUser = SecurityUtils.getSubject();
@@ -66,7 +66,6 @@ public class GameController {
             }
         }else {
             //若用户未登录，返回登录页面
-           attributes.addFlashAttribute("url",url);
             return "redirect:/login";
         }
         //若加入成功且未开记录，前往奖品选择页面
@@ -124,7 +123,6 @@ public class GameController {
             return "redirect:/game/"+gameInfoId;
         }else {
             //若用户未登录
-            attributes.addFlashAttribute("url","/game/"+gameInfoId);
             return "redirect:/login";
         }
     }
