@@ -5,12 +5,15 @@ import com.yukoon.bargain.entities.HelperInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.services.GameService;
+import com.yukoon.bargain.services.HelperInfoService;
 import com.yukoon.bargain.services.RewardService;
 import com.yukoon.bargain.services.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +29,8 @@ public class GameController {
     private UserService userService;
     @Autowired
     private RewardService rewardService;
+    @Autowired
+    private HelperInfoService helperInfoService;
 
 
     /*
@@ -71,7 +76,7 @@ public class GameController {
     }
 
     @PostMapping("/newRrcord")
-    public String newRecord(GameInfo gameInfo) {
+    public String newRecord(GameInfo gameInfo,RedirectAttributes attributes) {
         //先验证用户是否登录
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated() || currentUser.isRemembered()) {
@@ -98,6 +103,13 @@ public class GameController {
         	//若用户未登陆，则跳转到登陆页面
 		}
         return "redirect:/login";
+    }
+
+    @GetMapping("/game/{gameInfoId")
+    public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId,Map<String,Object> map) {
+        map.put("gameInfo",gameService.findById(gameInfoId));
+        map.put("helpers",helperInfoService.getHelpers(gameInfoId));
+        return null;
     }
 
 }

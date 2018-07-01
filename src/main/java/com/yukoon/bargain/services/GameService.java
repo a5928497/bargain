@@ -52,6 +52,12 @@ public class GameService {
 		return gameInfoRepo.findGameInfoByActIdAndUserId(act_id,user_id);
 	}
 
+	//通过id查询游戏记录
+    @Transactional
+    public GameInfo findById(Integer id) {
+	    return gameInfoRepo.findOne(id);
+    }
+
 	//新加入游戏用户新开记录
 	@Transactional
 	public void newRecord(GameInfo gameInfo) {
