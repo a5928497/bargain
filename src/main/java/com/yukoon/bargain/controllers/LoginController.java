@@ -24,6 +24,7 @@ public class LoginController {
 	//跳转至登录首页
 	@GetMapping("/login")
 	public String toLogin(String url, Map<String,Object> map) {
+		System.out.println(url);
 		if (url != null) {
 			map.put("url",url);
 		}
