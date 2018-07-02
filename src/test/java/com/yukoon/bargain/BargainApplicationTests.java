@@ -38,7 +38,9 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-
+		for (User u:activityRepo.findAllUsersByActid(2)) {
+			System.out.println(u.getUsername());
+		}
 
 	}
 

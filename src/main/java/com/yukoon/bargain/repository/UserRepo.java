@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UserRepo extends JpaRepository<User,Integer>{
@@ -25,5 +26,6 @@ public interface UserRepo extends JpaRepository<User,Integer>{
 
     @Query("select u.id from User u where u.username = :username")
     public Integer findIdByUsername(@Param("username")String username);
+
 
 }

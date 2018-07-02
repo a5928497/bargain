@@ -12,6 +12,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,6 +29,12 @@ public class UserController {
     @GetMapping("/toregister")
     public String toregister() {
         return "test/signup.html";
+    }
+
+    //后台查询某一活动下所有参与的用户
+    @GetMapping("/users/{act_id}")
+    public String listAllUsers(@PathVariable("act_id")Integer act_id ) {
+        return null;
     }
 
     @PostMapping("/register")
