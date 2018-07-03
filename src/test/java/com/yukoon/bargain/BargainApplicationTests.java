@@ -36,11 +36,11 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		List<User> list = PageableUtil.UserSetconvert2TreeSet(activityRepo.findAllUsersByActid(2));
-		for (User u:list) {
-			System.out.println(u.getId());
-		}
-		System.out.println(list.get(2).getId());
+//		List<User> list = PageableUtil.UserSetconvert2TreeSet(activityRepo.findAllUsersByActid(2));
+//		for (User u:list) {
+//			System.out.println(u.getId());
+//		}
+//		System.out.println(list.get(2).getId());
 	}
 
 }
