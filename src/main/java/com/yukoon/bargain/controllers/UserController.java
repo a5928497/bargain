@@ -52,6 +52,15 @@ public class UserController {
         return "backend/user_list";
     }
 
+    //后台分页搜索某一活动下的用户
+    @PostMapping("/finduser")
+    public String findUser(String username,Integer act_id,Map<String,Object> map) {
+        Page page = gameInfoService.searchUser(act_id,PAGE_SIZE,username);
+        map.put("page",page);
+        map.put("act_id",act_id);
+        return "backend/user_list";
+    }
+
     @PostMapping("/register")
     public String register(User user, RedirectAttributes attributes, ModelMap modelMap) {
         if (userService.addUser(user)) {

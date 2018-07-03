@@ -36,7 +36,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(gameInfoRepo.findGameInfoByActivity_Id(2).size());
+		System.out.println(gameInfoRepo.searchGameInfoByUsernameAndActid("%li%",2).size());
 	}
 
 }
