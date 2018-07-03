@@ -43,6 +43,9 @@ public class UserController {
     public String listAllUsers(@PathVariable("act_id")Integer act_id,
                                @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo,
                                Map<String,Object> map) {
+    	if (pageNo <1) {
+    		pageNo = 1;
+		}
         Page page = gameInfoService.getPageableByActid(act_id,pageNo,PAGE_SIZE);
         map.put("page",page);
         map.put("act_id",act_id);
