@@ -36,7 +36,7 @@ public class PageableUtil {
             total = (list.size()%pageSize) ==0?(list.size()/pageSize):((list.size()/pageSize)+1);
             //元素下标起点
             start = (pageNo -1)*pageSize;
-            end = (pageNo * pageSize) -1;
+            end = pageNo == total?list.size()-1 : start+pageSize-1;
         }
         page.setPageTotal(total);
         page.setPageNo(pageNo).setPageSize(pageSize).setRecordTotal(list.size());
