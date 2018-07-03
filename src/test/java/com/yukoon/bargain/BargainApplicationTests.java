@@ -12,8 +12,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -38,9 +45,6 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		for (User u:activityRepo.findAllUsersByActid(2)) {
-			System.out.println(u.getUsername());
-		}
 
 	}
 
