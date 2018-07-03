@@ -4,7 +4,7 @@ import com.yukoon.bargain.entities.User;
 
 import java.util.*;
 
-public class SortUtil {
+public class PageableUtil {
 
     //对User的Set进行排序处理
     public static ArrayList<User> UserSetconvert2TreeSet(Set<User> set) {
@@ -19,6 +19,12 @@ public class SortUtil {
         tree.addAll(set);
         ArrayList<User> list = new ArrayList<>();
         list.addAll(tree);
+        return list;
+    }
+
+    //进行分页
+    public static ArrayList<User> page(Integer pageNo,Integer pageSize) {
+        ArrayList<User> list = new ArrayList<>();
         return list;
     }
 }

@@ -1,14 +1,11 @@
 package com.yukoon.bargain;
 
-import com.yukoon.bargain.entities.Activity;
-import com.yukoon.bargain.entities.GameInfo;
-import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.repository.*;
 import com.yukoon.bargain.services.BargainService;
 import com.yukoon.bargain.services.GameService;
 import com.yukoon.bargain.services.UserService;
-import com.yukoon.bargain.utils.SortUtil;
+import com.yukoon.bargain.utils.PageableUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,7 +36,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		List<User> list = SortUtil.UserSetconvert2TreeSet(activityRepo.findAllUsersByActid(2));
+		List<User> list = PageableUtil.UserSetconvert2TreeSet(activityRepo.findAllUsersByActid(2));
 		for (User u:list) {
 			System.out.println(u.getId());
 		}
