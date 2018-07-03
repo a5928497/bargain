@@ -1,7 +1,9 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.Role;
 import com.yukoon.bargain.entities.User;
+import com.yukoon.bargain.services.GameInfoService;
 import com.yukoon.bargain.services.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -14,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +28,25 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private GameInfoService gameInfoService;
+
+    private final static Integer PAGE_SIZE = 10;
 
     @GetMapping("/toregister")
     public String toregister() {
         return "test/signup.html";
     }
 
-    //后台查询某一活动下所有参与的用户
+    //后台分页查询某一活动下所有参与的用户
     @GetMapping("/users/{act_id}")
-    public String listAllUsers(@PathVariable("act_id")Integer act_id ) {
-        return null;
+    public String listAllUsers(@PathVariable("act_id")Integer act_id,
+                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo,
+                               Map<String,Object> map) {
+        Page page = gameInfoService.getPageableByActid(act_id,pageNo,PAGE_SIZE);
+        map.put("page",page);
+        map.put("act_id",act_id);
+        return "backend/user_list";
     }
 
     @PostMapping("/register")

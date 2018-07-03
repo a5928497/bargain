@@ -1,17 +1,24 @@
 package com.yukoon.bargain.services;
 
+import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.Role;
 import com.yukoon.bargain.entities.User;
+import com.yukoon.bargain.repository.ActivityRepo;
 import com.yukoon.bargain.repository.UserRepo;
 import com.yukoon.bargain.utils.EncodeUtil;
+import com.yukoon.bargain.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired
+	private ActivityRepo activityRepo;
 
 	@Transactional
 	public boolean addUser(User user) {
@@ -55,4 +62,5 @@ public class UserService {
 	public Integer findIdByUsername(String username) {
 		return userRepo.findIdByUsername(username);
 	}
+
 }
