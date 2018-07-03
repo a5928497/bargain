@@ -91,7 +91,7 @@
                                 </tfoot>
                             </table>
                             <p>
-                                <span th:text="共有+${page.pageTotal}+页 "></span>
+                                <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
                                 <span th:text="当前为第+${page.pageNo}+页"></span>
                                 <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
                                 <a th:href="@{/users/2?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>

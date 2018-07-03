@@ -84,7 +84,10 @@ public class GameService {
 			//保留两位小数并更新数据
 			Double priceLeft = Double.parseDouble(df.format(gameInfo.getPriceLeft() - bargainPrice));
 			gameInfo.setPriceLeft(priceLeft);
-			gameInfo.setTimesLeft(gameInfo.getTimesLeft()-1);
+			//若砍价者不是本人才扣减人数
+			if(gameInfo.getUser().getId() != helperInfo.getHelper().getId()) {
+				gameInfo.setTimesLeft(gameInfo.getTimesLeft()-1);
+			}
 			gameInfoRepo.saveAndFlush(gameInfo);
 			//记录砍价者信息
 			helperInfo.setBarginPrice(bargainPrice);

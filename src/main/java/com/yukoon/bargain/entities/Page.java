@@ -16,4 +16,5 @@ public class Page {
 	private Integer pageNo;
 	private Integer pageSize;
 	private List list;
+	private Integer recordTotal;
 }

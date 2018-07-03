@@ -39,7 +39,7 @@ public class PageableUtil {
             end = (pageNo * pageSize) -1;
         }
         page.setPageTotal(total);
-        page.setPageNo(pageNo).setPageSize(pageSize);
+        page.setPageNo(pageNo).setPageSize(pageSize).setRecordTotal(list.size());
         ArrayList list_new = new ArrayList();
         for (int i = start;i<= end ;i++) {
             list_new.add(list.get(i));
