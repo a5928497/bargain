@@ -30,8 +30,8 @@ public class HelperInfoService {
         return PageableUtil.page(pageNo,pageSize,helperInfoRepo.findAllByGameInfo(gameInfoId));
     }
 
-    public Page searchByUsername(Integer pageSize,Integer gameInfoId,String username) {
+    public Page searchByUsername(Integer pageNo,Integer pageSize,Integer gameInfoId,String username) {
         username = "%"+username+"%";
-        return PageableUtil.page(1,pageSize,helperInfoRepo.searchByGameInfoIdAndUsername(gameInfoId,username));
+        return PageableUtil.page(pageNo,pageSize,helperInfoRepo.searchByGameInfoIdAndUsername(gameInfoId,username));
     }
 }

@@ -21,7 +21,7 @@ public class GameInfoService {
 	}
 
 	@Transactional
-	public Page searchUser(Integer act_id,Integer pageSize,String username) {
-		return PageableUtil.page(1,pageSize,gameInfoRepo.searchGameInfoByUsernameAndActid("%"+username+"%",act_id));
+	public Page searchUser(Integer act_id,Integer pageNo,Integer pageSize,String username) {
+		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.searchGameInfoByUsernameAndActid("%"+username+"%",act_id));
 	}
 }

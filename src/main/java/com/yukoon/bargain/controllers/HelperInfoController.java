@@ -38,8 +38,12 @@ public class HelperInfoController {
 
     //后台查询帮助者
     @PostMapping("/findhelper")
-    public String searchHelpers(String username,Integer gameinfo_id,Map<String,Object> map) {
-        Page page = helperInfoService.searchByUsername(PAGE_SIZE,gameinfo_id,username);
+    public String searchHelpers(String username,Integer gameinfo_id,Map<String,Object> map,
+                                @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo <1) {
+            pageNo =1;
+        }
+        Page page = helperInfoService.searchByUsername(pageNo,PAGE_SIZE,gameinfo_id,username);
         map.put("page",page);
         map.put("gameInfo_Id",gameinfo_id);
         map.put("act_id",gameService.findById(gameinfo_id).getActivity().getId());

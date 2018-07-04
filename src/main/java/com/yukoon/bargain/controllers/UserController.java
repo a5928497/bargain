@@ -49,6 +49,17 @@ public class UserController {
         map.put("page",page);
         return "backend/all_user_list";
     }
+    //后台分页查询某一注册用户
+    @PostMapping("/searchuser")
+    public String searchUser(String username,Map<String,Object> map,
+                             @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
+        Page page = userService.searchUserByUsername(pageNo,PAGE_SIZE,username);
+        map.put("page",page);
+        return "backend/all_user_list";
+    }
 
     //后台分页查询某一活动下所有参与的用户
     @GetMapping("/users/{act_id}")
@@ -66,8 +77,12 @@ public class UserController {
 
     //后台分页搜索某一活动下的用户
     @PostMapping("/finduser")
-    public String findUser(String username,Integer act_id,Map<String,Object> map) {
-        Page page = gameInfoService.searchUser(act_id,PAGE_SIZE,username);
+    public String findUser(String username,Integer act_id,Map<String,Object> map,
+                           @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
+        Page page = gameInfoService.searchUser(act_id,pageNo,PAGE_SIZE,username);
         map.put("page",page);
         map.put("act_id",act_id);
         return "backend/user_list";
