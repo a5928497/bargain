@@ -4,10 +4,7 @@ import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.HelperInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
-import com.yukoon.bargain.services.GameService;
-import com.yukoon.bargain.services.HelperInfoService;
-import com.yukoon.bargain.services.RewardService;
-import com.yukoon.bargain.services.UserService;
+import com.yukoon.bargain.services.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -32,6 +30,8 @@ public class GameController {
     private RewardService rewardService;
     @Autowired
     private HelperInfoService helperInfoService;
+    @Autowired
+    private GameInfoService gameInfoService;
 
 
     /*
@@ -127,11 +127,19 @@ public class GameController {
         }
     }
 
+    //前台跳转到抽奖页面
     @GetMapping("/game/{gameInfoId}")
     public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map, RedirectAttributes attributes) {
         map.put("gameInfo",gameService.findById(gameInfoId));
         map.put("helpers",helperInfoService.getHelpers(gameInfoId));
         return "test/details";
+    }
+
+    //后台奖品兑换
+    @PutMapping("/cash/{gameInfo_id}")
+    public String cash(@PathVariable("gameInfo_id")Integer gameInfo_id,Integer act_id) {
+        gameInfoService.cashReward(gameInfo_id);
+        return "redirect:/awards/" + act_id;
     }
 
 }

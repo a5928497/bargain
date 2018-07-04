@@ -64,7 +64,7 @@
                                     <td th:text="已兑换" th:if="${gameInfo.isCash == 1}">isCash</td>
                                     <td th:text="${gameInfo.cashingDate ==null}?未兑换:${#dates.format(gameInfo.cashingDate, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td>
-                                        <button  th:attr="put_uri=@{/award/}" th:if="${gameInfo.isCash == 0}" class="btn btn-sm btn-primary cashingBTN">兑换</button>
+                                        <button  th:attr="put_uri=@{/cash/}+${gameInfo.id}" th:if="${gameInfo.isCash == 0}" class="btn btn-sm btn-primary cashingBTN">兑换</button>
                                     </td>
 
                                 </tr>

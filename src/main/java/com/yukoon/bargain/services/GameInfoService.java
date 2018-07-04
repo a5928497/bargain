@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,5 +29,13 @@ public class GameInfoService {
 	@Transactional
 	public Page getWinnersByActid(Integer pageNo,Integer pageSize,Integer act_id) {
 		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.whoswin(act_id));
+	}
+
+	@Transactional
+	public void cashReward(Integer gameInfo_Id) {
+		GameInfo gameInfo = gameInfoRepo.findOne(gameInfo_Id);
+		gameInfo.setIsCash(1);
+		gameInfo.setCashingDate(new Date());
+		gameInfoRepo.saveAndFlush(gameInfo);
 	}
 }
