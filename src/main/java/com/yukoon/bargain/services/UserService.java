@@ -63,4 +63,8 @@ public class UserService {
 		return userRepo.findIdByUsername(username);
 	}
 
+	@Transactional
+	public Page findPageableAll (Integer pageNo,Integer pageSize) {
+		return PageableUtil.page(pageNo,pageSize,userRepo.findAll());
+	}
 }

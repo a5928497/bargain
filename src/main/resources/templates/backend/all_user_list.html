@@ -37,7 +37,6 @@
             <form action="/finduser" method="post" >
                 <div class="input-group"id="search_group">
                     <input type="text" class="form-control input-sm" name="username" placeholder="手机号">
-                    <input type="hidden" name="act_id" th:value="${act_id}">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-sm btn-primary">
                             搜索
@@ -46,7 +45,7 @@
                 </div>
             </form>
                 <div class="border"></div>
-                <a th:href="@{/users/}+${act_id}"><button class="btn btn-sm btn-info">全部</button></a>
+                <a th:href="@{/allusers}"><button class="btn btn-sm btn-info">全部</button></a>
                 <a th:href="@{/acts}"><button class="btn btn-sm btn-info">返回首页</button></a>
                 <div class="border"></div>
             </div>
@@ -63,22 +62,12 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">手机号</th>
-                                    <th data-hide="all">奖品名</th>
-                                    <th data-hide="all">剩余价格</th>
-                                    <th data-hide="all">剩余人数</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="gameInfo:${page.list}">
-                                    <td th:text="${gameInfo.user.username}">username</td>
-                                    <td th:text="${gameInfo.reward.rewardName}">rewardName</td>
-                                    <td th:text="${gameInfo.priceLeft}">priceLeft</td>
-                                    <td th:text="${gameInfo.timesLeft}">timesLeft</td>
-                                    <td>
-                                        <a th:href="@{/helpers/}+${gameInfo.id}"><button class="btn btn-sm btn-warning">帮助者</button></a>
-                                    </td>
-
+                                <tr th:each="user:${page.list}">
+                                    <td th:text="${user.username}">username</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

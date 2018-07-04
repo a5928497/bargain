@@ -38,6 +38,18 @@ public class UserController {
         return "test/signup.html";
     }
 
+    //后台分页查询所有注册用户
+    @GetMapping("/allusers")
+    public String findAll(Map<String,Object> map,
+                          @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo<1) {
+            pageNo = 1;
+        }
+        Page page = userService.findPageableAll(pageNo,PAGE_SIZE);
+        map.put("page",page);
+        return "backend/all_user_list";
+    }
+
     //后台分页查询某一活动下所有参与的用户
     @GetMapping("/users/{act_id}")
     public String listAllUsers(@PathVariable("act_id")Integer act_id,
