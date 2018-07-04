@@ -24,4 +24,9 @@ public class GameInfoService {
 	public Page searchUser(Integer act_id,Integer pageNo,Integer pageSize,String username) {
 		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.searchGameInfoByUsernameAndActid("%"+username+"%",act_id));
 	}
+
+	@Transactional
+	public Page getWinnersByActid(Integer pageNo,Integer pageSize,Integer act_id) {
+		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.whoswin(act_id));
+	}
 }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reward</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/footable/2.0.3/css/footable.core.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet" >
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
+                    <h2>管理后台</h2>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
+            <a id="export" th:href="${act_id}"><button class="btn btn-warning">批量导出</button></a>
+
+            <div class="border"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>中奖信息</h5>
+
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                <thead>
+                                <tr>
+                                    <th data-hide="all">手机号</th>
+                                    <th data-hide="all">奖品名</th>
+                                    <th data-hide="all">状态</th>
+                                    <th data-hide="all">兑换时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="gameInfo:${page.list}">
+                                    <td th:text="${gameInfo.user.username}">username</td>
+                                    <td th:text="${gameInfo.reward.rewardName}">reward_name</td>
+                                    <td th:text="未兑换" th:if="${gameInfo.isCash == 0}">isCash</td>
+                                    <td th:text="已兑换" th:if="${gameInfo.isCash == 1}">isCash</td>
+                                    <td th:text="${gameInfo.cashingDate ==null}?未兑换:${#dates.format(gameInfo.cashingDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td>
+                                        <button  th:attr="put_uri=@{/award/}" th:if="${gameInfo.isCash == 0}" class="btn btn-sm btn-primary cashingBTN">兑换</button>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    <form id="cashingForm" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
+    </form>
+
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script>
+        $cashingBTN = $(".cashingBTN");
+        $cashingForm = $("#cashingForm");
+        $border = $(".border");
+        $border.css("height",10);
+        $export = $("#export");
+        var act_id_url = $("#act_id").val();
+        var reward_or_rewards = act_id_url.split("/")[1];
+        var act_id = act_id_url.split("/")[2];
+        if ( reward_or_rewards == "awards") {
+            $export.attr("href","/exportallrewardinfo/"+act_id);
+        }
+        if (reward_or_rewards == "award") {
+            $export.attr("href","/exportuserrewardinfo/"+act_id);
+        }
+        $cashingBTN.click(function () {
+            var isOk = confirm("确定兑换吗？");
+            if (isOk == true) {
+                $cashingForm.attr("action",$(this).attr("put_uri")).submit();
+            }
+            return false;
+        });
+    </script>
+
+</body>
+
+</html>

@@ -16,4 +16,7 @@ public interface GameInfoRepo extends JpaRepository<GameInfo,Integer>{
 
 	@Query("select g from GameInfo g where g.user.username like :username and g.activity.id = :act_id")
 	public List<GameInfo> searchGameInfoByUsernameAndActid(@Param("username")String username,@Param("act_id")Integer act_id);
+
+	@Query("select g from GameInfo g where  g.activity.id = :act_id and g.priceLeft = 0.00")
+	public List<GameInfo> whoswin(@Param("act_id")Integer act_id);
 }

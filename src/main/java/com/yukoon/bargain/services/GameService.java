@@ -67,6 +67,7 @@ public class GameService {
 			gameInfo.setReward(reward);
 			gameInfo.setPriceLeft(reward.getPrice());
 			gameInfo.setTimesLeft(reward.getTimes());
+			gameInfo.setIsCash(0);
 			gameInfoRepo.saveAndFlush(gameInfo);
 		}
 	}

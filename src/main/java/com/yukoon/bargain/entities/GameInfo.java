@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +31,12 @@ public class GameInfo {
 
 	@Column(name = "TIMES_LEFT")
 	private Integer timesLeft;
+
+	@Column(name = "IS_CASH")
+	private Integer isCash;
+
+	@Column(name = "CASHING_DATE")
+	private Date cashingDate;
 
 	@JoinColumn(name = "ACT_ID")
 	@ManyToOne
