@@ -62,13 +62,16 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">手机号</th>
-                                    <th>操作</th>
+                                    <th>已参加活动</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="user:${page.list}">
-                                    <td th:text="${user.username}">username</td>
-                                </tr>
+                                    <tr th:each="user:${page.list}">
+                                        <td th:text="${user.username}">username</td>
+                                        <td >
+                                            <span th:each="act:${user.actList}" th:text="${act.act_name}+@{;}"></span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -81,12 +84,12 @@
                             <p>
                                 <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
                                 <span th:text="当前为第+${page.pageNo}+页"></span>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/allusers?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
                             </p>
                         </div>
                     </div>
