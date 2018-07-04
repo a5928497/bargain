@@ -29,4 +29,9 @@ public class HelperInfoService {
     public Page getPageableHelpers(Integer pageNo,Integer pageSize,Integer gameInfoId) {
         return PageableUtil.page(pageNo,pageSize,helperInfoRepo.findAllByGameInfo(gameInfoId));
     }
+
+    public Page searchByUsername(Integer pageSize,Integer gameInfoId,String username) {
+        username = "%"+username+"%";
+        return PageableUtil.page(1,pageSize,helperInfoRepo.searchByGameInfoIdAndUsername(gameInfoId,username));
+    }
 }
