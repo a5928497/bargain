@@ -94,8 +94,9 @@ public class GameController {
                 gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
                 HelperInfo hi = new HelperInfo();
                 hi.setGameInfo(gi_temp).setHelper(user);
-                gameService.bargain(hi);
+                String msg = gameService.bargain(hi);
                 //跳转到活动详情
+                attributes.addFlashAttribute("msg",msg);
                 return "redirect:/game/"+ gi_temp.getId();
 			}else {
 				//若用户已开记录，则直接到活动详情
@@ -118,7 +119,8 @@ public class GameController {
             User user = userService.findByUsername(username);
             HelperInfo hi = new HelperInfo();
             hi.setGameInfo(gi).setHelper(user);
-            boolean result = gameService.bargain(hi);
+            String msg = gameService.bargain(hi);
+            attributes.addFlashAttribute("msg",msg);
             //砍价完成后返回当前活动页面
             return "redirect:/game/"+gameInfoId;
         }else {
@@ -129,7 +131,10 @@ public class GameController {
 
     //前台跳转到抽奖页面
     @GetMapping("/game/{gameInfoId}")
-    public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map, RedirectAttributes attributes) {
+    public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
+        if (msg != null) {
+            map.put("msg",msg);
+        }
         map.put("gameInfo",gameService.findById(gameInfoId));
         map.put("helpers",helperInfoService.getHelpers(gameInfoId));
         return "test/details";

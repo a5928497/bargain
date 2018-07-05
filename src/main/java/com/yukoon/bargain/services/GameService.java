@@ -72,13 +72,21 @@ public class GameService {
 		}
 	}
 
+	private final static String SUCCESS_SUFFIX = "太厉害了，您成功的砍下了";
+	private final static String SUCCESS_PREFIX = "元！";
+	private final static String NOT_FOUND = "没有这条记录！";
+	private final static String HAD_BARGAIN = "您已经砍过了，不要贪心哟！";
+	private final static String FINISHED = "已经免费送您了，你还想我怎样，要怎样.....";
+	private final static String ERROR = "哎呀，发生错误了，请稍后再来或联系管理员！";
 	//进行砍价
 	@Transactional
-	public boolean bargain(HelperInfo helperInfo) {
-		boolean flag = false;
+	public String bargain(HelperInfo helperInfo) {
 		GameInfo gameInfo = gameInfoRepo.findOne(helperInfo.getGameInfo().getId());
+		String msg = null;
+		boolean hadBargain  = helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId());
+		boolean notFinished  = gameInfo.getPriceLeft() >0;
 		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元的
-		if (gameInfo != null && !helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId()) && gameInfo.getPriceLeft() >0) {
+		if (gameInfo != null && !hadBargain && notFinished) {
 			DecimalFormat df = new DecimalFormat();
 			df.setMaximumFractionDigits(2);
 			//获得减价随机数
@@ -94,8 +102,16 @@ public class GameService {
 			//记录砍价者信息
 			helperInfo.setBarginPrice(bargainPrice);
 			helperInfoRepo.saveAndFlush(helperInfo);
-			flag = true;
+			msg = SUCCESS_SUFFIX + priceLeft + SUCCESS_PREFIX;
+		}else if (gameInfo == null) {
+			msg = NOT_FOUND;
+		}else if (hadBargain) {
+			msg = HAD_BARGAIN;
+		}else if (!notFinished) {
+			msg = FINISHED;
+		}else {
+			msg = ERROR;
 		}
-		return flag;
+		return msg;
 	}
 }
