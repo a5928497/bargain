@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>5xx Error</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+
+    <div class="middle-box text-center animated fadeInDown">
+        <h1 th:text="${status}">500</h1>
+        <h3 class="font-bold" th:text="${message}">Internal Server Error</h3>
+
+        <div class="error-desc">
+            <span th:text="${error}"></span><br/>
+            You can go back to login page: <br/><a href="/logout" class="btn btn-primary m-t">Login</a>
+        </div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
