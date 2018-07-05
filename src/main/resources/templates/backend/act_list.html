@@ -60,6 +60,7 @@
                                     <td th:text="进行中" th:if="${act.act_status==1}">status</td>
                                     <td th:text="已结束" th:if="${act.act_status==2}">status</td>
                                     <td>
+                                        <a th:href="@{/QR/}+${act.id}"><button class="btn btn-sm btn-primary">活动二维码</button></a>
                                         <a th:href="@{/rewards/}+${act.id}"><button class="btn btn-sm btn-success">礼品</button></a>
                                         <a th:href="@{/awards/}+${act.id}"><button class="btn btn-sm btn-info">得奖者</button></a>
                                         <a th:href="@{/users/}+${act.id}"><button class="btn btn-sm btn-warning">参与者</button></a>
