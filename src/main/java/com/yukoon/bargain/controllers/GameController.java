@@ -118,7 +118,7 @@ public class GameController {
             User user = userService.findByUsername(username);
             HelperInfo hi = new HelperInfo();
             hi.setGameInfo(gi).setHelper(user);
-            gameService.bargain(hi);
+            boolean result = gameService.bargain(hi);
             //砍价完成后返回当前活动页面
             return "redirect:/game/"+gameInfoId;
         }else {

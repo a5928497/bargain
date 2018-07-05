@@ -74,10 +74,11 @@ public class GameService {
 
 	//进行砍价
 	@Transactional
-	public void bargain(HelperInfo helperInfo) {
+	public boolean bargain(HelperInfo helperInfo) {
+		boolean flag = false;
 		GameInfo gameInfo = gameInfoRepo.findOne(helperInfo.getGameInfo().getId());
-		//若记录存在且砍价者没帮这个用户进行过砍价
-		if (gameInfo != null && !helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId())) {
+		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元的
+		if (gameInfo != null && !helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId()) && gameInfo.getPriceLeft() >0) {
 			DecimalFormat df = new DecimalFormat();
 			df.setMaximumFractionDigits(2);
 			//获得减价随机数
@@ -93,7 +94,8 @@ public class GameService {
 			//记录砍价者信息
 			helperInfo.setBarginPrice(bargainPrice);
 			helperInfoRepo.saveAndFlush(helperInfo);
+			flag = true;
 		}
-
+		return flag;
 	}
 }
