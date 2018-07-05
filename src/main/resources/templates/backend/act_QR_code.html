@@ -15,7 +15,11 @@
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
     <style type="text/css">
-
+        #QR_code {
+            width: 200px;
+            height: 200px;
+            margin-left: 40%;
+        }
     </style>
 </head>
 
@@ -46,7 +50,7 @@
                 </div>
                 <div class="ibox-content">
                     <div id="img_container">
-                        <img id="QR_code" th:src="@{http://b.bshare.cn/barCode?site=weixin&url=http://localhost:8080/acts/}">
+                        <img id="QR_code" th:src="${url}">
                     </div>
                 </div>
             </div>
@@ -58,18 +62,16 @@
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/jasny-bootstrap/3.1.2/dist/js/jasny-bootstrap.min.js}"></script>
 <script>
-    $backBTN = $(".backBTN");
-
-    $fileinput = $(".fileinput");
-    $fileinput.css("width", 300);
-    $backBTN.click(function () {
-        var uri = $backBTN.attr("back_uri");
-        window.location.replace(uri);
-        return false;
-    })
-</script>
-<script>
-
+    $QRCode = $("#QR_code");
+    var url = $QRCode.attr("src");
+    //完整路径
+    var curWwwPath=window.document.location.href;
+    //后缀
+    var pathName=window.document.location.pathname;
+    //前缀
+    var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+    url = "http://b.bshare.cn/barCode?site=weixin&url=" + localhostPaht + url;
+    var url = $QRCode.attr("src",url);
 </script>
 
 </body>

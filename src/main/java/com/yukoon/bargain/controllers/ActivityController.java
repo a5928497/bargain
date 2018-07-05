@@ -89,8 +89,9 @@ public class ActivityController {
 
     //前台前往活动二维码页面
     @GetMapping("/QR/{act_id}")
-    public String toQRCode(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
-        String url = "/actInfo/2";
+    public String toQRCode(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
+        String url = "/actInfo/"+act_id;
+        map.put("url",url);
         return "backend/act_QR_code";
     }
 }
