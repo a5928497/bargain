@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Reward</title>
+    <title>codes</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -32,14 +32,14 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/rewardToAdd/}+${act_id}"><button class="btn btn-primary">添加礼品</button></a>
+            <a th:href="@{/rewardToAdd/}"><button class="btn btn-primary">添加兑换券</button></a>
             <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>礼品管理</h5>
+                            <h5>兑换券管理</h5>
 
                         </div>
                         <div class="ibox-content">
@@ -48,26 +48,21 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">ID</th>
-                                    <th data-hide="all">礼品名</th>
-                                    <th data-hide="all">价值</th>
-                                    <th data-hide="all">人头数</th>
-                                    <th data-hide="all">总数</th>
-                                    <th data-hide="all">剩余数</th>
+                                    <th data-hide="all">兑换券号</th>
+                                    <th data-hide="all">对应礼品</th>
+                                    <th data-hide="all">归属</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="reward:${rewards}">
-                                    <td th:text="${reward.id}">id</td>
-                                    <td th:text="${reward.rewardName}">rewardName</td>
-                                    <td th:text="${reward.price}">price</td>
-                                    <td th:text="${reward.times}">times</td>
-                                    <td th:text="${reward.total}">total</td>
-                                    <td th:text="${reward.surplus}">surplus</td>
+                                <tr th:each="code:${codes}">
+                                    <td th:text="${code.id}">id</td>
+                                    <td th:text="${code.code}">code</td>
+                                    <td th:text="${code.reward.rewardName}">rewardName</td>
+                                    <td th:text="${code.winner.username}">username</td>
                                     <td>
-                                        <a th:href="@{/reward/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-warning">编辑</button></a>
-                                        <a th:href="@{/code/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-success">兑换券</button></a>
-                                        <button  th:attr="del_uri = @{/reward/}+${reward.id}" class="btn btn-sm btn-danger deleteBTN" th:if="${act_status==0}">删除</button>
+                                        <a th:href="@{/reward/}" ><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <button  th:attr="del_uri = @{/reward/}" class="btn btn-sm btn-danger deleteBTN" >删除</button>
                                     </td>
 
                                 </tr>
@@ -92,7 +87,7 @@
     <!-- delete表单-->
     <form id="deleteForm" method="post">
         <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="act_id" th:value="${act_id}">
+        <input type="hidden" name="act_id" th:value="">
     </form>
 
 
