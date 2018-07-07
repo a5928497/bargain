@@ -28,4 +28,8 @@ public class RedeemCode {
     @JoinColumn(name = "WINNER_ID")
     @ManyToOne
     private User winner;
+
+    @JoinColumn(name = "GAMEINFO_ID")
+    @OneToOne
+    private GameInfo gameInfo;
 }
