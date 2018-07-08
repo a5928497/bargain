@@ -44,6 +44,8 @@ public class RedeemCodeController {
         return "backend/redeem_codes_input";
     }
 
+    @GetMapping("/editcode/{code_id}")
+
     @PostMapping("/code")
     public String addCode(RedeemCode redeemCode) {
 		System.out.println(redeemCode);

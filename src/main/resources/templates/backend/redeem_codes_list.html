@@ -61,7 +61,7 @@
                                     <td th:text="${code.reward.rewardName}">rewardName</td>
                                     <td th:text="${code.winner == null}?未送出:${code.winner.username}">username</td>
                                     <td>
-                                        <a th:href="@{/reward/}" ><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <a th:href="@{/editcode/}+${code.id}" ><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <button  th:attr="del_uri = @{/reward/}" class="btn btn-sm btn-danger deleteBTN" >删除</button>
                                     </td>
                                 </tr>
