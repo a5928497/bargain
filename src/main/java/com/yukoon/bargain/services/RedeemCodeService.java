@@ -22,4 +22,9 @@ public class RedeemCodeService {
     public List<RedeemCode> findCodeByRewardId(Integer reward_id) {
         return redeemCodeRepo.findCodeByRewardId(reward_id);
     }
+
+    @Transactional
+    public RedeemCode findById(Integer id ){
+        return redeemCodeRepo.findOne(id);
+    }
 }
