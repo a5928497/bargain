@@ -1,7 +1,9 @@
 package com.yukoon.bargain.services;
 
+import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.RedeemCode;
 import com.yukoon.bargain.repository.RedeemCodeRepo;
+import com.yukoon.bargain.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +21,9 @@ public class RedeemCodeService {
     }
 
     @Transactional
-    public List<RedeemCode> findCodeByRewardId(Integer reward_id) {
-        return redeemCodeRepo.findCodeByRewardId(reward_id);
+    public Page findCodeByRewardId(Integer pageNo,Integer pageSize,Integer reward_id) {
+        Page page = PageableUtil.page(pageNo,pageSize,redeemCodeRepo.findCodeByRewardId(reward_id));
+        return page;
     }
 
     @Transactional

@@ -55,16 +55,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="code:${codes}">
+                                <tr th:each="code:${page.list}">
                                     <td th:text="${code.id}">id</td>
                                     <td th:text="${code.code}">code</td>
                                     <td th:text="${code.reward.rewardName}">rewardName</td>
-                                    <td th:text="${code.winner.username}">username</td>
+                                    <td th:text="${code.winner == null}?未送出:${code.winner.username}">username</td>
                                     <td>
                                         <a th:href="@{/reward/}" ><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <button  th:attr="del_uri = @{/reward/}" class="btn btn-sm btn-danger deleteBTN" >删除</button>
                                     </td>
-
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -75,7 +74,16 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
+                            <p>
+                                <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
+                                <span th:text="当前为第+${page.pageNo}+页"></span>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
+                            </p>
                         </div>
                     </div>
                 </div>

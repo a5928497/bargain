@@ -1,5 +1,6 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.RedeemCode;
 import com.yukoon.bargain.services.RedeemCodeService;
 import com.yukoon.bargain.services.RewardService;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 @Controller
 public class RedeemCodeController {
-
+	private static final Integer PAGE_SIZE = 10;
     @Autowired
     private RedeemCodeService redeemCodeService;
     @Autowired
@@ -27,12 +28,12 @@ public class RedeemCodeController {
     }
 
     @GetMapping("/code/{reward_id}")
-    public String findCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map) {
-        List<RedeemCode> codes = redeemCodeService.findCodeByRewardId(reward_id);
+    public String findCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
+									 @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
+        Page page = redeemCodeService.findCodeByRewardId(pageNo,PAGE_SIZE,reward_id);
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("reward_id",reward_id);
-        map.put("codes",codes);
-        map.put("size", codes.size());
+        map.put("page",page);
         return "backend/redeem_codes_list";
     }
 
@@ -45,6 +46,7 @@ public class RedeemCodeController {
 
     @PostMapping("/code")
     public String addCode(RedeemCode redeemCode) {
+		System.out.println(redeemCode);
         redeemCodeService.addSingleRedeemCode(redeemCode);
         return "redirect:/code/"+ redeemCode.getReward().getId();
     }

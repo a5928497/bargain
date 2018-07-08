@@ -33,10 +33,12 @@ public class BargainApplicationTests {
 	private BargainService bargainService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RedeemCodeRepo redeemCodeRepo;
 
 	@Test
 	public void contextLoads() {
-		System.out.println(gameInfoRepo.whoswin(2).size());
+		System.out.println(redeemCodeRepo.findCodeByRewardId(4).size());
 	}
 
 }
