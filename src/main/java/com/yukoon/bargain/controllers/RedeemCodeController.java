@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Map;
 
@@ -38,18 +39,34 @@ public class RedeemCodeController {
     }
 
     @GetMapping("/addcode/{reward_id}")
-    public String toaddCode(Map<String,Object> map,@PathVariable("reward_id")Integer reward_id) {
+    public String toAddCode(Map<String,Object> map,@PathVariable("reward_id")Integer reward_id) {
         map.put("reward",rewardService.findById(reward_id));
         map.put("reward_Id",reward_id);
         return "backend/redeem_codes_input";
     }
 
     @GetMapping("/editcode/{code_id}")
+    public String toEditCode(Map<String,Object> map,@PathVariable("code_id")Integer code_id) {
+        RedeemCode redeemCode = redeemCodeService.findById(code_id);
+        map.put("code",redeemCode);
+        return "backend/redeem_codes_input";
+    }
 
     @PostMapping("/code")
     public String addCode(RedeemCode redeemCode) {
-		System.out.println(redeemCode);
-        redeemCodeService.addSingleRedeemCode(redeemCode);
+        redeemCodeService.saveSingleRedeemCode(redeemCode);
         return "redirect:/code/"+ redeemCode.getReward().getId();
+    }
+
+    @PutMapping("/code")
+    public String editCode(RedeemCode redeemCode) {
+        redeemCodeService.saveSingleRedeemCode(redeemCode);
+        return "redirect:/code/"+ redeemCode.getReward().getId();
+    }
+
+    @DeleteMapping("/code/{code_id}")
+    public String deleteCode(@PathVariable("code_id")Integer code_id,Integer reward_id) {
+        redeemCodeService.deleteRedeemCode(code_id);
+        return "redirect:/code/"+ reward_id;
     }
 }

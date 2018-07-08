@@ -16,7 +16,7 @@ public class RedeemCodeService {
     private RedeemCodeRepo redeemCodeRepo;
 
     @Transactional
-    public void addSingleRedeemCode(RedeemCode redeemCode) {
+    public void saveSingleRedeemCode(RedeemCode redeemCode) {
         redeemCodeRepo.saveAndFlush(redeemCode);
     }
 
@@ -29,5 +29,10 @@ public class RedeemCodeService {
     @Transactional
     public RedeemCode findById(Integer id ){
         return redeemCodeRepo.findOne(id);
+    }
+
+    @Transactional
+    public void deleteRedeemCode(Integer id) {
+        redeemCodeRepo.delete(id);
     }
 }
