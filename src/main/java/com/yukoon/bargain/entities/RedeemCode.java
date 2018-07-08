@@ -29,7 +29,7 @@ public class RedeemCode {
     @ManyToOne
     private User winner;
 
-    @JoinColumn(name = "GAMEINFO_ID")
-    @OneToOne
-    private GameInfo gameInfo;
+    @JoinColumn(name = "ACT_ID")
+    @ManyToOne
+    private Activity activity;
 }
