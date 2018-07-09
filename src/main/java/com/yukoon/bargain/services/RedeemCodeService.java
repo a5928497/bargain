@@ -57,6 +57,7 @@ public class RedeemCodeService {
         return PageableUtil.page(pageNo,pageSize,list_new);
     }
 
+    //验证某一活动下所有礼品对应的兑换码是否足够发放给所有中奖的客户，若不足够，返回不足礼品的id和数量
     @Transactional
     public Map<Integer,Integer> batchCashingCheck(Integer act_id) {
         boolean flag = false;

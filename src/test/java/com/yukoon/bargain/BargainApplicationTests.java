@@ -43,7 +43,9 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		Iterator<Map.Entry<Integer,Integer>> it = redeemCodeService.batchCashingCheck(2).entrySet().iterator();
+		Map<Integer,Integer> map = redeemCodeService.batchCashingCheck(2);
+		Iterator<Map.Entry<Integer,Integer>> it = map.entrySet().iterator();
+		System.out.println(map.size());
 		while (it.hasNext()) {
 			Map.Entry<Integer,Integer> entry = it.next();
 			System.out.println("key=" + entry.getKey() + ",value="+entry.getValue());
