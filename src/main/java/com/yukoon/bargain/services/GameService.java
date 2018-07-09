@@ -73,6 +73,7 @@ public class GameService {
 
 	private final static String SUCCESS_SUFFIX = "太厉害了，您成功的砍下了";
 	private final static String SUCCESS_PREFIX = "元！";
+	private final static String COMPLETED = "恭喜您，你成功砍下了最后一刀！";
 	private final static String NOT_FOUND = "没有这条记录！";
 	private final static String HAD_BARGAIN = "您已经砍过了，不要贪心哟！";
 	private final static String FINISHED = "已经免费送您了，你还想我怎样，要怎样.....";
@@ -102,6 +103,10 @@ public class GameService {
 			helperInfo.setBarginPrice(bargainPrice);
 			helperInfoRepo.saveAndFlush(helperInfo);
 			msg = SUCCESS_SUFFIX + priceLeft + SUCCESS_PREFIX;
+			//若砍价后完成游戏，即砍完
+			if(gameInfo.getPriceLeft() == 0) {
+				msg = msg + COMPLETED;
+			}
 		}else if (gameInfo == null) {
 			msg = NOT_FOUND;
 		}else if (hadBargain) {

@@ -113,7 +113,7 @@ public class GameController {
         //检查用户是否登录
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated() || currentUser.isRemembered()) {
-            //若用户已登录，获取当前用户吧并进行砍价操作
+            //若用户已登录，获取当前用户名并进行砍价操作
             String username = (String) currentUser.getPrincipal();
             GameInfo gi = gameService.findById(gameInfoId);
             User user = userService.findByUsername(username);
