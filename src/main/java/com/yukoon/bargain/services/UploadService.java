@@ -7,6 +7,7 @@ import com.yukoon.bargain.repository.RedeemCodeRepo;
 import com.yukoon.bargain.utils.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -19,6 +20,8 @@ public class UploadService {
     @Autowired
     private RedeemCodeRepo redeemCodeRepo;
 
+
+    @Transactional
     public List<String> importCodeExcel(InputStream in, MultipartFile file, Integer act_id) throws Exception {
         List<List<Object>> listob = ExcelUtil.getUserstByExcel(in,file.getOriginalFilename());
         List<RedeemCode> redeemCodes  = new ArrayList<>();
