@@ -1,20 +1,26 @@
 package com.yukoon.bargain.services;
 
+import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.RedeemCode;
+import com.yukoon.bargain.entities.Reward;
+import com.yukoon.bargain.repository.GameInfoRepo;
 import com.yukoon.bargain.repository.RedeemCodeRepo;
 import com.yukoon.bargain.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RedeemCodeService {
     @Autowired
     private RedeemCodeRepo redeemCodeRepo;
+    @Autowired
+    private RewardService rewardService;
+    @Autowired
+    private GameInfoRepo gameInfoRepo;
 
     @Transactional
     public void saveSingleRedeemCode(RedeemCode redeemCode) {
@@ -49,6 +55,38 @@ public class RedeemCodeService {
             }
         }
         return PageableUtil.page(pageNo,pageSize,list_new);
+    }
+
+    @Transactional
+    public Map<Integer,Integer> batchCashingCheck(Integer act_id) {
+        boolean flag = false;
+        List<Reward> rewards = rewardService.findAllByActid(act_id);
+        Map<Integer,Integer> map = new HashMap<>();
+        for (Reward reward : rewards) {
+            //获得该礼品对应的未被使用的兑换码数量
+            List<RedeemCode> list = redeemCodeRepo.findCodeByRewardId(reward.getId());
+            List<RedeemCode> list_new  = new ArrayList<>();
+            for (RedeemCode rc:list) {
+                if (rc.getWinner() == null) {
+                    list_new.add(rc);
+                }
+            }
+            Integer code_size = list_new.size();
+            //获得该礼品对应的中奖者数量
+            List<GameInfo> winners = gameInfoRepo.whoswin(act_id);
+            List<GameInfo> winners_new = new ArrayList<>();
+            for (GameInfo gi : winners) {
+                if (gi.getReward().getId()==reward.getId() && gi.getRedeemCode() == null) {
+                    winners_new.add(gi);
+                }
+            }
+            Integer winners_size = winners_new.size();
+            flag = code_size >= winners_size;
+            if (!flag) {
+                map.put(reward.getId(),winners_size-code_size);
+            }
+        }
+        return map;
     }
 
     @Transactional
