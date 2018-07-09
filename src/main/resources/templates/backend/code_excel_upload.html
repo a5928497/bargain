@@ -44,8 +44,7 @@
                     <h5>Excel导入（注意：文件最大不超过1MB）</h5>
                 </div>
                 <div class="ibox-content">
-                    <img src="#" id="lottery">
-                    <form action="/excelupload" enctype="multipart/form-data" method="post">
+                    <form action="/uploadcode" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
                                 <span class="fileinput-filename"></span>
@@ -59,7 +58,7 @@
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
                         <div>
-                            <button th:attr="back_uri = @{/users/}+${act_id}"  class="btn btn-white backBTN" >返回</button>
+                            <button th:attr="back_uri = @{/rewards/}+${act_id}"  class="btn btn-white backBTN" >返回</button>
                             <button class="btn btn-primary commitBTN" type="submit">导入</button>
                         </div>
                     </form>
@@ -75,7 +74,6 @@
     <script type="text/javascript" th:src="@{/webjars/jasny-bootstrap/3.1.2/dist/js/jasny-bootstrap.min.js}"></script>
 <script>
     $backBTN = $(".backBTN");
-
     $fileinput = $(".fileinput");
     $fileinput.css("width",300);
     $backBTN.click(function () {
@@ -83,17 +81,6 @@
         window.location.replace(uri);
         return false;
     })
-</script>
-<script>
-    var curWwwPath=window.document.location.href;
-    var pathName=window.document.location.pathname;
-    var pos=curWwwPath.indexOf(pathName);
-    var localhostPaht=curWwwPath.substring(0,pos);
-    var act_id = $("#act_id").val();
-    var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
-    $("#lottery").attr("src",img_url).one("error",function (e) {
-        $(this).remove();
-    });
 </script>
 
 </body>
