@@ -88,7 +88,7 @@ public class UserController {
         return "backend/user_list";
     }
 
-    //后台分页查询某一活动下完成砍价得奖的用户
+    //后台分页查询某一活动下全部完成砍价得奖的用户
     @GetMapping("/awards/{act_id}")
     public String findWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -96,6 +96,30 @@ public class UserController {
             pageNo = 1;
         }
         Page page = gameInfoService.getWinnersByActid(pageNo,PAGE_SIZE,act_id);
+        map.put("page",page);
+        map.put("act_id",act_id);
+        return "backend/winner_list";
+    }
+    //后台分页查询某一活动下未有兑换券完成砍价得奖的用户
+    @GetMapping("/ucawards/{act_id}")
+    public String findUncashWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
+                              @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
+        Page page = gameInfoService.getUncashWinnersByActid(pageNo,PAGE_SIZE,act_id);
+        map.put("page",page);
+        map.put("act_id",act_id);
+        return "backend/winner_list";
+    }
+    //后台分页查询某一活动下已有兑换券的完成砍价得奖的用户
+    @GetMapping("/cawards/{act_id}")
+    public String findcashWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
+                              @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
+        Page page = gameInfoService.getCashWinnersByActid(pageNo,PAGE_SIZE,act_id);
         map.put("page",page);
         map.put("act_id",act_id);
         return "backend/winner_list";

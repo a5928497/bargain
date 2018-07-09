@@ -35,7 +35,9 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
             <a id="export" th:href="${act_id}"><button class="btn btn-warning">批量导出</button></a>
-
+            <a th:href="@{/awards/}+${act_id}"><button class="btn btn-default">全部</button></a>
+            <a th:href="@{/ucawards/}+${act_id}"><button class="btn btn-primary">未兑奖</button></a>
+            <a th:href="@{/cawards/}+${act_id}"><button class="btn btn-success">已兑奖</button></a>
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
@@ -59,8 +61,8 @@
                                 <tr th:each="gameInfo:${page.list}">
                                     <td th:text="${gameInfo.user.username}">username</td>
                                     <td th:text="${gameInfo.reward.rewardName}">reward_name</td>
-                                    <td th:text="${gameInfo.redeemCode.code != null}${gameInfo.redeemCode.code}" >isCash</td>
-                                    <td th:text="${gameInfo.redeemCode.awardDate !=null}?${#dates.format(gameInfo.redeemCode.awardDate, 'yyyy-MM-dd HH:mm')}:未发放"></td>
+                                    <td th:text="${gameInfo.redeemCode != null}?${gameInfo.redeemCode.code}:未发放" >isCash</td>
+                                    <td th:text="${gameInfo.redeemCode !=null}?${#dates.format(gameInfo.redeemCode.awardDate, 'yyyy-MM-dd HH:mm')}:未发放"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -71,7 +73,16 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
+                            <p>
+                                <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
+                                <span th:text="当前为第+${page.pageNo}+页"></span>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
+                            </p>
                         </div>
                     </div>
                 </div>
