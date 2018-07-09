@@ -32,13 +32,11 @@ public class GameInfo {
 	@Column(name = "TIMES_LEFT")
 	private Integer timesLeft;
 
-	@Column(name = "IS_CASH")
-	private Integer isCash;
-
-	@Column(name = "CASHING_DATE")
-	private Date cashingDate;
-
 	@JoinColumn(name = "ACT_ID")
 	@ManyToOne
 	private Activity activity;
+
+	@JoinColumn(name = "CODE_ID")
+	@OneToOne
+	private RedeemCode redeemCode;
 }

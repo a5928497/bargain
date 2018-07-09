@@ -140,11 +140,5 @@ public class GameController {
         return "test/details";
     }
 
-    //后台奖品兑换
-    @PutMapping("/cash/{gameInfo_id}")
-    public String cash(@PathVariable("gameInfo_id")Integer gameInfo_id,Integer act_id) {
-        gameInfoService.cashReward(gameInfo_id);
-        return "redirect:/awards/" + act_id;
-    }
 
 }

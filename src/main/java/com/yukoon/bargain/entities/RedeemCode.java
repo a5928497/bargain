@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,4 +33,7 @@ public class RedeemCode {
     @JoinColumn(name = "ACT_ID")
     @ManyToOne
     private Activity activity;
+
+    @Column(name = "AWARD_DATE")
+    private Date awardDate;
 }

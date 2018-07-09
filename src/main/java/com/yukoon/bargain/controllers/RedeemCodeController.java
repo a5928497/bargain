@@ -32,6 +32,9 @@ public class RedeemCodeController {
     @GetMapping("/code/{reward_id}")
     public String findCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
 									 @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
         Page page = redeemCodeService.findCodeByRewardId(pageNo,PAGE_SIZE,reward_id);
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("reward_id",reward_id);
@@ -43,6 +46,9 @@ public class RedeemCodeController {
     @GetMapping("/usedcode/{reward_id}")
     public String findUsedCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
                                          @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
         Page page = redeemCodeService.findUsedCodeByRewardId(pageNo,PAGE_SIZE,reward_id);
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("page",page);
@@ -54,6 +60,9 @@ public class RedeemCodeController {
     @GetMapping("/unusedcode/{reward_id}")
     public String findUnusedCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
                                          @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
+        if (pageNo <1) {
+            pageNo = 1;
+        }
         Page page = redeemCodeService.findUnusedCodeByRewardId(pageNo,PAGE_SIZE,reward_id);
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("page",page);

@@ -31,11 +31,4 @@ public class GameInfoService {
 		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.whoswin(act_id));
 	}
 
-	@Transactional
-	public void cashReward(Integer gameInfo_Id) {
-		GameInfo gameInfo = gameInfoRepo.findOne(gameInfo_Id);
-		gameInfo.setIsCash(1);
-		gameInfo.setCashingDate(new Date());
-		gameInfoRepo.saveAndFlush(gameInfo);
-	}
 }
