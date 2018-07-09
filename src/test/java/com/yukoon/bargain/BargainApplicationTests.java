@@ -43,7 +43,7 @@ public class BargainApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		Map<Integer,Integer> map = redeemCodeService.batchCashingCheck(2);
+		Map<Integer,Integer> map = redeemCodeService.batchCheckAndCash(2);
 		Iterator<Map.Entry<Integer,Integer>> it = map.entrySet().iterator();
 		System.out.println(map.size());
 		while (it.hasNext()) {

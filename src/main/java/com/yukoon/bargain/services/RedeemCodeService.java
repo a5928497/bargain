@@ -61,7 +61,7 @@ public class RedeemCodeService {
     // 若不足够，返回不足礼品的id和数量
     // 若足够，进行批量兑换
     @Transactional
-    public Map<Integer,Integer> batchCashingCheck(Integer act_id) {
+    public Map<Integer,Integer> batchCheckAndCash(Integer act_id) {
         boolean flag = false;
         List<Reward> rewards = rewardService.findAllByActid(act_id);
         Map<Integer,Integer> map = new HashMap<>();

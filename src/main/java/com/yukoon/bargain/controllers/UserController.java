@@ -90,10 +90,13 @@ public class UserController {
 
     //后台分页查询某一活动下全部完成砍价得奖的用户
     @GetMapping("/awards/{act_id}")
-    public String findWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
+    public String findWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,String msg,
                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
         if (pageNo <1) {
             pageNo = 1;
+        }
+        if (msg != null) {
+            map.put("msg",msg);
         }
         Page page = gameInfoService.getWinnersByActid(pageNo,PAGE_SIZE,act_id);
         map.put("page",page);

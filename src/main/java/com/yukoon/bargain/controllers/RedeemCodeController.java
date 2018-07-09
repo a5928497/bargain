@@ -7,8 +7,10 @@ import com.yukoon.bargain.services.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.Id;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -105,5 +107,21 @@ public class RedeemCodeController {
     public String deleteCode(@PathVariable("code_id")Integer code_id,Integer reward_id) {
         redeemCodeService.deleteRedeemCode(code_id);
         return "redirect:/code/"+ reward_id;
+    }
+
+    //后台对某一活动下所有得奖者发放兑换券
+    @GetMapping("/pushcode/{act_id}")
+    public String pushCode(@PathVariable("act_id")Integer act_id, RedirectAttributes attributes) {
+        Map<Integer,Integer> result = redeemCodeService.batchCheckAndCash(act_id);
+        if (result.size() != 0) {
+            Iterator<Map.Entry<Integer,Integer>> it = result.entrySet().iterator();
+            String msg = "有"+result.size()+"种礼品因兑换券数量不足没有发放，请补足兑换券后再进行发放。详情如下：\n";
+            while (it.hasNext()) {
+                Map.Entry<Integer,Integer> entry = it.next();
+                msg = msg + "【礼品ID：" + entry.getKey() + "，缺少数量：" + entry.getValue() + "】\n";
+            }
+            attributes.addFlashAttribute("msg",msg);
+        }
+        return "redirect:/awards/"+act_id;
     }
 }
