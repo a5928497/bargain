@@ -60,7 +60,7 @@
                                     <td th:text="${gameInfo.user.username}">username</td>
                                     <td th:text="${gameInfo.reward.rewardName}">reward_name</td>
                                     <td th:text="${gameInfo.redeemCode.code}" >isCash</td>
-                                    <td th:text="${#dates.format(gameInfo.redeemCode.awardDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:text="${gameInfo.redeemCode.awardDate !=null}?${#dates.format(gameInfo.redeemCode.awardDate, 'yyyy-MM-dd HH:mm')}:未发放"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
