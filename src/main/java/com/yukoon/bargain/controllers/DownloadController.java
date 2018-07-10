@@ -76,4 +76,85 @@ public class DownloadController {
 		System.out.println("成功");
 	}
 
+	//批量导出某一活动的得奖者数据
+	@ResponseBody
+	@GetMapping("/exportallwinner/{act_id}")
+	public void exportAllWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
+		response.reset(); //清除buffer缓存
+		Map<String,Object> map = new HashMap<String,Object>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		response.setHeader("Content-Disposition", "attachment;filename="+sdf.format(new Date())+".xlsx");
+		response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		XSSFWorkbook workbook=null;
+		try {
+			workbook = downloadService.exportAllWinnersByActid(act_id);
+			OutputStream out = response.getOutputStream();
+			BufferedOutputStream bout = new BufferedOutputStream(out);
+			bout.flush();
+			workbook.write(bout);
+			bout.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("失败");
+		}
+		System.out.println("成功");
+	}
+
+	//批量导出某一活动的已兑奖得奖者数据
+	@ResponseBody
+	@GetMapping("/exportcwinner/{act_id}")
+	public void exportCashedWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
+		response.reset(); //清除buffer缓存
+		Map<String,Object> map = new HashMap<String,Object>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		response.setHeader("Content-Disposition", "attachment;filename="+sdf.format(new Date())+".xlsx");
+		response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		XSSFWorkbook workbook=null;
+		try {
+			workbook = downloadService.exportCashedWinnersByActid(act_id);
+			OutputStream out = response.getOutputStream();
+			BufferedOutputStream bout = new BufferedOutputStream(out);
+			bout.flush();
+			workbook.write(bout);
+			bout.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("失败");
+		}
+		System.out.println("成功");
+	}
+
+	//批量导出某一活动的未兑奖得奖者数据
+	@ResponseBody
+	@GetMapping("/exportucwinner/{act_id}")
+	public void exportUncashedWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
+		response.reset(); //清除buffer缓存
+		Map<String,Object> map = new HashMap<String,Object>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		response.setHeader("Content-Disposition", "attachment;filename="+sdf.format(new Date())+".xlsx");
+		response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		XSSFWorkbook workbook=null;
+		try {
+			workbook = downloadService.exportUncashedWinnersByActid(act_id);
+			OutputStream out = response.getOutputStream();
+			BufferedOutputStream bout = new BufferedOutputStream(out);
+			bout.flush();
+			workbook.write(bout);
+			bout.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("失败");
+		}
+		System.out.println("成功");
+	}
+
 }

@@ -58,4 +58,5 @@ public class GameInfoService {
 		}
 		return PageableUtil.page(pageNo,pageSize,list_new);
 	}
+
 }

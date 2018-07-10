@@ -38,9 +38,9 @@
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
-            <a th:href="@{/exportallwinner}+${act_id}" th:if="${export} == 0"><button class="btn btn-warning">导出全部</button></a>
-            <a th:href="@{/exportucwinner}+${act_id}" th:if="${export} == 1"><button class="btn btn-warning">导出未兑奖</button></a>
-            <a th:href="@{/exportcwinner}+${act_id}" th:if="${export} == 2"><button class="btn btn-warning">导出已兑奖</button></a>
+            <a th:href="@{/exportallwinner/}+${act_id}" th:if="${export} == 0"><button class="btn btn-warning">导出全部</button></a>
+            <a th:href="@{/exportucwinner/}+${act_id}" th:if="${export} == 1"><button class="btn btn-warning">导出未兑奖</button></a>
+            <a th:href="@{/exportcwinner/}+${act_id}" th:if="${export} == 2"><button class="btn btn-warning">导出已兑奖</button></a>
             <a th:href="@{/awards/}+${act_id}"><button class="btn btn-default">全部</button></a>
             <a th:href="@{/ucawards/}+${act_id}"><button class="btn btn-primary">未兑奖</button></a>
             <a th:href="@{/cawards/}+${act_id}"><button class="btn btn-success">已兑奖</button></a>

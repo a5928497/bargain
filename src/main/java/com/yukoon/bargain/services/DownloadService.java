@@ -44,7 +44,7 @@ public class DownloadService {
         return exportExcel(list,excels,excelName,HelperExport.class);
     }
 
-    //根据活动导出参与者名单
+    //根据活动导出所有参与者名单
     public XSSFWorkbook exportAllParticipantByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
         List<GameInfoExport> list = convert2GIE(gameInfoRepo.findGameInfoByActivity_Id(act_id));
         List<Excel> excels = new ArrayList<>();
@@ -59,6 +59,65 @@ public class DownloadService {
         return exportExcel(list,excels,excelName,GameInfoExport.class);
     }
 
+    //根据活动导出所有得奖者名单（包含未兑换和已兑换）
+    public XSSFWorkbook exportAllWinnersByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        List<GameInfoExport> list = convert2GIE(gameInfoRepo.whoswin(act_id));
+        List<Excel> excels = new ArrayList<>();
+        //设置标题栏
+        excels.add(new Excel("手机号","username",0));
+        excels.add(new Excel("活动名","actName",0));
+        excels.add(new Excel("奖品名","rewardName",0));
+        excels.add(new Excel("剩余价值","priceLeft",0));
+        excels.add(new Excel("剩余次数","timesLeft",0));
+        excels.add(new Excel("兑换码","redeemCode",0));
+        String excelName = list.get(0).getActName()+"所有得奖者统计";
+        return exportExcel(list,excels,excelName,GameInfoExport.class);
+    }
+
+    //根据活动导出所有已兑换得奖者名单
+    public XSSFWorkbook exportCashedWinnersByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        List<GameInfo> list = gameInfoRepo.whoswin(act_id);
+        List<GameInfo> list_new = new ArrayList<>();
+        for (GameInfo gi : list) {
+            if (gi.getRedeemCode() != null) {
+                list_new.add(gi);
+            }
+        }
+        List<GameInfoExport> list_temp = convert2GIE(list_new);
+        List<Excel> excels = new ArrayList<>();
+        //设置标题栏
+        excels.add(new Excel("手机号","username",0));
+        excels.add(new Excel("活动名","actName",0));
+        excels.add(new Excel("奖品名","rewardName",0));
+        excels.add(new Excel("剩余价值","priceLeft",0));
+        excels.add(new Excel("剩余次数","timesLeft",0));
+        excels.add(new Excel("兑换码","redeemCode",0));
+        String excelName = list_temp.get(0).getActName()+"所有已兑奖者统计";
+        return exportExcel(list_temp,excels,excelName,GameInfoExport.class);
+    }
+
+    //根据活动导出所有未兑换得奖者名单
+    public XSSFWorkbook exportUncashedWinnersByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        List<GameInfo> list = gameInfoRepo.whoswin(act_id);
+        List<GameInfo> list_new = new ArrayList<>();
+        for (GameInfo gi : list) {
+            if (gi.getRedeemCode() == null) {
+                list_new.add(gi);
+            }
+        }
+        List<GameInfoExport> list_temp = convert2GIE(list_new);
+        List<Excel> excels = new ArrayList<>();
+        //设置标题栏
+        excels.add(new Excel("手机号","username",0));
+        excels.add(new Excel("活动名","actName",0));
+        excels.add(new Excel("奖品名","rewardName",0));
+        excels.add(new Excel("剩余价值","priceLeft",0));
+        excels.add(new Excel("剩余次数","timesLeft",0));
+        excels.add(new Excel("兑换码","redeemCode",0));
+        String excelName = list_temp.get(0).getActName()+"所有已兑奖者统计";
+        return exportExcel(list_temp,excels,excelName,GameInfoExport.class);
+    }
+
     //GameInfo对象转换
     public List<GameInfoExport> convert2GIE(List<GameInfo> gameInfos) {
         List<GameInfoExport> list = new ArrayList<>();
@@ -69,7 +128,7 @@ public class DownloadService {
             gie.setRewardName(gi.getReward().getRewardName());
             gie.setTimesLeft(gi.getTimesLeft());
             gie.setUsername(gi.getUser().getUsername());
-            if (gie.getRedeemCode() != null) {
+            if (gi.getRedeemCode() != null) {
                 gie.setRedeemCode(gi.getRedeemCode().getCode());
             }
             list.add(gie);
