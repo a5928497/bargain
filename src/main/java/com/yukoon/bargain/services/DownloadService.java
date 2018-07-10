@@ -22,10 +22,18 @@ public class DownloadService {
     @Autowired
     private GameInfoRepo gameInfoRepo;
 
-    public XSSFWorkbook exportGameInfoExcel(List<GameInfoExport> list,String excelName) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException {
-        List<Excel> excels = new ArrayList<>();
+    public XSSFWorkbook exportGameInfoExcel(List list,List<Excel> excels,String excelName,Class clazz) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException {
         Map<Integer,List<Excel>> map = new LinkedHashMap<>();
         XSSFWorkbook xssfWorkbook = null;
+        map.put(0,excels);
+        xssfWorkbook = ExcelUtil.createExcelFile(clazz,list,map,excelName);
+        return xssfWorkbook;
+    }
+
+    //根据活动导出参与者名单
+    public XSSFWorkbook exportAllParticipantByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        List<GameInfoExport> list = convert2GIE(gameInfoRepo.findGameInfoByActivity_Id(act_id));
+        List<Excel> excels = new ArrayList<>();
         //设置标题栏
         excels.add(new Excel("手机号","username",0));
         excels.add(new Excel("活动名","actName",0));
@@ -33,16 +41,8 @@ public class DownloadService {
         excels.add(new Excel("剩余价值","priceLeft",0));
         excels.add(new Excel("剩余次数","timesLeft",0));
         excels.add(new Excel("兑换码","redeemCode",0));
-        map.put(0,excels);
-        xssfWorkbook = ExcelUtil.createExcelFile(GameInfoExport.class,list,map,excelName);
-        return xssfWorkbook;
-    }
-
-    //根据活动导出参与者名单
-    public XSSFWorkbook exportAllParticipantByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
-        List<GameInfoExport> list = convert2GIE(gameInfoRepo.findGameInfoByActivity_Id(act_id));
-            String excelName = list.get(0).getActName()+"所有参与者统计";
-            return exportGameInfoExcel(list,excelName);
+        String excelName = list.get(0).getActName()+"所有参与者统计";
+        return exportGameInfoExcel(list,excels,excelName,GameInfoExport.class);
     }
 
     //GameInfo对象转换
