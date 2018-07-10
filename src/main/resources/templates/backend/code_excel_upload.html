@@ -44,6 +44,11 @@
                     <h5>Excel导入（注意：文件最大不超过1MB）</h5>
                 </div>
                 <div class="ibox-content">
+                    <div>
+                        <p>上传示例：</p>
+                        <img th:src="@{/images/excel_upload_example.png}"><br>
+                    </div>
+                    <div class="border"></div>
                     <form action="/uploadcode" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -76,6 +81,7 @@
     $backBTN = $(".backBTN");
     $fileinput = $(".fileinput");
     $fileinput.css("width",300);
+    $(".border").css("height",10)
     $backBTN.click(function () {
         var uri = $backBTN.attr("back_uri");
         window.location.replace(uri);
