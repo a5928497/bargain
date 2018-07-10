@@ -101,8 +101,10 @@ public class UserController {
         Page page = gameInfoService.getWinnersByActid(pageNo,PAGE_SIZE,act_id);
         map.put("page",page);
         map.put("act_id",act_id);
+        map.put("export",0);
         return "backend/winner_list";
     }
+
     //后台分页查询某一活动下未有兑换券完成砍价得奖的用户
     @GetMapping("/ucawards/{act_id}")
     public String findUncashWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
@@ -113,6 +115,7 @@ public class UserController {
         Page page = gameInfoService.getUncashWinnersByActid(pageNo,PAGE_SIZE,act_id);
         map.put("page",page);
         map.put("act_id",act_id);
+        map.put("export",1);
         return "backend/winner_list";
     }
     //后台分页查询某一活动下已有兑换券的完成砍价得奖的用户
@@ -125,6 +128,7 @@ public class UserController {
         Page page = gameInfoService.getCashWinnersByActid(pageNo,PAGE_SIZE,act_id);
         map.put("page",page);
         map.put("act_id",act_id);
+        map.put("export",2);
         return "backend/winner_list";
     }
 
