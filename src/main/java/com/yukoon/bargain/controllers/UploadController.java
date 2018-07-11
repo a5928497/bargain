@@ -1,5 +1,6 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.services.RewardService;
 import com.yukoon.bargain.services.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,20 @@ import java.util.Map;
 public class UploadController {
     @Autowired
     private UploadService uploadService;
+    @Autowired
+    private RewardService rewardService;
+
+    //后台前往礼品图片上传
+    @GetMapping("/touploadrewardimg/{reward_id}")
+    public String toUploadRewardImg(@PathVariable("reward_id")Integer reward_id,
+                                    Map<String,Object> map,String uploadMsg) {
+        if (uploadMsg != null) {
+            map.put("uploadMsg",uploadMsg);
+        }
+        map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
+        map.put("reward_id",reward_id);
+        return "backend/reward_img_upload";
+    }
 
     //后台前往兑换券批量上传
     @GetMapping("/touploadcode/{act_id}")

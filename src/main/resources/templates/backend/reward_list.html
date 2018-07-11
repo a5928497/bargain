@@ -68,6 +68,7 @@
                                     <td>
                                         <a th:href="@{/reward/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <a th:href="@{/code/}+${reward.id}" ><button class="btn btn-sm btn-success">兑换券</button></a>
+                                        <a th:href="@{/touploadrewardimg/}+${reward.id}" ><button class="btn btn-sm btn-info">礼品图片</button></a>
                                         <button  th:attr="del_uri = @{/reward/}+${reward.id}" class="btn btn-sm btn-danger deleteBTN" th:if="${act_status==0}">删除</button>
                                     </td>
 
