@@ -50,8 +50,7 @@
                 </div>
                 <div class="ibox-content">
                     <div id="img_container">
-                    <img src="#" id="lottery" >
-                        <img  id="arrow" th:src="@{/images/arrow.png}">
+                    <img src="#" id="reward" >
                     </div>
                     <p>注意：为了效果美观，图片应为透明背景，若预览图中图片背景为红色，则表示图片为透明背景！</p>
                     <form action="/rewardimgupload" enctype="multipart/form-data" method="post">
@@ -98,11 +97,12 @@
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
-    var act_id = $("#act_id").val();
+    var reward_id = $("#reward_id").val();
+    //设置背景色为红色
+    $("#img_container").css("background-color","red");
     //根据路径获取图片
-    var img_url  ="/local_images/lottery"+act_id + ".png?"+Math.random();
-    $("#lottery").parent().css("border-top","2px solid red").css("border-left","2px solid red").css("width",308);
-    $("#lottery").attr("src",img_url).one("error",function (e) {
+    var img_url  ="/reward_images/reward"+reward_id + ".png?"+Math.random();
+    $("#reward").attr("src",img_url).one("error",function (e) {
         $(this).parent().remove();
     });
 </script>
