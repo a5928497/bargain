@@ -3,6 +3,7 @@ package com.yukoon.bargain.controllers;
 import com.yukoon.bargain.config.PathConfig;
 import com.yukoon.bargain.services.RewardService;
 import com.yukoon.bargain.services.UploadService;
+import com.yukoon.bargain.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,19 +41,19 @@ public class UploadController {
     }
 
     //后台礼品图片上传
-    @PostMapping("/uploadrewardimg")
+    @PostMapping("/rewardimgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
-            , Integer act_id,RedirectAttributes attributes){
+            , Integer reward_id,RedirectAttributes attributes){
         String filePath = pathConfig.getRewardImgsPath();
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
         if (!FileUtil.isImg(fileName)){
             uploadMsg = "该文件不是图片格式,请重新上传!";
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
-            return "redirect:/touploadimg/"+act_id;
+            return "redirect:/touploadrewardimg/"+reward_id;
         }
         //重命名文件
-        fileName = "lottery"+act_id+".png";
+        fileName = "reward"+reward_id+".png";
         try {
             //上传图片
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
@@ -61,10 +62,10 @@ public class UploadController {
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
-            return "redirect:/touploadimg/"+act_id;
+            return "redirect:/touploadrewardimg/"+reward_id;
         }
         attributes.addFlashAttribute("uploadMsg",uploadMsg);
-        return "redirect:/touploadimg/"+act_id;
+        return "redirect:/touploadrewardimg/"+reward_id;
     }
 
     //后台前往兑换券批量上传
