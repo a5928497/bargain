@@ -84,6 +84,7 @@ public class ActivityController {
     @GetMapping("/actInfo/{act_id}")
     public String toActInfo(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
         map.put("act_id",act_id);
+        map.put("activity",activityService.findById(act_id));
         return "public/activity_info";
     }
 

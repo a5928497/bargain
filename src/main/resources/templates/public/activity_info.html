@@ -17,7 +17,7 @@
     <div id="main_container">
         <div id="head_holder"></div>
         <div id="details_holder">
-            <p id="details"></p>
+            <p id="details" th:text="${activity.cashingInfo}"></p>
         </div>
         <button type="submit" id="join_BTN" ><div id="button_holder"></div></button>
         <form id="joinForm" method="post" action="/joinIn">

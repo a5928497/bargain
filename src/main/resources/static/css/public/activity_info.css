@@ -12,7 +12,9 @@
     min-height: 230px;
 }
 #details {
-    min-height: 40%;
+    max-width: 80%;
+    margin-left: 11%;
+    color: white;
 }
 #join_BTN {
     background: url("../../images/join_act_button.png");
