@@ -8,7 +8,10 @@
 #reward_show_area {
     height: 225px;
 }
-
+#reward_img {
+    margin-left: 13%;
+    margin-top: -15%;
+}
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png");
     background-size: 100% 100%;
@@ -26,7 +29,7 @@
     background: url("../../images/arrows_right.png");
     background-size: 100% 100%;
     margin-top: 45%;
-    margin-left: 15%;
+    margin-left: 10%;
     border-bottom: transparent;
     border-top: transparent;
     border-left: transparent;
