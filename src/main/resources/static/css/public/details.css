@@ -1,0 +1,81 @@
+#main_container
+{
+    background: url(../../images/background.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+#img_container {
+    height: 325px;
+}
+#reward_img {
+    margin-top: 30%;
+    margin-left: 38%;
+}
+.money_left {
+    margin-left: 25%;
+    font-size: 25pt;
+}
+.introduce {
+    color: yellow;
+    font-size: 15pt;
+}
+#price_left {
+    color: white;
+    font-size: 25pt;
+}
+#BTNs_container {
+    margin-top: 5%;
+    margin-left: 10%;
+}
+#bargain_BTN {
+    background: url("../../images/help_button.png");
+    background-size: 100% 100%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 45%;
+    vertical-align: top;
+}
+#join_BTN {
+    background: url("../../images/join_details_button.png");
+    background-size: 100% 100%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 45%;
+    vertical-align: top;
+}
+#share_BTN {
+    background: url("../../images/share_button.png");
+    background-size: 100% 100%;
+    margin-top: 5%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 45%;
+    vertical-align: top;
+}
+#user_info_BTN {
+    background: url("../../images/user_info_button.png");
+    background-size: 100% 100%;
+    margin-top: 5%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 45%;
+    vertical-align: top;
+}
+.BTN_holder {
+    min-width: 100%;
+    min-height: 55px;
+}
+

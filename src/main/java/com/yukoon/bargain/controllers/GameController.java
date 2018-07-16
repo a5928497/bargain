@@ -84,7 +84,7 @@ public class GameController {
             String username = (String) currentUser.getPrincipal();
             User user = userService.findByUsername(username);
             GameInfo gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
-            if (gi_temp == null) {
+            if (null == gi_temp) {
             	//若用户未开记录，则新开记录并作第一次砍价后到活动详情
 				gameInfo.setUser(user);
 				gameInfo.setReward(rewardService.findById(gameInfo.getReward().getId()));
@@ -135,9 +135,11 @@ public class GameController {
         if (msg != null) {
             map.put("msg",msg);
         }
+        List<HelperInfo> helpers = helperInfoService.getHelpers(gameInfoId);
         map.put("gameInfo",gameService.findById(gameInfoId));
-        map.put("helpers",helperInfoService.getHelpers(gameInfoId));
-        return "test/details";
+        map.put("helpers",helpers);
+        map.put("size",helpers.size());
+        return "public/details";
     }
 
 

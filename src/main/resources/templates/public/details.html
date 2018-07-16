@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/public/details.css}" rel="stylesheet"/>
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div id="main_container">
+        <div id="img_container">
+            <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
+        </div>
+        <p class="money_left" th:if="${gameInfo.priceLeft} gt 0">
+            <span class="introduce">还差</span>
+            <span id="price_left" th:text="${gameInfo.priceLeft}+元"></span>
+            <span class="introduce">就免费领</span>
+        </p>
+        <p class="money_left" th:if="${gameInfo.priceLeft} eq 0">
+            <span class="introduce">砍价成功，可以免费领取！</span>
+        </p>
+        <div id="BTNs_container">
+            <a th:href="@{/bargain/}+${gameInfo.id}" th:if="${gameInfo.priceLeft != 0}"><button id="bargain_BTN" ><div class="BTN_holder"></div></button></a>
+            <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button id="join_BTN" ><div class="BTN_holder"></div></button></a>
+            <button id="share_BTN" ><div class="BTN_holder"></div></button>
+            <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button id="user_info_BTN" ><div class="BTN_holder"></div></button></a>
+        </div>
+    </div>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

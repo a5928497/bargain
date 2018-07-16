@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,8 +22,18 @@ public class HelperInfoService {
     }
 
     @Transactional
-    public List<HelperInfo> getHelpers(Integer gameInfoId) {
+    public List<HelperInfo> getAllHelpers(Integer gameInfoId) {
         return helperInfoRepo.findAllByGameInfo(gameInfoId);
+    }
+
+    @Transactional
+    public List<HelperInfo> getHelpers(Integer gameInfoId) {
+        List<HelperInfo> list = new ArrayList<>();
+        List<HelperInfo> helpers = helperInfoRepo.findAllByGameInfo(gameInfoId);
+        for (int i = 0;i<3 ;i++) {
+            list.add(helpers.get(i));
+        }
+        return list;
     }
 
     @Transactional
