@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTIONS</title>
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/public/option.css}" rel="stylesheet"/>
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div id="main_container">
+        <div id="reward_show_area">
+            <button id="arrow_left_BTN" ><div class="arrows_holder"></div></button>
+            <src></src>
+            <button id="arrow_right_BTN" ><div class="arrows_holder"></div></button>
+        </div>
+    </div>
+    <input type="hidden" th:each="reward:${rewards}" class="rewards" th:value="${reward.id}">
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/public/act_info.js}"></script>
+</body>
+
+</html>

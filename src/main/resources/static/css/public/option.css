@@ -1,0 +1,40 @@
+#main_container
+{
+    background: url(../../images/background.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+#reward_show_area {
+    height: 225px;
+}
+
+#arrow_left_BTN {
+    background: url("../../images/arrows_left.png");
+    background-size: 100% 100%;
+    margin-top: 45%;
+    margin-left: 15%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 10%;
+}
+
+#arrow_right_BTN {
+    background: url("../../images/arrows_right.png");
+    background-size: 100% 100%;
+    margin-top: 45%;
+    margin-left: 15%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 10%;
+}
+.arrows_holder {
+    min-width: 100%;
+    min-height: 35px;
+}

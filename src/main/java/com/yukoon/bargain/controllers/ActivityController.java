@@ -88,7 +88,7 @@ public class ActivityController {
         return "public/activity_info";
     }
 
-    //前台前往活动二维码页面
+    //后台前往活动二维码页面
     @GetMapping("/QR/{act_id}")
     public String toQRCode(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         String url = "/actInfo/"+act_id;

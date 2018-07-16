@@ -72,7 +72,7 @@ public class GameController {
         List<Reward> rewards = rewardService.findAllByActid(act_id);
         map.put("act_id",act_id);
         map.put("rewards",rewards);
-        return "test/option";
+        return "public/option";
     }
 
     @PostMapping("/newRrcord")

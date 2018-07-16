@@ -9,12 +9,13 @@
     min-height: 320px;
 }
 #details_holder {
-    min-height: 230px;
+    min-height: 220px;
 }
 #details {
     max-width: 80%;
     margin-left: 11%;
     color: white;
+    font-size: 11pt;
 }
 #join_BTN {
     background: url("../../images/join_act_button.png");

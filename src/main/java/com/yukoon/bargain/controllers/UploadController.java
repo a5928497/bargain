@@ -58,7 +58,7 @@ public class UploadController {
             //上传图片
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
             //压缩图片
-            FileUtil.resizeImg(filePath+fileName,400,400);
+            FileUtil.resizeImg(filePath+fileName,110,190);
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
