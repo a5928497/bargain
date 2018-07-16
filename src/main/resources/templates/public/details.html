@@ -30,7 +30,7 @@
             <a th:href="@{/bargain/}+${gameInfo.id}"><button id="bargain_BTN" ><div class="BTN_holder"></div></button></a>
             <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button id="join_BTN" ><div class="BTN_holder"></div></button></a>
             <button id="share_BTN" ><div class="BTN_holder"></div></button>
-            <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button id="user_info_BTN" ><div class="BTN_holder"></div></button></a>
+            <a th:href="@{/myrecords}"><button id="user_info_BTN" ><div class="BTN_holder"></div></button></a>
         </div>
         <div id="helper_container">
             <p th:each="helper:${helpers}" id="helper_info">

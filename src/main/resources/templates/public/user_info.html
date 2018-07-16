@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USERINFO</title>
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/public/user_info.css}" rel="stylesheet"/>
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div id="main_container">
+        <div id="holder"></div>
+        <p th:each="gameInfo:${gameInfos}">
+            <span id="act_name" th:text="${gameInfo.activity.act_name}"></span>
+            <span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>
+            <span id="status" th:text="${gameInfo.priceLeft} eq 0?已完成:未完成"></span>
+            <a id="option" th:href="@{/game/}+${gameInfo.id}">查看</a>
+        </p>
+    </div>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

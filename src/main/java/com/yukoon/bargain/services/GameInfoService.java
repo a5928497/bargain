@@ -59,4 +59,9 @@ public class GameInfoService {
 		return PageableUtil.page(pageNo,pageSize,list_new);
 	}
 
+	//查询某一用户所有参加的活动
+	@Transactional
+	public List<GameInfo> getAllGameInfoOfUser(Integer user_id) {
+		return gameInfoRepo.findGameInfoByUserId(user_id);
+	}
 }

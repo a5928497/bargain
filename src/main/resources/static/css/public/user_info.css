@@ -1,0 +1,37 @@
+#main_container
+{
+    background: url(../../images/user_info_background.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#holder {
+    height: 380px;
+}
+p {
+    margin-left: 10%;
+    background: url(../../images/user_info_border.png) no-repeat;
+    background-size: 100% 100%;
+    width: 80%;
+    height: 30px;
+}
+span {
+    font-size: 12pt;
+}
+#act_name {
+    margin-left: 10%;
+    color: white;
+}
+#reward_name {
+    margin-left: 15%;
+    color: white;
+}
+#status {
+    margin-left: 10%;
+    color: white;
+}
+a {
+    font-size: 12pt;
+    margin-left: 5%;
+}
