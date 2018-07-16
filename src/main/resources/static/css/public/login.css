@@ -1,0 +1,61 @@
+#main_container
+{
+    background: url(../../images/background.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#theme {
+    margin-top: 15%;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+#username_container {
+    margin-left: 13%;
+    margin-top: 13%;
+    background: url(../../images/phone_number_input.png) no-repeat;
+    height: 100%;
+}
+#username{
+    margin-left: 18%;
+    font-size: 20pt;
+    background: transparent;
+    border-color: transparent;
+    height: 60px;
+}
+
+#password_container {
+    margin-left: 13%;
+    margin-top: 5%;
+    background: url(../../images/vaildate_code_input.png) no-repeat;
+    height: 100%;
+    max-width: 35%;
+}
+
+#password {
+    font-size: 20pt;
+    background: transparent;
+    border-color: transparent;
+    height: 60px;
+    width: 100%;
+}
+
+#submitBTN {
+    background: url("../../images/vaildate_code_button.png");
+    background-size: 100% 100%;
+    margin-top: -15%;
+    margin-left: 50%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    min-width: 38%;
+    vertical-align: top;
+}
+#button_holder {
+    min-width: 100%;
+    min-height: 55px;
+}

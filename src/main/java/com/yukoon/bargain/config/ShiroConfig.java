@@ -42,6 +42,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/css/**","anon");
 		filterChainDefinitionMap.put("/js/**","anon");
 		filterChainDefinitionMap.put("/index","anon");
+		filterChainDefinitionMap.put("/images/**","anon");
 		filterChainDefinitionMap.put("/webjars/**","anon");
 		filterChainDefinitionMap.put("/backend","anon");
 		filterChainDefinitionMap.put("/toregister","anon");
@@ -49,6 +50,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/actInfo/**","anon");
         filterChainDefinitionMap.put("/joinIn","anon");
 		filterChainDefinitionMap.put("/game/**","anon");
+		filterChainDefinitionMap.put("/public/**","anon");
 		filterChainDefinitionMap.put("/test**","anon");
 		filterChainDefinitionMap.put("/test/**","anon");
 		filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问

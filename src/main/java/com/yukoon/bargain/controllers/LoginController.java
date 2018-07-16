@@ -38,7 +38,7 @@ public class LoginController {
 		if (requestUrl != null && !requestUrl.equals("")) {
 			map.put("url",requestUrl);
 		}
-		return "test/login";
+		return "public/login";
 	}
 
 	@PostMapping("/login")
