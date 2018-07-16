@@ -6,7 +6,7 @@
     min-height: 100%;
 }
 #reward_show_area {
-    height: 225px;
+    height: 300px;
 }
 #reward_img {
     margin-left: 13%;
@@ -40,4 +40,32 @@
 .arrows_holder {
     min-width: 100%;
     min-height: 35px;
+}
+#reward_name {
+    font-size: 11pt;
+    color: red;
+    background-color: white;
+    display: inline-block;
+    margin-left: 45%;
+}
+#reward_price {
+    font-size: 18pt;
+    color: yellow;
+    margin-left: 33%;
+}
+
+#submitBTN {
+    background: url("../../images/option_confirm_button.png");
+    background-size: 100% 100%;
+    margin-top: 15%;
+    margin-left: 18%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+}
+#submitBTN_holder {
+    min-width: 280px;
+    min-height: 80px;
 }
