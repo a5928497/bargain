@@ -84,7 +84,7 @@ public class ActivityController {
     @GetMapping("/actInfo/{act_id}")
     public String toActInfo(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
         map.put("act_id",act_id);
-        return "test/activity_info";
+        return "public/activity_info";
     }
 
     //前台前往活动二维码页面

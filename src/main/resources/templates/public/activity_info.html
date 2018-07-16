@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACT_INFO</title>
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/public/activity_info.css}" rel="stylesheet"/>
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div id="main_container">
+        <div id="head_holder"></div>
+        <div id="details_holder">
+            <p id="details"></p>
+        </div>
+        <button type="submit" id="join_BTN" ><div id="button_holder"></div></button>
+        <form id="joinForm" method="post" action="/joinIn">
+            <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
+            <input  type="hidden" id="join_back_url" name="url">
+        </form>
+    </div>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/public/act_info.js}"></script>
+</body>
+
+</html>
