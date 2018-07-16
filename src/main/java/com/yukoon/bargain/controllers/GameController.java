@@ -129,16 +129,30 @@ public class GameController {
         }
     }
 
-    //前台跳转到抽奖页面
+    //前台跳转到抽奖页面并显示全部帮砍者
     @GetMapping("/game/{gameInfoId}")
-    public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
+    public String gameInfoWithAllHelpers(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
         if (msg != null) {
             map.put("msg",msg);
         }
         List<HelperInfo> helpers = helperInfoService.getHelpers(gameInfoId);
         map.put("gameInfo",gameService.findById(gameInfoId));
         map.put("helpers",helpers);
-        map.put("size",helpers.size());
+        map.put("gameInfoId",gameInfoId);
+        map.put("size",helperInfoService.getAllHelpers(gameInfoId).size());
+        return "public/details";
+    }
+
+    //前台跳转到抽奖页面
+    @GetMapping("/allhelpers/{gameInfoId}")
+    public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
+        if (msg != null) {
+            map.put("msg",msg);
+        }
+        List<HelperInfo> helpers = helperInfoService.getAllHelpers(gameInfoId);
+        map.put("gameInfo",gameService.findById(gameInfoId));
+        map.put("helpers",helpers);
+        map.put("size",-1);
         return "public/details";
     }
 

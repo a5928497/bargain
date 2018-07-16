@@ -30,10 +30,14 @@ public class HelperInfoService {
     public List<HelperInfo> getHelpers(Integer gameInfoId) {
         List<HelperInfo> list = new ArrayList<>();
         List<HelperInfo> helpers = helperInfoRepo.findAllByGameInfo(gameInfoId);
-        for (int i = 0;i<3 ;i++) {
-            list.add(helpers.get(i));
+        if (helpers.size() > 3) {
+            for (int i = 0;i<3 ;i++) {
+                list.add(helpers.get(i));
+            }
+            return list;
+        }else {
+            return helpers;
         }
-        return list;
     }
 
     @Transactional

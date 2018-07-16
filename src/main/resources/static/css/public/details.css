@@ -79,3 +79,15 @@
     min-height: 55px;
 }
 
+#helper_info {
+    margin-left: 30%;
+    margin-top: 3%;
+    font-size: 11pt;
+    color: yellow;
+}
+
+#all_helpers {
+    margin-left: 43%;
+    color: white;
+}
+
