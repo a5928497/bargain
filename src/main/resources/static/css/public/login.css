@@ -23,6 +23,7 @@
     font-size: 20pt;
     background: transparent;
     border-color: transparent;
+    outline: none;
     height: 60px;
 }
 
@@ -38,11 +39,13 @@
     font-size: 20pt;
     background: transparent;
     border-color: transparent;
+    margin-left: 15%;
     height: 60px;
+    outline: none;
     width: 100%;
 }
 
-#submitBTN {
+#vaildateBTN {
     background: url("../../images/vaildate_code_button.png");
     background-size: 100% 100%;
     margin-top: -15%;
@@ -55,7 +58,23 @@
     min-width: 38%;
     vertical-align: top;
 }
-#button_holder {
+#vaildateBTN_holder {
     min-width: 100%;
     min-height: 55px;
+}
+
+#submitBTN {
+    background: url("../../images/login_button.png");
+    background-size: 100% 100%;
+    margin-top: 15%;
+    margin-left: 15%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+}
+#submitBTN_holder {
+    min-width: 280px;
+    min-height: 80px;
 }
