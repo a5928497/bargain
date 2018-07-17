@@ -229,7 +229,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib</classpathPrefix>
-                            <mainClass>com.yukoon.codecenter.BargainApplication</mainClass>
+                            <mainClass>com.yukoon.bargain.BargainApplication</mainClass>
                         </manifest>
                     </archive>
                     <excludes>
