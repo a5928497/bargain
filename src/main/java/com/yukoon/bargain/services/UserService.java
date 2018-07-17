@@ -73,4 +73,15 @@ public class UserService {
 		username = "%"+username+"%";
 		return PageableUtil.page(pageNo,pageSize,userRepo.seachUserByUsername(username));
 	}
+
+	@Transactional
+	public void saveUser(User user) {
+		userRepo.saveAndFlush(user);
+	}
+
+	@Transactional
+	public User findDetailsByUsername(String username) {
+		return userRepo.findAllDetailsByUsername(username);
+	}
+
 }

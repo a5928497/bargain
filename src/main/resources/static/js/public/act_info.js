@@ -1,5 +1,4 @@
 $(function () {
-    var username = $("#username").val();
     $joinBTN = $("#join_BTN");
     $joinForm = $("#joinForm");
     //完整路径

@@ -66,6 +66,7 @@ public class GameController {
             }
         }else {
             //若用户未登录，返回登录页面
+            map.put("url",url);
             return "redirect:/login";
         }
         //若加入成功且未开记录，前往奖品选择页面

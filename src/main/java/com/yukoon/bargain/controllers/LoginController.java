@@ -1,8 +1,11 @@
 package com.yukoon.bargain.controllers;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.services.UserService;
 import com.yukoon.bargain.utils.EncodeUtil;
+import com.yukoon.bargain.utils.KeyUtil;
+import com.yukoon.bargain.utils.SmsUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -12,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Key;
 import java.util.Map;
 
 @Controller
@@ -33,10 +38,6 @@ public class LoginController {
 	public String toLogin(String url, Map<String,Object> map, HttpServletRequest request) {
 		if (url != null) {
 			map.put("url",url);
-		}
-		String requestUrl = WebUtils.getSavedRequest(request).getRequestUrl();
-		if (requestUrl != null && !requestUrl.equals("")) {
-			map.put("url",requestUrl);
 		}
 		return "public/login";
 	}
@@ -66,10 +67,47 @@ public class LoginController {
 			}
 		}
 		user = userService.findByUsername(user.getUsername());
-		if (user.getRole().getId() == 2 ) {
+		if (user.getRole().getRoleName().equals("admin") ) {
 			return "redirect:/acts";
 		}
 		System.out.println();
 		return "redirect:"+url;
 	}
+
+	@ResponseBody
+	@PostMapping("/vaildatecode")
+	public boolean getVaildateCode(String phone_number) {
+		User user = userService.findDetailsByUsername(phone_number);
+		String key = KeyUtil.getKey(4);
+		if (null != user) {
+			//若已注册手机号
+			try {
+				//发送验证码
+				SendSmsResponse sendSmsResponse = SmsUtil.sendSms(phone_number, key);
+				System.out.println(sendSmsResponse.getCode());
+				if (sendSmsResponse.getCode().equals("OK")) {
+					//若发送成功，修改密码
+					user.setPassword(EncodeUtil.encodePassword(key,phone_number));
+					userService.saveUser(user);
+				}
+			}catch (Exception e) {
+				return false;
+			}
+		}else {
+			//若手机号未注册，则发送验证码后添加用户
+			try {
+				//发送验证码
+				SendSmsResponse sendSmsResponse = SmsUtil.sendSms(phone_number, key);
+				System.out.println(sendSmsResponse.getCode());
+				if (sendSmsResponse.getCode().equals("OK")) {
+					user = new User().setUsername(phone_number).setPassword(key);
+					userService.addUser(user);
+				}
+			}catch (Exception e) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
