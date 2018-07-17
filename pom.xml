@@ -206,18 +206,18 @@
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>
-                <excludes>
-                    <exclude>application.yml</exclude>
-                    <exclude>pathconfig.yml</exclude>
-                </excludes>
+                <!--<excludes>-->
+                    <!--<exclude>application.yml</exclude>-->
+                    <!--<exclude>pathconfig.yml</exclude>-->
+                <!--</excludes>-->
             </resource>
-            <resource>
-                <directory>src/main/prod_resources</directory>
-                <includes>
-                    <include>application.yml</include>
-                    <include>pathconfig.yml</include>
-                </includes>
-            </resource>
+            <!--<resource>-->
+                <!--<directory>src/main/prod_resources</directory>-->
+                <!--<includes>-->
+                    <!--<include>application.yml</include>-->
+                    <!--<include>pathconfig.yml</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
         </resources>
         <plugins>
             <plugin>
@@ -347,6 +347,26 @@
                 <version>2.18.1</version>
                 <configuration>
                     <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

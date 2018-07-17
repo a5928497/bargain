@@ -70,8 +70,7 @@ public class LoginController {
 		if (user.getRole().getRoleName().equals("admin") ) {
 			return "redirect:/acts";
 		}
-		System.out.println();
-		return "redirect:"+url;
+		return "redirect:/myrecords";
 	}
 
 	@ResponseBody
