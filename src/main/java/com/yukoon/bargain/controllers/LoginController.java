@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,8 @@ public class LoginController {
 
 	//跳转至登录首页
 	@GetMapping("/login")
-	public String toLogin(String url, Map<String,Object> map, HttpServletRequest request) {
+	public String toLogin(@RequestParam(value = "url",required = false)String url, Map<String,Object> map) {
+		System.out.println("url:"+url);
 		if (url != null) {
 			map.put("url",url);
 		}
@@ -70,7 +72,7 @@ public class LoginController {
 		if (user.getRole().getRoleName().equals("admin") ) {
 			return "redirect:/acts";
 		}
-		return "redirect:/myrecords";
+		return "redirect:"+url;
 	}
 
 	@ResponseBody

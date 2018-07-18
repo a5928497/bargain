@@ -58,7 +58,7 @@ public class GameController {
                 if (gameInfo != null) {
                     //若用户已经新开记录，前往详情页面
                     map.put("gameInfo",gameInfo);
-                    result = false;
+                    return "redirect:/game/" + gameInfo.getId();
                 }
             }else {
                 //若加入失败，result为空，返回当前页面
@@ -66,8 +66,7 @@ public class GameController {
             }
         }else {
             //若用户未登录，返回登录页面
-            map.put("url",url);
-            return "redirect:/login";
+            return "redirect:/login?url="+url;
         }
         //若加入成功且未开记录，前往奖品选择页面
         List<Reward> rewards = rewardService.findAllByActid(act_id);
@@ -130,7 +129,7 @@ public class GameController {
         }
     }
 
-    //前台跳转到抽奖页面并显示全部帮砍者
+    //前台跳转到抽奖页面
     @GetMapping("/game/{gameInfoId}")
     public String gameInfoWithAllHelpers(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
         if (msg != null) {
@@ -144,7 +143,7 @@ public class GameController {
         return "public/details";
     }
 
-    //前台跳转到抽奖页面
+    //前台跳转到抽奖页面并显示全部帮砍者
     @GetMapping("/allhelpers/{gameInfoId}")
     public String gameInfo(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
         if (msg != null) {
