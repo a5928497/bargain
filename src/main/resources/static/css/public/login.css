@@ -6,17 +6,17 @@
     min-height: 100%;
 }
 
-#theme {
-    margin-top: 15%;
-    background-size: 100% 100%;
-    min-width: 100%;
+#loginForm {
+    padding-top: 50%;
     min-height: 100%;
 }
 #username_container {
+
     margin-left: 13%;
-    margin-top: 13%;
     background: url(../../images/phone_number_input.png) no-repeat;
-    height: 100%;
+    background-size: 100% 100%;
+    width: 75%;
+    height: auto;
 }
 #username{
     margin-left: 18%;
@@ -24,15 +24,16 @@
     background: transparent;
     border-color: transparent;
     outline: none;
-    height: 60px;
+    max-width: 80%;
+    height: 100%;
 }
 
 #password_container {
     margin-left: 13%;
     margin-top: 5%;
     background: url(../../images/vaildate_code_input.png) no-repeat;
-    height: 100%;
-    max-width: 35%;
+    background-size: 100% 100%;
+    width: 35%;
 }
 
 #password {
@@ -40,34 +41,36 @@
     background: transparent;
     border-color: transparent;
     margin-left: 15%;
-    height: 60px;
+    height: 100%;
     outline: none;
     width: 100%;
 }
 
 #vaildateBTN {
-    background: url("../../images/vaildate_code_button.png");
-    background-size: 100% 100%;
-    margin-top: -15%;
     margin-left: 50%;
+    margin-top: -13%;
+    background-color: transparent;
     border-bottom: transparent;
     border-top: transparent;
     border-left: transparent;
     border-right: transparent;
     outline: none;
-    min-width: 38%;
+    width: 38%;
     vertical-align: top;
 }
 #vaildateBTN_holder {
-    min-width: 100%;
-    min-height: 55px;
+    background: url("../../images/vaildate_code_button.png");
+    background-size: 100% 100%;
+    width: 100%;
+    height: 40px;
 }
 
 #submitBTN {
+    margin-left: 13%;
     background: url("../../images/login_button.png");
     background-size: 100% 100%;
-    margin-top: 15%;
-    margin-left: 15%;
+    width: 75%;
+    height: auto;
     border-bottom: transparent;
     border-top: transparent;
     border-left: transparent;
@@ -75,6 +78,6 @@
     outline: none;
 }
 #submitBTN_holder {
-    min-width: 280px;
+    width: 75%;
     min-height: 80px;
 }
