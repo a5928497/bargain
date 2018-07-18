@@ -15,7 +15,7 @@ $(function () {
     $reward_id.val($(".rewards:eq(0)").val());
     $arrow_left.click(function () {
         location = location -1;
-        if (location <= 0) {
+        if (location < 0) {
             location = size -1;
         }
         $reward_img.attr("src","/reward_images/reward"+$(".rewards:eq("+location+")").val() +".png")

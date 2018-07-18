@@ -15,14 +15,16 @@
 
 <body class="gray-bg">
     <div id="main_container">
-        <div id="holder"></div>
-        <p th:each="gameInfo:${gameInfos}">
+    </div>
+    <div id="body">
+        <div class="info" th:each="gameInfo:${gameInfos}">
             <span id="act_name" th:text="${gameInfo.activity.act_name}"></span>
             <span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>
-            <span id="status" th:text="${gameInfo.priceLeft} eq 0?已完成:未完成"></span>
+            <span id="status" th:text="${gameInfo.activity.act_status} eq 1?进行中:已结束"></span>
             <a id="option" th:href="@{/game/}+${gameInfo.id}">查看</a>
-        </p>
+        </div>
     </div>
+    <div id="footer"></div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
 </body>

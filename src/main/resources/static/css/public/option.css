@@ -1,21 +1,27 @@
 #main_container
 {
-    background: url(../../images/background.png) no-repeat;
+    background: url(../../images/option_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 38.5%;
+}
+#footer {
+    background: url(../../images/option_background_foot.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 61.5%;
 }
 #reward_show_area {
-    height: 300px;
+    /*height: 300px;*/
 }
 #reward_img {
-    margin-left: 13%;
-    margin-top: -15%;
+    margin-left: 12%;
+
 }
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png");
     background-size: 100% 100%;
-    margin-top: 45%;
+    margin-top: 20%;
     margin-left: 15%;
     border-bottom: transparent;
     border-top: transparent;
@@ -28,7 +34,7 @@
 #arrow_right_BTN {
     background: url("../../images/arrows_right.png");
     background-size: 100% 100%;
-    margin-top: 45%;
+    margin-top: 20%;
     margin-left: 10%;
     border-bottom: transparent;
     border-top: transparent;
@@ -47,6 +53,7 @@
     background-color: white;
     display: inline-block;
     margin-left: 45%;
+    margin-top: 5%;
 }
 #reward_price {
     font-size: 18pt;
@@ -57,15 +64,17 @@
 #submitBTN {
     background: url("../../images/option_confirm_button.png");
     background-size: 100% 100%;
-    margin-top: 15%;
     margin-left: 18%;
     border-bottom: transparent;
     border-top: transparent;
     border-left: transparent;
     border-right: transparent;
     outline: none;
+    width: 70%;
 }
 #submitBTN_holder {
-    min-width: 280px;
     min-height: 80px;
+}
+#border {
+    height: 80px;
 }

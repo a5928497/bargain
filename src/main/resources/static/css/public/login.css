@@ -19,7 +19,7 @@
 }
 #username{
     margin-left: 18%;
-    font-size: 20pt;
+    font-size: 18pt;
     background: transparent;
     border-color: transparent;
     outline: none;
@@ -36,7 +36,7 @@
 }
 
 #password {
-    font-size: 20pt;
+    font-size: 18pt;
     background: transparent;
     border-color: transparent;
     margin-left: 15%;
