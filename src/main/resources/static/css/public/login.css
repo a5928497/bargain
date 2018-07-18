@@ -7,11 +7,10 @@
 }
 
 #loginForm {
-    padding-top: 50%;
+    padding-top: 60%;
     min-height: 100%;
 }
 #username_container {
-
     margin-left: 13%;
     background: url(../../images/phone_number_input.png) no-repeat;
     background-size: 100% 100%;
