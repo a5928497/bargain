@@ -1,19 +1,19 @@
 #main_container
 {
-    background: url(../../images/background.png) no-repeat;
+    background: url(../../images/game_background.png) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 100%;
 }
 #img_container {
-    height: 325px;
+    height: 30%;
 }
 #reward_img {
-    margin-top: 30%;
-    margin-left: 38%;
+    margin-top: 5%;
+    margin-left: 35%;
 }
 .money_left {
-    margin-left: 25%;
+    margin-left: 23%;
     font-size: 25pt;
 }
 .introduce {

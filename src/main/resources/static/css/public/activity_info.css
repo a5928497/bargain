@@ -1,15 +1,16 @@
 #main_container
 {
-    background: url(../../images/act_info_background.png) no-repeat;
+    background: url(../../images/act_info_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 40%;
 }
-#head_holder {
-    min-height: 320px;
-}
+
 #details_holder {
-    min-height: 220px;
+    background: url(../../images/act_info_background_foot.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 60%;
 }
 #details {
     max-width: 80%;
@@ -20,6 +21,7 @@
 #join_BTN {
     background: url("../../images/join_act_button.png");
     background-size: 100% 100%;
+    margin-top: 20%;
     margin-left: 17%;
     border-bottom: transparent;
     border-top: transparent;
