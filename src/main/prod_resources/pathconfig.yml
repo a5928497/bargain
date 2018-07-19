@@ -1,4 +1,4 @@
 pathconfig:
   #路径最后注意不要漏掉斜杠
-  rewardImgsPath: f:/material/rewardImgs/
-  advImgPath: f:/material/advImgs/
+  rewardImgsPath: /material/rewardImgs/
+  advImgPath: /material/advImgs/
