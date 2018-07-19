@@ -49,6 +49,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/actInfo/**","anon");
         filterChainDefinitionMap.put("/joinIn","anon");
 		filterChainDefinitionMap.put("/game/**","anon");
+		filterChainDefinitionMap.put("/bargain/**","anon");
 		filterChainDefinitionMap.put("/reward_images/**","anon");
 		filterChainDefinitionMap.put("/allhelpers/**","anon");
 		filterChainDefinitionMap.put("/myrecords","anon");

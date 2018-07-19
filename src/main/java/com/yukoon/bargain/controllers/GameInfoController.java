@@ -30,7 +30,7 @@ public class GameInfoController {
 			List<GameInfo> gameInfos = gameInfoService.getAllGameInfoOfUser(u.getId());
 			map.put("gameInfos",gameInfos);
 		}else {
-			return "redirect:/login";
+			return "redirect:/login?url=/myrecords";
 		}
 		return "public/user_info";
 	}

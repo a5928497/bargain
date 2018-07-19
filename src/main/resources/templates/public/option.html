@@ -24,6 +24,7 @@
         <p id="reward_price"></p>
         <form modelAttribute="gameInfo" action="/newRrcord" method="post">
             <input type="hidden" id="reward_id" name="reward.id">
+            <input type="hidden" id="back_url" name="url" th:value="${back_url!=null}?${back_url}">
             <button type="submit" id="submitBTN" ><div id="submitBTN_holder"></div></button>
         </form>
         <div id="border"></div>

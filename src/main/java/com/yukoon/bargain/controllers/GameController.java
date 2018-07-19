@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.xml.transform.Source;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,7 @@ public class GameController {
         }
         //若加入成功且未开记录，前往奖品选择页面
         List<Reward> rewards = rewardService.findAllByActid(act_id);
+        map.put("back_url",url);
         map.put("act_id",act_id);
         map.put("rewards",rewards);
         return "public/option";
@@ -125,7 +127,7 @@ public class GameController {
             return "redirect:/game/"+gameInfoId;
         }else {
             //若用户未登录
-            return "redirect:/login";
+            return "redirect:/login?url=/game/"+gameInfoId;
         }
     }
 
