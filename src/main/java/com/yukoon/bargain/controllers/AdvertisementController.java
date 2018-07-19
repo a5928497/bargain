@@ -34,7 +34,6 @@ public class AdvertisementController {
     @GetMapping("toaddadv/{act_id}")
     public String toAdd(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         map.put("act_id",act_id);
-
         return "backend/adv_upload_input";
     }
 
@@ -67,12 +66,12 @@ public class AdvertisementController {
         return "redirect:/toaddadv/"+advertisement.getActivity().getId();
     }
 
-    //后台前往编辑广告信息
-//    @GetMapping("/toeditadv/{adv_id}")
-//    public String toEdit(@PathVariable("adv_id")Integer adv_id, Map<String,Object> map) {
-//        Advertisement adv = advertisementService.findById(adv_id);
-//        map.put("adv",adv);
-//        map.put("act_id",adv.getActivity().getId());
-//        return "backend/adv_upload_input";
-//    }
+//    后台前往编辑广告信息
+    @GetMapping("/toeditadv/{adv_id}")
+    public String toEdit(@PathVariable("adv_id")Integer adv_id, Map<String,Object> map) {
+        Advertisement adv = advertisementService.findById(adv_id);
+        map.put("adv",adv);
+        map.put("act_id",adv.getActivity().getId());
+        return "backend/adv_upload_input";
+    }
 }
