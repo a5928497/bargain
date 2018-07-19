@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Reward</title>
+    <title>ADVERTISEMENT</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -31,14 +31,14 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/act}"><button class="btn btn-primary">新建活动</button></a>
-            <a th:href="@{/allusers}"><button class="btn btn-warning">所有用户</button></a>
+            <a th:href="@{/act}"><button class="btn btn-primary">添加广告</button></a>
+            <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>活动管理</h5>
+                            <h5>广告管理</h5>
 
                         </div>
                         <div class="ibox-content">
@@ -47,27 +47,17 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">ID</th>
-                                    <th data-hide="all">活动名</th>
-                                    <th data-hide="all">状态</th>
+                                    <th data-hide="all">广告名</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="act:${acts}">
-                                    <td th:text="${act.id}">ID</td>
-                                    <td th:text="${act.act_name}">activityName</td>
-                                    <td th:text="未启用" th:if="${act.act_status==0}">status</td>
-                                    <td th:text="进行中" th:if="${act.act_status==1}">status</td>
-                                    <td th:text="已结束" th:if="${act.act_status==2}">status</td>
+                                <tr th:each="adv:${advs}">
+                                    <td th:text="${adv.id}">ID</td>
+                                    <td th:text="${adv.adv_name}">adv_name</td>
                                     <td>
-                                        <a th:href="@{/QR/}+${act.id}"><button class="btn btn-sm btn-primary">活动二维码</button></a>
-                                        <a th:href="@{/advs/}+${act.id}"><button class="btn btn-sm btn-info">广告管理</button></a>
-                                        <a th:href="@{/rewards/}+${act.id}"><button class="btn btn-sm btn-success">礼品</button></a>
-                                        <a th:href="@{/awards/}+${act.id}"><button class="btn btn-sm btn-info">得奖者</button></a>
-                                        <a th:href="@{/users/}+${act.id}"><button class="btn btn-sm btn-warning">参与者</button></a>
-                                        <a th:href="@{/act/}+${act.id}"><button class="btn btn-sm btn-success">编辑活动</button></a>
-                                        <a th:href="@{/actopen/}+${act.id}" th:if="${act.act_status==0}"><button class="btn btn-sm btn-primary" id="openBTN">开启</button></a>
-                                        <a th:href="@{/actclose/}+${act.id}" th:if="${act.act_status==1}"><button class="btn btn-sm btn-danger" id="closeBTN">关闭</button></a>
+                                        <a th:href="@{/reward/}" ><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <button  th:attr="del_uri = @{/reward/}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
 
                                 </tr>
@@ -93,28 +83,5 @@
 <!-- Mainly scripts -->
 <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-
-<script>
-    $border = $(".border");
-    $border.css("height",10);
-    $closeBTN = $("#closeBTN");
-    $openBTN = $("#openBTN");
-    $closeBTN.click(function () {
-        var isok = confirm("确定关闭活动吗？")
-        if (isok == true) {
-            return true;
-        }
-        return false;
-    });
-    $openBTN.click(function () {
-        var isok = confirm("确定开启活动吗？")
-        if (isok == true) {
-            return true;
-        }
-        return false;
-    });
-</script>
-
 </body>
-
 </html>
