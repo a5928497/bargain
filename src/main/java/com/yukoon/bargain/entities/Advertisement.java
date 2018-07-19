@@ -16,8 +16,13 @@ public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
+
     @Column(name = "ADV_NAME")
     private String adv_name;
+
+    @Column(name = "ADV_LINK")
+    private String adv_link;
+
     @JoinColumn(name = "ACT_ID")
     @ManyToOne
     private Activity activity;

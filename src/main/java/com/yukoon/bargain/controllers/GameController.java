@@ -33,6 +33,8 @@ public class GameController {
     private HelperInfoService helperInfoService;
     @Autowired
     private GameInfoService gameInfoService;
+    @Autowired
+    private AdvertisementService advertisementService;
 
 
     /*
@@ -138,10 +140,12 @@ public class GameController {
             map.put("msg",msg);
         }
         List<HelperInfo> helpers = helperInfoService.getHelpers(gameInfoId);
-        map.put("gameInfo",gameService.findById(gameInfoId));
+        GameInfo gameInfo = gameService.findById(gameInfoId);
+        map.put("gameInfo",gameInfo);
         map.put("helpers",helpers);
         map.put("gameInfoId",gameInfoId);
         map.put("size",helperInfoService.getAllHelpers(gameInfoId).size());
+        map.put("advs",advertisementService.findAllByActId(gameInfo.getActivity().getId()));
         return "public/details";
     }
 

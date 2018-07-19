@@ -90,4 +90,11 @@
     margin-left: 43%;
     color: white;
 }
+#adv_container {
+    padding-left: 15%;
+}
+.adv_imgs {
+    width: 40%;
+    height: 40%;
+}
 

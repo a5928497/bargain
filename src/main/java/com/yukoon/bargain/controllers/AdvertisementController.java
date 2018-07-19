@@ -32,6 +32,7 @@ public class AdvertisementController {
     @GetMapping("/advs/{act_id}")
     public String allAdvs(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         map.put("advs",advertisementService.findAllByActId(act_id));
+        map.put("act_id",act_id);
         return "backend/adv_list";
     }
 
@@ -119,6 +120,12 @@ public class AdvertisementController {
             }
         }
         return "redirect:/toeditadv/"+advertisement.getId();
+    }
+
+    @DeleteMapping("/adv/{adv_id}")
+    public String delete(@PathVariable("adv_id")Integer adv_id,Integer act_id,Map<String,Object> map) {
+        advertisementService.deleteById(adv_id);
+        return "redirect:/advs/"+act_id;
     }
 
 }

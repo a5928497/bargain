@@ -29,4 +29,9 @@ public class AdvertisementService {
     public Advertisement findById(Integer adv_id) {
         return advertisementRepo.findById(adv_id);
     }
+
+    @Transactional
+    public void deleteById(Integer id) {
+        advertisementRepo.delete(id);
+    }
 }
