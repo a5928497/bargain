@@ -102,7 +102,7 @@ public class GameService {
 			//记录砍价者信息
 			helperInfo.setBarginPrice(bargainPrice);
 			helperInfoRepo.saveAndFlush(helperInfo);
-			msg = SUCCESS_SUFFIX + priceLeft + SUCCESS_PREFIX;
+			msg = SUCCESS_SUFFIX + bargainPrice + SUCCESS_PREFIX;
 			//若砍价后完成游戏，即砍完
 			if(gameInfo.getPriceLeft() == 0) {
 				msg = msg + COMPLETED;
