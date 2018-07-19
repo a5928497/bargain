@@ -62,16 +62,18 @@
                                     <span class="fileinput-new">Select file</span>
                                     <span class="fileinput-exists">Change</span>
                                     <input type="file" name="pic"/>
-                                    <input type="hidden" id="reward_id" name="activity.id" th:value="${act_id}">
                                 </span>
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
+                        <input type="hidden" id="reward_id" name="activity.id" th:value="${act_id}">
+                        <input type="hidden" th:name="_method" th:value="put" th:if="${adv!=null}"/>
+                        <input type="hidden" id="advId" th:name="id" th:value="${adv!=null}?${adv.id}" />
                         <div>
                             <button th:attr="back_uri = @{/advs/}+${act_id}"  class="btn btn-white backBTN" >返回</button>
                             <button class="btn btn-primary commitBTN" type="submit">上传</button>
                         </div>
                     </form>
-                    <!--<span id="msg" th:text="${uploadMsg}" th:if="${uploadMsg!=null}"></span>-->
+                    <span id="msg" th:text="${uploadMsg}" th:if="${uploadMsg!=null}"></span>
                     <input type="hidden" id="adv_id" th:value="${adv.id}" th:if="${adv != null}">
                 </div>
             </div>
