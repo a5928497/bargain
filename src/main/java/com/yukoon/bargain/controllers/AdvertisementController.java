@@ -66,4 +66,13 @@ public class AdvertisementController {
         attributes.addFlashAttribute("uploadMsg",uploadMsg);
         return "redirect:/toaddadv/"+advertisement.getActivity().getId();
     }
+
+    //后台前往编辑广告信息
+//    @GetMapping("/toeditadv/{adv_id}")
+//    public String toEdit(@PathVariable("adv_id")Integer adv_id, Map<String,Object> map) {
+//        Advertisement adv = advertisementService.findById(adv_id);
+//        map.put("adv",adv);
+//        map.put("act_id",adv.getActivity().getId());
+//        return "backend/adv_upload_input";
+//    }
 }

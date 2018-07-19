@@ -56,7 +56,7 @@
                                     <td th:text="${adv.id}">ID</td>
                                     <td th:text="${adv.adv_name}">adv_name</td>
                                     <td>
-                                        <a th:href="@{/reward/}" ><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <a th:href="@{/toeditadv/}+${adv.id}" ><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <button  th:attr="del_uri = @{/reward/}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
 

@@ -36,10 +36,11 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 		super.configureViewResolvers(registry);
 	}
 
-	//配置前台显示图片映射路径
+	//配置前台显示图片、广告图片映射路径
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	    registry.addResourceHandler("/reward_images/**").addResourceLocations("file:"+rewardImgsPath);
+		registry.addResourceHandler("/adv_images/**").addResourceLocations("file:"+advImgPath);
         super.addResourceHandlers(registry);
     }
 

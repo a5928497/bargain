@@ -24,4 +24,9 @@ public class AdvertisementService {
     public List<Advertisement> findAllByActId(Integer act_id) {
         return advertisementRepo.findAllByActId(act_id);
     }
+
+    @Transactional
+    public Advertisement findById(Integer adv_id) {
+        return advertisementRepo.findById(adv_id);
+    }
 }

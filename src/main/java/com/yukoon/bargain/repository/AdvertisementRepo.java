@@ -11,4 +11,7 @@ public interface AdvertisementRepo extends JpaRepository<Advertisement,Integer> 
 
     @Query("select a from Advertisement a where a.activity.id = :id")
     public List<Advertisement> findAllByActId(@Param("id")Integer id);
+
+    @Query("select * from Advertisement a where a.id = :id")
+    public Advertisement findById(@Param("id")Integer id);
 }

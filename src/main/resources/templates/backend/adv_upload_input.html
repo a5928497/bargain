@@ -22,10 +22,7 @@
 </head>
 
 <body>
-    <!--<input type="hidden"  id="img_path" th:value="${img_path}">-->
     <div id="wrapper">
-
-
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
         </div>
@@ -50,12 +47,12 @@
                 </div>
                 <div class="ibox-content">
                     <div id="img_container">
-                    <img src="#" id="reward" >
+                    <img src="#" id="adv_img" >
                     </div>
                     <p>注意：为了效果美观，图片应为透明背景，若预览图中图片背景为红色，则表示图片为透明背景！</p>
                     <form action="/advs" enctype="multipart/form-data" method="post" modelAttribute="advertisement">
                         <div class="form-group"><label class="col-sm-2 control-label">广告名称</label>
-                            <div class="col-sm-10"><input name="adv_name" type="text" class="form-control"></div>
+                            <div class="col-sm-10"><input name="adv_name" type="text" class="form-control" th:value="${adv!=null}?${adv.adv_name}"></div>
                         </div>
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -75,6 +72,7 @@
                         </div>
                     </form>
                     <!--<span id="msg" th:text="${uploadMsg}" th:if="${uploadMsg!=null}"></span>-->
+                    <input type="hidden" id="adv_id" th:value="${adv.id}" th:if="${adv != null}">
                 </div>
             </div>
         </div>
@@ -100,12 +98,12 @@
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
-    var reward_id = $("#reward_id").val();
+    var adv_id = $("#adv_id").val();
     //设置背景色为红色
     $("#img_container").css("background-color","red");
     //根据路径获取图片
-    var img_url  ="/reward_images/reward"+reward_id + ".png?"+Math.random();
-    $("#reward").attr("src",img_url).one("error",function (e) {
+    var img_url  ="/adv_images/adv"+adv_id + ".png?"+Math.random();
+    $("#adv_img").attr("src",img_url).one("error",function (e) {
         $(this).parent().remove();
     });
 </script>
