@@ -33,6 +33,11 @@ public class Activity {
     @Setter
     private String cashingInfo;
 
+    @Column(name = "PEOPLE_CHAIN")
+    @Getter
+    @Setter
+    private Integer people_chain;
+
     //中间表被控方
     @ManyToMany(mappedBy = "actList",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @Getter

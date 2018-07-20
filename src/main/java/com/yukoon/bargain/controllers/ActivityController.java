@@ -67,7 +67,6 @@ public class ActivityController {
     //后台编辑活动
     @PutMapping("/act")
     public String edit(Activity activity) {
-        System.out.println(activity);
         activityService.saveAct(activity);
         return "redirect:/acts";
     }

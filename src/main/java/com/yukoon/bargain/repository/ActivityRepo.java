@@ -16,4 +16,7 @@ public interface ActivityRepo extends JpaRepository<Activity,Integer>{
 
     @Query("select a.userList from Activity a where a.id = :act_id")
     public Set<User> findAllUsersByActid(@Param("act_id")Integer act_id);
+
+    @Query("select a.people_chain from Activity a where a.id = :id")
+    public Integer getPeopleChainById(@Param("id")Integer id);
 }

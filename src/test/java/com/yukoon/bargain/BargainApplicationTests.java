@@ -43,11 +43,10 @@ public class BargainApplicationTests {
 	private RedeemCodeService redeemCodeService;
 	@Autowired
 	private AdvertisementRepo advertisementRepo;
+	@Autowired
+	private HelperInfoRepo helperInfoRepo;
 	@Test
 	public void contextLoads() {
-		Advertisement adv = new Advertisement();
-		adv.setAdv_name("111");
-		Advertisement advertisement = advertisementRepo.saveAndFlush(adv);
-		System.out.println(adv);
+		System.out.println(helperInfoRepo.findByActIdAndHelperId(2,88).size());
 		}
 }

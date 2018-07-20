@@ -1,10 +1,7 @@
 package com.yukoon.bargain.services;
 
 import com.yukoon.bargain.entities.*;
-import com.yukoon.bargain.repository.GameInfoRepo;
-import com.yukoon.bargain.repository.HelperInfoRepo;
-import com.yukoon.bargain.repository.RewardRepo;
-import com.yukoon.bargain.repository.UserRepo;
+import com.yukoon.bargain.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +27,8 @@ public class GameService {
 	private BargainService bargainService;
 	@Autowired
 	private HelperInfoService helperInfoService;
+	@Autowired
+	private ActivityRepo activityRepo;
 
 	//用户加入活动
 	@Transactional
@@ -80,15 +79,18 @@ public class GameService {
 	private final static String HAD_BARGAIN = "您已经砍过了，不要贪心哟！";
 	private final static String FINISHED = "已经免费送您了，你还想我怎样，要怎样.....";
 	private final static String ERROR = "哎呀，发生错误了，请稍后再来或联系管理员！";
+	private final static String OVER_BARGAIN = "您已经帮太多人砍过了，请休息一下吧！";
 	//进行砍价
 	@Transactional
 	public String bargain(HelperInfo helperInfo) {
 		GameInfo gameInfo = gameInfoRepo.findOne(helperInfo.getGameInfo().getId());
+		Integer people_chain = activityRepo.getPeopleChainById(gameInfo.getActivity().getId());
+		Integer bargainedTimes = helperInfoRepo.findByActIdAndHelperId(gameInfo.getActivity().getId(),helperInfo.getHelper().getId()).size();
 		String msg = null;
 		boolean hadBargain  = helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId());
 		boolean notFinished  = gameInfo.getPriceLeft() >0;
-		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元的
-		if (gameInfo != null && !hadBargain && notFinished) {
+		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元且没有超出该活动的砍价次数限制的
+		if (gameInfo != null && !hadBargain && notFinished &&(people_chain == null || people_chain > bargainedTimes)) {
 			DecimalFormat df = new DecimalFormat("#.##");
 			df.setMaximumFractionDigits(2);
 			//获得减价随机数
@@ -109,12 +111,15 @@ public class GameService {
 			if(gameInfo.getPriceLeft() == 0) {
 				msg = msg + COMPLETED;
 			}
-		}else if (gameInfo == null) {
+		}
+		else if (gameInfo == null) {
 			msg = NOT_FOUND;
 		}else if (hadBargain) {
 			msg = HAD_BARGAIN;
 		}else if (!notFinished) {
 			msg = FINISHED;
+		}else if (bargainedTimes >= people_chain){
+			msg = OVER_BARGAIN;
 		}else {
 			msg = ERROR;
 		}

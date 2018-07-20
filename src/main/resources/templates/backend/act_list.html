@@ -49,6 +49,7 @@
                                     <th data-hide="all">ID</th>
                                     <th data-hide="all">活动名</th>
                                     <th data-hide="all">状态</th>
+                                    <th data-hide="all">砍价链数</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -59,6 +60,7 @@
                                     <td th:text="未启用" th:if="${act.act_status==0}">status</td>
                                     <td th:text="进行中" th:if="${act.act_status==1}">status</td>
                                     <td th:text="已结束" th:if="${act.act_status==2}">status</td>
+                                    <td th:text="${act.people_chain!=null}?${act.people_chain}:暂无上限" >people_chain</td>
                                     <td>
                                         <a th:href="@{/QR/}+${act.id}"><button class="btn btn-sm btn-primary">活动二维码</button></a>
                                         <a th:href="@{/advs/}+${act.id}"><button class="btn btn-sm btn-info">广告管理</button></a>
