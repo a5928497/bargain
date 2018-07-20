@@ -52,3 +52,7 @@ a {
     margin-left: 2%;
     width: 12%;
 }
+#empty_msg {
+    color: white;
+    padding-left: 22%;
+}

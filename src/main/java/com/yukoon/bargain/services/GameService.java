@@ -60,14 +60,16 @@ public class GameService {
 
 	//新加入游戏用户新开记录
 	@Transactional
-	public void newRecord(GameInfo gameInfo) {
+	public GameInfo newRecord(GameInfo gameInfo) {
 		Reward reward = rewardRepo.findOne(gameInfo.getReward().getId());
 		User user = userRepo.findOne(gameInfo.getUser().getId());
 		if (reward != null && user != null) {
 			gameInfo.setReward(reward);
 			gameInfo.setPriceLeft(reward.getPrice());
 			gameInfo.setTimesLeft(reward.getTimes());
-			gameInfoRepo.saveAndFlush(gameInfo);
+			return gameInfoRepo.saveAndFlush(gameInfo);
+		}else {
+			return null;
 		}
 	}
 

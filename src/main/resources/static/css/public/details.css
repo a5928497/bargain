@@ -12,7 +12,11 @@
     margin-top: 5%;
     margin-left: 35%;
 }
-.money_left {
+#money_left {
+    margin-left: 13%;
+    font-size: 25pt;
+}
+#win_msg {
     margin-left: 23%;
     font-size: 25pt;
 }
@@ -91,10 +95,12 @@
     color: white;
 }
 #adv_container {
-    padding-left: 15%;
+    margin-left: 4.5%;
+    width: 100%;
 }
 .adv_imgs {
-    width: 40%;
-    height: 40%;
+    padding-top: 1%;
+    width: 45%;
+    height: 45%;
 }
 

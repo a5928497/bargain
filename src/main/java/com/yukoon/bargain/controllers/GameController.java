@@ -93,15 +93,19 @@ public class GameController {
 				gameInfo.setUser(user);
 				gameInfo.setReward(rewardService.findById(gameInfo.getReward().getId()));
 				//新开记录
-				gameService.newRecord(gameInfo);
+                gi_temp = gameService.newRecord(gameInfo);
 				//第一次砍价
-                gi_temp = gameService.findByActIdAndUserId(gameInfo.getActivity().getId(),user.getId());
-                HelperInfo hi = new HelperInfo();
-                hi.setGameInfo(gi_temp).setHelper(user);
-                String msg = gameService.bargain(hi);
-                //跳转到活动详情
-                attributes.addFlashAttribute("msg",msg);
-                return "redirect:/game/"+ gi_temp.getId();
+                if (null != gi_temp) {
+                    //新开记录成功
+                    HelperInfo hi = new HelperInfo();
+                    hi.setGameInfo(gi_temp).setHelper(user);
+                    String msg = gameService.bargain(hi);
+                    //跳转到活动详情
+                    attributes.addFlashAttribute("msg",msg);
+                    return "redirect:/game/"+ gi_temp.getId();
+                }else {
+                 throw new RuntimeException("新开记录失败，请重试！");
+                }
 			}else {
 				//若用户已开记录，则直接到活动详情
                 return "redirect:/game/" + gi_temp.getId();
@@ -141,11 +145,15 @@ public class GameController {
         }
         List<HelperInfo> helpers = helperInfoService.getHelpers(gameInfoId);
         GameInfo gameInfo = gameService.findById(gameInfoId);
-        map.put("gameInfo",gameInfo);
-        map.put("helpers",helpers);
-        map.put("gameInfoId",gameInfoId);
-        map.put("size",helperInfoService.getAllHelpers(gameInfoId).size());
-        map.put("advs",advertisementService.findAllByActId(gameInfo.getActivity().getId()));
+        if (null != gameInfo) {
+            map.put("gameInfo",gameInfo);
+            map.put("helpers",helpers);
+            map.put("gameInfoId",gameInfoId);
+            map.put("size",helperInfoService.getAllHelpers(gameInfoId).size());
+            map.put("advs",advertisementService.findAllByActId(gameInfo.getActivity().getId()));
+        }else {
+            throw new RuntimeException("没有找到该活动，请确认后再重试！");
+        }
         return "public/details";
     }
 

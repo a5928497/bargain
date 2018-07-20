@@ -28,7 +28,9 @@ public class GameInfoController {
 			String username = (String) subject.getPrincipal();
 			User u = userService.findByUsername(username);
 			List<GameInfo> gameInfos = gameInfoService.getAllGameInfoOfUser(u.getId());
-			map.put("gameInfos",gameInfos);
+			if (gameInfos.size() != 0 ) {
+				map.put("gameInfos",gameInfos);
+			}
 		}else {
 			return "redirect:/login?url=/myrecords";
 		}
