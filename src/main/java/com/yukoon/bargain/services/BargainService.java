@@ -22,8 +22,8 @@ public class BargainService {
 
 	//随机生成砍价数额，减价数额在平均值的MULTIPLE倍和PRECENT倍之间
 	public Double getRandomValue(Double priceLeft,int timesLeft) {
-		DecimalFormat df1 = new DecimalFormat();
-		DecimalFormat df2 = new DecimalFormat();
+		DecimalFormat df1 = new DecimalFormat("#.##");
+		DecimalFormat df2 = new DecimalFormat("#");
 		df1.setMaximumFractionDigits(INTFORMAT);
 		df2.setMaximumFractionDigits(DOUBLEFORMAT);
 		Random random = new Random();

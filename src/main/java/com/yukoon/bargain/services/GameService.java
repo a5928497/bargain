@@ -87,7 +87,7 @@ public class GameService {
 		boolean notFinished  = gameInfo.getPriceLeft() >0;
 		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元的
 		if (gameInfo != null && !hadBargain && notFinished) {
-			DecimalFormat df = new DecimalFormat();
+			DecimalFormat df = new DecimalFormat("#.##");
 			df.setMaximumFractionDigits(2);
 			//获得减价随机数
 			Double bargainPrice = bargainService.getBargain(gameInfo.getId());
