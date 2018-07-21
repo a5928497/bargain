@@ -4,6 +4,7 @@ import com.yukoon.bargain.config.PathConfig;
 import com.yukoon.bargain.entities.Advertisement;
 import com.yukoon.bargain.services.AdvertisementService;
 import com.yukoon.bargain.utils.FileUtil;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class AdvertisementController {
     }
 
     //后台查看某一活动下所有广告
+    @RequiresRoles("admin")
     @GetMapping("/advs/{act_id}")
     public String allAdvs(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         map.put("advs",advertisementService.findAllByActId(act_id));
@@ -37,6 +39,7 @@ public class AdvertisementController {
     }
 
     //后台前往上传广告信息
+    @RequiresRoles("admin")
     @GetMapping("toaddadv/{act_id}")
     public String toAdd(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         map.put("act_id",act_id);
@@ -44,6 +47,7 @@ public class AdvertisementController {
     }
 
     //后台上传广告信息
+    @RequiresRoles("admin")
     @PostMapping("/advs")
     public String add(Map<String,Object> map, Advertisement advertisement,RedirectAttributes attributes,
                       @RequestParam("pic")MultipartFile pic, HttpServletRequest request){
@@ -73,6 +77,7 @@ public class AdvertisementController {
     }
 
     //后台前往编辑广告信息
+    @RequiresRoles("admin")
     @GetMapping("/toeditadv/{adv_id}")
     public String toEdit(@PathVariable("adv_id")Integer adv_id, Map<String,Object> map) {
         Advertisement adv = advertisementService.findById(adv_id);
@@ -81,7 +86,8 @@ public class AdvertisementController {
         return "backend/adv_upload_input";
     }
 
-    //后天编辑广告信息
+    //后台编辑广告信息
+    @RequiresRoles("admin")
     @PutMapping("/advs")
     public String update(Map<String,Object> map, Advertisement advertisement,RedirectAttributes attributes,
                       @RequestParam(value = "pic",required = false)MultipartFile pic, HttpServletRequest request){
@@ -122,6 +128,8 @@ public class AdvertisementController {
         return "redirect:/toeditadv/"+advertisement.getId();
     }
 
+    //后台删除广告信息
+    @RequiresRoles("admin")
     @DeleteMapping("/adv/{adv_id}")
     public String delete(@PathVariable("adv_id")Integer adv_id,Integer act_id,Map<String,Object> map) {
         advertisementService.deleteById(adv_id);

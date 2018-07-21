@@ -4,6 +4,7 @@ import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.RedeemCode;
 import com.yukoon.bargain.services.RedeemCodeService;
 import com.yukoon.bargain.services.RewardService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,7 @@ public class RedeemCodeController {
     }
 
     //后台查询某一礼品下的全部兑换券
+    @RequiresRoles("admin")
     @GetMapping("/code/{reward_id}")
     public String findCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
 									 @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
@@ -45,6 +47,7 @@ public class RedeemCodeController {
     }
 
     //后台查询某一礼品下已发放的兑换券
+    @RequiresRoles("admin")
     @GetMapping("/usedcode/{reward_id}")
     public String findUsedCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
                                          @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
@@ -59,6 +62,7 @@ public class RedeemCodeController {
     }
 
     //后台查询某一礼品下未发放的兑换券
+    @RequiresRoles("admin")
     @GetMapping("/unusedcode/{reward_id}")
     public String findUnusedCodeByRewardId(@PathVariable("reward_id")Integer reward_id, Map<String,Object> map,
                                          @RequestParam(value = "pageNo",defaultValue = "1",required = false)Integer pageNo) {
@@ -73,6 +77,7 @@ public class RedeemCodeController {
     }
 
     //后台前往添加某一礼品下的兑换券
+    @RequiresRoles("admin")
     @GetMapping("/addcode/{reward_id}")
     public String toAddCode(Map<String,Object> map,@PathVariable("reward_id")Integer reward_id) {
         map.put("reward",rewardService.findById(reward_id));
@@ -81,6 +86,7 @@ public class RedeemCodeController {
     }
 
     //后台前往编辑某一礼品下的兑换券
+    @RequiresRoles("admin")
     @GetMapping("/editcode/{code_id}")
     public String toEditCode(Map<String,Object> map,@PathVariable("code_id")Integer code_id) {
         RedeemCode redeemCode = redeemCodeService.findById(code_id);
@@ -89,6 +95,7 @@ public class RedeemCodeController {
     }
 
     //后台添加某一礼品下的兑换券
+    @RequiresRoles("admin")
     @PostMapping("/code")
     public String addCode(RedeemCode redeemCode) {
         redeemCodeService.saveSingleRedeemCode(redeemCode);
@@ -96,6 +103,7 @@ public class RedeemCodeController {
     }
 
     //后台修改某一礼品下的兑换券
+    @RequiresRoles("admin")
     @PutMapping("/code")
     public String editCode(RedeemCode redeemCode) {
         redeemCodeService.saveSingleRedeemCode(redeemCode);
@@ -103,6 +111,7 @@ public class RedeemCodeController {
     }
 
     //后台删除某一礼品下的兑换券
+    @RequiresRoles("admin")
     @DeleteMapping("/code/{code_id}")
     public String deleteCode(@PathVariable("code_id")Integer code_id,Integer reward_id) {
         redeemCodeService.deleteRedeemCode(code_id);
@@ -110,6 +119,7 @@ public class RedeemCodeController {
     }
 
     //后台对某一活动下所有得奖者发放兑换券
+    @RequiresRoles("admin")
     @GetMapping("/pushcode/{act_id}")
     public String pushCode(@PathVariable("act_id")Integer act_id, RedirectAttributes attributes) {
         Map<Integer,Integer> result = redeemCodeService.batchCheckAndCash(act_id);

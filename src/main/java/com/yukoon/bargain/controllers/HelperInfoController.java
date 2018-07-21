@@ -4,6 +4,7 @@ import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.services.GameInfoService;
 import com.yukoon.bargain.services.GameService;
 import com.yukoon.bargain.services.HelperInfoService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class HelperInfoController {
     private final static Integer PAGE_SIZE = 10;
 
     //后台查询某一客户下的帮助者
+    @RequiresRoles("admin")
     @GetMapping("/helpers/{gameInfo_Id}")
     public String getHelpers(@PathVariable("gameInfo_Id")Integer gameInfo_Id,
                              Map<String,Object> map,
@@ -37,6 +39,7 @@ public class HelperInfoController {
     }
 
     //后台查询帮助者
+    @RequiresRoles("admin")
     @PostMapping("/findhelper")
     public String searchHelpers(String username,Integer gameinfo_id,Map<String,Object> map,
                                 @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {

@@ -8,6 +8,7 @@ import com.yukoon.bargain.services.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -39,6 +40,7 @@ public class UserController {
     }
 
     //后台分页查询所有注册用户
+    @RequiresRoles("admin")
     @GetMapping("/allusers")
     public String findAll(Map<String,Object> map,
                           @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -50,6 +52,7 @@ public class UserController {
         return "backend/all_user_list";
     }
     //后台分页查询某一注册用户
+    @RequiresRoles("admin")
     @PostMapping("/searchuser")
     public String searchUser(String username,Map<String,Object> map,
                              @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -62,6 +65,7 @@ public class UserController {
     }
 
     //后台分页查询某一活动下所有参与的用户
+    @RequiresRoles("admin")
     @GetMapping("/users/{act_id}")
     public String listAllUsers(@PathVariable("act_id")Integer act_id,
                                @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo,
@@ -76,6 +80,7 @@ public class UserController {
     }
 
     //后台分页搜索某一活动下的用户
+    @RequiresRoles("admin")
     @PostMapping("/finduser")
     public String findUser(String username,Integer act_id,Map<String,Object> map,
                            @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -89,6 +94,7 @@ public class UserController {
     }
 
     //后台分页查询某一活动下全部完成砍价得奖的用户
+    @RequiresRoles("admin")
     @GetMapping("/awards/{act_id}")
     public String findWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,String msg,
                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -106,6 +112,7 @@ public class UserController {
     }
 
     //后台分页查询某一活动下未有兑换券完成砍价得奖的用户
+    @RequiresRoles("admin")
     @GetMapping("/ucawards/{act_id}")
     public String findUncashWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
@@ -119,6 +126,7 @@ public class UserController {
         return "backend/winner_list";
     }
     //后台分页查询某一活动下已有兑换券的完成砍价得奖的用户
+    @RequiresRoles("admin")
     @GetMapping("/cawards/{act_id}")
     public String findcashWinners(@PathVariable("act_id")Integer act_id,Map<String,Object> map,
                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {

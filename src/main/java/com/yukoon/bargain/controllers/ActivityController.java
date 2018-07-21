@@ -2,6 +2,7 @@ package com.yukoon.bargain.controllers;
 
 import com.yukoon.bargain.entities.Activity;
 import com.yukoon.bargain.services.ActivityService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class ActivityController {
     }
 
     //后台查询所有活动
+    @RequiresRoles("admin")
     @GetMapping("/acts")
     public String listAll(Map<String,Object> map) {
         map.put("acts",activityService.findAll());
@@ -31,18 +33,21 @@ public class ActivityController {
     }
 
     //后台前往添加活动
+    @RequiresRoles("admin")
     @GetMapping("/act")
     public String toAdd() {
         return "backend/act_input";
     }
 
     //后台前往编辑活动
+    @RequiresRoles("admin")
     @GetMapping("/act/{id}")
     public String toEdit(Map<String,Object> map, @PathVariable("id")Integer id) {
         map.put("activity",activityService.findById(id));
         return "backend/act_input";
     }
     //后台开启活动
+    @RequiresRoles("admin")
     @GetMapping("/actopen/{id}")
     public String open(@PathVariable("id")Integer id) {
         Activity activity = activityService.findById(id);
@@ -65,6 +70,7 @@ public class ActivityController {
     }
 
     //后台编辑活动
+    @RequiresRoles("admin")
     @PutMapping("/act")
     public String edit(Activity activity) {
         System.out.println(activity);
@@ -73,6 +79,7 @@ public class ActivityController {
     }
 
     //后台添加活动
+    @RequiresRoles("admin")
     @PostMapping("/act")
     public String add(Activity activity) {
         activity.setAct_status(0);
@@ -89,6 +96,7 @@ public class ActivityController {
     }
 
     //后台前往活动二维码页面
+    @RequiresRoles("admin")
     @GetMapping("/QR/{act_id}")
     public String toQRCode(@PathVariable("act_id")Integer act_id, Map<String,Object> map) {
         String url = "/actInfo/"+act_id;

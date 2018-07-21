@@ -4,6 +4,7 @@ import com.yukoon.bargain.config.PathConfig;
 import com.yukoon.bargain.services.RewardService;
 import com.yukoon.bargain.services.UploadService;
 import com.yukoon.bargain.utils.FileUtil;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class UploadController {
     private PathConfig pathConfig;
 
     //后台前往礼品图片上传
+    @RequiresRoles("admin")
     @GetMapping("/touploadrewardimg/{reward_id}")
     public String toUploadRewardImg(@PathVariable("reward_id")Integer reward_id,
                                     Map<String,Object> map,String uploadMsg) {
@@ -41,6 +43,7 @@ public class UploadController {
     }
 
     //后台礼品图片上传
+    @RequiresRoles("admin")
     @PostMapping("/rewardimgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
             , Integer reward_id,RedirectAttributes attributes){
@@ -69,6 +72,7 @@ public class UploadController {
     }
 
     //后台前往兑换券批量上传
+    @RequiresRoles("admin")
     @GetMapping("/touploadcode/{act_id}")
     public String toUploadExcel(@PathVariable("act_id") Integer act_id, Map<String,Object> map, HttpServletRequest request) {
         Map<String,?> map1 = RequestContextUtils.getInputFlashMap(request);
@@ -84,6 +88,7 @@ public class UploadController {
     }
 
     //后台进行兑换码Excel上传
+    @RequiresRoles("admin")
     @PostMapping("/uploadcode")
     public String uploadExcel(@RequestParam("excel")MultipartFile excel, Integer act_id, RedirectAttributes attributes) {
         List<String> repeatNames;

@@ -2,6 +2,7 @@ package com.yukoon.bargain.controllers;
 
 import com.yukoon.bargain.services.DownloadService;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class DownloadController {
 	private DownloadService downloadService;
 
 	//批量导出整个活动的参与者数据
+	@RequiresRoles("admin")
 	@ResponseBody
 	@GetMapping("/exportallgameinfo/{act_id}")
 	public void exportAllGameInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
@@ -50,6 +52,7 @@ public class DownloadController {
 	}
 
 	//批量导出某一具体活动的帮砍者数据
+	@RequiresRoles("admin")
 	@ResponseBody
 	@GetMapping("/exportallhelper/{gameinfo_id}")
 	public void exportAllHelperInfo(@PathVariable("gameinfo_id")Integer gameinfo_id, HttpServletRequest request, HttpServletResponse response) {
@@ -77,6 +80,7 @@ public class DownloadController {
 	}
 
 	//批量导出某一活动的得奖者数据
+	@RequiresRoles("admin")
 	@ResponseBody
 	@GetMapping("/exportallwinner/{act_id}")
 	public void exportAllWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
@@ -104,6 +108,7 @@ public class DownloadController {
 	}
 
 	//批量导出某一活动的已兑奖得奖者数据
+	@RequiresRoles("admin")
 	@ResponseBody
 	@GetMapping("/exportcwinner/{act_id}")
 	public void exportCashedWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
@@ -131,6 +136,7 @@ public class DownloadController {
 	}
 
 	//批量导出某一活动的未兑奖得奖者数据
+	@RequiresRoles("admin")
 	@ResponseBody
 	@GetMapping("/exportucwinner/{act_id}")
 	public void exportUncashedWinnerInfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
