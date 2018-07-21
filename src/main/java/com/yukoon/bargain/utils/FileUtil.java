@@ -155,14 +155,8 @@ public class FileUtil {
 //  DeleteFileUtil.deleteFile(file);
 //  System.out.println();
         // 删除一个目录
-        String path = "f:/material/images/lottery12.png";
-        try {
-            resizeImg(path,1000,1000);
-        }catch (Exception e) {
-            e.printStackTrace();
-
-        }
-
+        String path = "f:/material/advImgs/adv3.png";
+        System.out.println(FileUtil.delete(path));
 //  System.out.println();
 //  // 删除文件
 //  dir = "c:/test/test0";

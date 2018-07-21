@@ -133,6 +133,9 @@ public class AdvertisementController {
     @DeleteMapping("/adv/{adv_id}")
     public String delete(@PathVariable("adv_id")Integer adv_id,Integer act_id,Map<String,Object> map) {
         advertisementService.deleteById(adv_id);
+        //清除对应广告图片
+        String path = pathConfig.getAdvImgPath() + "adv" + adv_id + ".png";
+        FileUtil.delete(path);
         return "redirect:/advs/"+act_id;
     }
 
