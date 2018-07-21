@@ -18,12 +18,12 @@
         <div id="img_container">
             <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
         </div>
-        <p class="money_left" th:if="${gameInfo.priceLeft} gt 0">
+        <p id="money_left" th:if="${gameInfo.priceLeft} gt 0">
             <span class="introduce">还差</span>
             <span id="price_left" th:text="${gameInfo.priceLeft}+元"></span>
             <span class="introduce">就免费领</span>
         </p>
-        <p class="money_left" th:if="${gameInfo.priceLeft} eq 0">
+        <p id="win_msg" th:if="${gameInfo.priceLeft} eq 0">
             <span class="introduce">砍价成功，可以免费领取！</span>
         </p>
         <div id="BTNs_container">

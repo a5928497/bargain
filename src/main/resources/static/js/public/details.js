@@ -19,8 +19,8 @@ $(function () {
         $BTNs.remove();
         $helpers.remove();
         $advs.remove();
-        $share_msg.text("识别图中二维码来帮我一把！").css("margin-left","30%").css("color","white").show();
-        $share_QR.attr("src",url).css("margin-left","35%").show();
+        $share_msg.text("识别图中二维码来帮我一把！").css("margin-left","28%").css("color","white").show();
+        $share_QR.attr("src",url).css("margin-left","33%").show();
        return false;
     });
 })

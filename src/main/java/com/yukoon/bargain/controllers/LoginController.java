@@ -36,7 +36,7 @@ public class LoginController {
 
 	//跳转至登录首页
 	@GetMapping("/login")
-	public String toLogin(@RequestParam(value = "url",required = false)String url, Map<String,Object> map) {
+	public String toLogin(@RequestParam(value = "url",required = false,defaultValue = "/myrecords")String url, Map<String,Object> map) {
 		System.out.println("url:"+url);
 		if (url != null) {
 			map.put("url",url);

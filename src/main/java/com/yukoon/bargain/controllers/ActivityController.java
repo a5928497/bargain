@@ -73,7 +73,6 @@ public class ActivityController {
     @RequiresRoles("admin")
     @PutMapping("/act")
     public String edit(Activity activity) {
-        System.out.println(activity);
         activityService.saveAct(activity);
         return "redirect:/acts";
     }
