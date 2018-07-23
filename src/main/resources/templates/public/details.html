@@ -20,7 +20,7 @@
         </div>
         <p id="money_left" th:if="${gameInfo.priceLeft} gt 0">
             <span class="introduce">还差</span>
-            <span id="price_left" th:text="${gameInfo.priceLeft}+元"></span>
+            <span id="price_left" th:text="${gameInfo.timesLeft}+个队友"></span>
             <span class="introduce">就免费领</span>
         </p>
         <p id="win_msg" th:if="${gameInfo.priceLeft} eq 0">
@@ -35,8 +35,7 @@
         <div id="helper_container">
             <p th:each="helper:${helpers}" id="helper_info">
                 <span th:text="${helper.helper.username}"></span>
-                <span>帮他砍了</span>
-                <span th:text="${helper.barginPrice}+元"></span>
+                <span>已助我一臂之力！</span>
             </p>
             <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
         </div>

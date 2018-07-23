@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -23,7 +25,15 @@ public class HelperInfoService {
 
     @Transactional
     public List<HelperInfo> getAllHelpers(Integer gameInfoId) {
-        return helperInfoRepo.findAllByGameInfo(gameInfoId);
+        List<HelperInfo> list = helperInfoRepo.findAllByGameInfo(gameInfoId);
+        //倒序排列
+        Collections.sort(list, new Comparator<HelperInfo>() {
+            @Override
+            public int compare(HelperInfo o1, HelperInfo o2) {
+                return o2.getId().compareTo(o1.getId());
+            }
+        });
+        return list;
     }
 
     @Transactional
@@ -31,8 +41,8 @@ public class HelperInfoService {
         List<HelperInfo> list = new ArrayList<>();
         List<HelperInfo> helpers = helperInfoRepo.findAllByGameInfo(gameInfoId);
         if (helpers.size() > 3) {
-            for (int i = 0;i<3 ;i++) {
-                list.add(helpers.get(i));
+            for (int i = 1;i<4 ;i++) {
+                list.add(helpers.get(helpers.size()-i));
             }
             return list;
         }else {
