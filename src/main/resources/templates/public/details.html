@@ -41,7 +41,7 @@
             <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
         </div>
         <div id="adv_container">
-            <a th:each="adv:${advs}" th:href="${adv.adv_link}">
+            <a th:each="adv:${advs}" th:href="@{/toadv/}+${adv.id}">
                 <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
             </a>
         </div>

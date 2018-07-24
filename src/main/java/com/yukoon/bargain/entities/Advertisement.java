@@ -23,6 +23,9 @@ public class Advertisement {
     @Column(name = "ADV_LINK")
     private String adv_link;
 
+    @Column(name = "CLICKS")
+    private Integer clicks;
+
     @JoinColumn(name = "ACT_ID")
     @ManyToOne
     private Activity activity;

@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -60,6 +63,7 @@ public class AdvertisementController {
             return "redirect:/toaddadv/"+advertisement.getActivity().getId();
         }
         try {
+            advertisement.setClicks(0);
             Advertisement adv = advertisementService.addAdv(advertisement);
             //重命名文件
             fileName = "adv"+adv.getId()+".png";
@@ -137,6 +141,15 @@ public class AdvertisementController {
         String path = pathConfig.getAdvImgPath() + "adv" + adv_id + ".png";
         FileUtil.delete(path);
         return "redirect:/advs/"+act_id;
+    }
+
+    //前台跳转到广告页面并统计点击量
+    @GetMapping("/toadv/{adv_id}")
+    public String redirect2Adv(@PathVariable("adv_id")Integer adv_id) {
+        Advertisement adv = advertisementService.findById(adv_id);
+        adv.setClicks(adv.getClicks()+1);
+        advertisementService.addAdv(adv);
+        return "redirect:http://"+ adv.getAdv_link();
     }
 
 }
