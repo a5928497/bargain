@@ -14,22 +14,21 @@
 </head>
 
 <body class="gray-bg">
-    <div id="main_container">
-        <form method="post" id="loginForm" action="/login">
-            <div id="username_container">
-                <input type="text" id="username" name="username" th:placeholder="手机号">
-            </div>
-            <div id="password_container">
-                <input type="text" id="password" name="password" th:placeholder="验证码">
-            </div>
-            <input type="hidden" name="url" th:if="${url!= null}" th:value="${url}">
-            <button id="vaildateBTN" ><div id="vaildateBTN_holder"></div></button>
-            <button type="submit" id="submitBTN" ><div id="submitBTN_holder"></div></button>
-        </form>
-        <form id="vaildateForm">
-            <input type="hidden" name="phone_number" id="phone_number">
-        </form>
-    </div>
+        <div id="main_header"></div>
+            <form method="post" id="loginForm" action="/login">
+                <div id="main_body">
+                    <input type="text" id="username" name="username" th:placeholder="手机号">
+                    <input type="text" id="password" name="password" th:placeholder="验证码">
+                <input type="hidden" name="url" th:if="${url!= null}" th:value="${url}">
+                <button id="vaildateBTN" >获取验证码</button>
+                </div>
+            </form>
+        <div id="main_footer">
+            <button id="submitBTN">登陆</button>
+            <form id="vaildateForm">
+                <input type="hidden" name="phone_number" id="phone_number">
+            </form>
+        </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/public/login.js}"></script>

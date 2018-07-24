@@ -3,47 +3,40 @@
     background: url(../../images/user_info_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 50%;
+    min-height: 59%;
 }
 #body
 {
     background: url(../../images/user_info_background_body.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 38.5%;
-}
-#footer {
-    background: url(../../images/user_info_background_foot.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 11.5%;
+    min-height: 41%;
 }
 .info {
     margin-left: 10%;
-    background: url(../../images/user_info_border.png) no-repeat;
-    background-size: 100% 100%;
     width: 80%;
     display: inline-block;
     display: flex;
     align-items:Center;
+
+    border-bottom: solid black 2px;
 }
 span {
     display: inline-block;
     font-size: 10pt;
+    color: black;
+    /*font-style: italic;*/
+    font-weight: bold;
 }
 #act_name {
     margin-left: 3%;
-    color: white;
     width: 30%;
 }
 #reward_name {
     margin-left: 3%;
-    color: white;
     width: 30%;
 }
 #status {
-    /*margin-left: 5%;*/
-    color: white;
     width: 18%;
 }
 a {
@@ -53,6 +46,5 @@ a {
     width: 12%;
 }
 #empty_msg {
-    color: white;
     padding-left: 22%;
 }

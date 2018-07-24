@@ -27,10 +27,11 @@
             <span class="introduce">砍价成功，可以免费领取！</span>
         </p>
         <div id="BTNs_container">
-            <a th:href="@{/bargain/}+${gameInfo.id}"><button id="bargain_BTN" ><div class="BTN_holder"></div></button></a>
-            <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button id="join_BTN" ><div class="BTN_holder"></div></button></a>
-            <button id="share_BTN" ><div class="BTN_holder"></div></button>
-            <a th:href="@{/myrecords}"><button id="user_info_BTN" ><div class="BTN_holder"></div></button></a>
+            <a th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN">帮他砍一刀</button></a>
+            <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN">我也要参加</button></a>
+            <div class="border"></div>
+            <button class="BTN">分享</button>
+            <a th:href="@{/myrecords}"><button class="BTN">我的记录</button></a>
         </div>
         <div id="helper_container">
             <p th:each="helper:${helpers}" id="helper_info">

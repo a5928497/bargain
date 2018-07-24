@@ -1,6 +1,6 @@
 #main_container
 {
-    background: url(../../images/game_background.png) no-repeat;
+    background: url(../../images/game_background.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 100%;
@@ -10,92 +10,57 @@
 }
 #reward_img {
     margin-top: 5%;
-    margin-left: 35%;
+    padding-left: 35%;
 }
 #money_left {
-    margin-left: 13%;
+    padding-left: 23%;
     font-size: 25pt;
 }
 #win_msg {
-    margin-left: 23%;
+    padding-left: 23%;
     font-size: 25pt;
 }
 .introduce {
-    color: yellow;
+    color: black;
     font-size: 15pt;
 }
 #price_left {
-    color: white;
-    font-size: 25pt;
+    color: black;
+    font-size: 15pt;
+    font-style: italic;
+    font-weight: bold;
 }
 #BTNs_container {
     margin-top: 5%;
-    margin-left: 10%;
+    padding-left: 18%;
 }
-#bargain_BTN {
-    background: url("../../images/help_button.png");
-    background-size: 100% 100%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+.border {
+    height: 5px;
+}
+.BTN {
+    background-color: transparent;
+    border-color: black;
+    font-size: 14pt;
+    color: black;
     outline: none;
-    min-width: 45%;
+    min-width: 40%;
     vertical-align: top;
-}
-#join_BTN {
-    background: url("../../images/join_details_button.png");
-    background-size: 100% 100%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
-    outline: none;
-    min-width: 45%;
-    vertical-align: top;
-}
-#share_BTN {
-    background: url("../../images/share_button.png");
-    background-size: 100% 100%;
-    margin-top: 5%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
-    outline: none;
-    min-width: 45%;
-    vertical-align: top;
-}
-#user_info_BTN {
-    background: url("../../images/user_info_button.png");
-    background-size: 100% 100%;
-    margin-top: 5%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
-    outline: none;
-    min-width: 45%;
-    vertical-align: top;
-}
-.BTN_holder {
-    min-width: 100%;
-    min-height: 55px;
 }
 
 #helper_info {
-    margin-left: 30%;
+    padding-left: 30%;
     margin-top: 3%;
     font-size: 11pt;
-    color: yellow;
+    color: black;
 }
 
 #all_helpers {
-    margin-left: 43%;
-    color: white;
+    padding-left: 43%;
+    color: black;
+    font-weight: bold;
 }
 #adv_container {
-    margin-left: 4.5%;
+    padding-left: 4.5%;
     width: 100%;
 }
 .adv_imgs {

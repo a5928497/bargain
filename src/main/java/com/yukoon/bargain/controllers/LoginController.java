@@ -59,7 +59,7 @@ public class LoginController {
 				currentUser.login(usernamePasswordToken);
 			}catch (AuthenticationException ae){
 				System.out.println("登陆失败:"+ae.toString());
-				if (flag.equals("bg")) {
+				if (null != flag && flag.equals("bg")) {
 					//若是从后台登录，返回backend登录
 					return "redirect:/backend";
 				}else {

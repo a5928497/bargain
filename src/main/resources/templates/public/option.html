@@ -26,9 +26,8 @@
             <input type="hidden" id="reward_id" name="reward.id">
             <input type="hidden" id="activity.id" name="activity.id" th:value="${act_id}">
             <input type="hidden" id="back_url" name="url" th:value="${back_url!=null}?${back_url}">
-            <button type="submit" id="submitBTN" ><div id="submitBTN_holder"></div></button>
+            <button type="submit" id="submitBTN" >就选它了</button>
         </form>
-        <div id="border"></div>
     </div>
 
     <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}" th:value="${reward.id}" th:attr="price = ${reward.price}">

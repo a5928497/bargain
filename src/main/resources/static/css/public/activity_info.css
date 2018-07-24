@@ -3,34 +3,28 @@
     background: url(../../images/act_info_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 40%;
+    min-height: 51%;
 }
 
 #details_holder {
     background: url(../../images/act_info_background_foot.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 60%;
+    min-height: 49%;
 }
 #details {
     max-width: 80%;
     margin-left: 11%;
-    color: white;
+    color: black;
     font-size: 11pt;
 }
 #join_BTN {
-    background: url("../../images/join_act_button.png");
-    background-size: 100% 100%;
+    background-color: transparent;
+    font-size: 18pt;
+    color: black;
     margin-top: 20%;
     margin-left: 17%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+    border-color: black;
     outline: none;
     min-width: 68%;
-}
-#button_holder {
-    min-width: 100%;
-    min-height: 75px;
 }

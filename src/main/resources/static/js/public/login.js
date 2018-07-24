@@ -1,5 +1,12 @@
 $(function () {
     $vaildateBTN =$("#vaildateBTN");
+    $submitBTN = $("#submitBTN");
+
+    $submitBTN.click(function () {
+        $("#loginForm").submit();
+        return false;
+    });
+
     $vaildateBTN.click(function () {
         $("#phone_number").val($("#username").val());
         $.ajax({

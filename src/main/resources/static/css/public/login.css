@@ -1,82 +1,67 @@
-#main_container
+#main_header
 {
-    background: url(../../images/background.png) no-repeat;
+    background: url(../../images/background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 100%;
+    height: 56%;
 }
-
-#loginForm {
-    padding-top: 60%;
-    min-height: 100%;
-}
-#username_container {
-    margin-left: 13%;
-    background: url(../../images/phone_number_input.png) no-repeat;
+form {
+    min-height: 30%;
+    background: url(../../images/background_body.jpg) no-repeat;
     background-size: 100% 100%;
-    width: 75%;
-    height: auto;
+}
+#main_body
+{
+    min-width: 100%;
 }
 #username{
-    margin-left: 18%;
+    margin-left: 10%;
+    text-align: center;
     font-size: 18pt;
-    background: transparent;
-    border-color: transparent;
+    background: white;
+    border-color: black;
     outline: none;
     max-width: 80%;
-    height: 100%;
 }
 
-#password_container {
-    margin-left: 13%;
-    margin-top: 5%;
-    background: url(../../images/vaildate_code_input.png) no-repeat;
-    background-size: 100% 100%;
-    width: 35%;
-}
 
 #password {
+    margin-top: 3%;
     font-size: 18pt;
-    background: transparent;
-    border-color: transparent;
-    margin-left: 15%;
-    height: 100%;
+    text-align: center;
+    background: white;
+    border-color: black;
+    margin-left: 10%;
     outline: none;
-    width: 100%;
+    max-width: 38%;
 }
 
 #vaildateBTN {
     margin-left: 50%;
     margin-top: -11%;
     background-color: transparent;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+    border-color: black;
     outline: none;
     width: 38%;
     vertical-align: top;
+    font-size: 18pt;
+    color: black;
 }
-#vaildateBTN_holder {
-    background: url("../../images/vaildate_code_button.png");
-    background-size: 100% 100%;
-    width: 100%;
-    height: 40px;
-}
-
 #submitBTN {
-    margin-left: 13%;
-    background: url("../../images/login_button.png");
+    margin-left: 29%;
+    font-size: 18pt;
+    text-align: center;
     background-size: 100% 100%;
-    width: 75%;
-    height: auto;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+    background-color: transparent;
+    color: black;
+    width: 40%;
+    border-color: black;
     outline: none;
 }
-#submitBTN_holder {
-    width: 75%;
-    min-height: 80px;
+#main_footer
+{
+    background: url(../../images/background_foot.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 14%;
 }
