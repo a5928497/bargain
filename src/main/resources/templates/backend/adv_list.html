@@ -48,6 +48,7 @@
                                 <tr>
                                     <th data-hide="all">ID</th>
                                     <th data-hide="all">广告名</th>
+                                    <th data-hide="all">点击量</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                 <tr th:each="adv:${advs}">
                                     <td th:text="${adv.id}">ID</td>
                                     <td th:text="${adv.adv_name}">adv_name</td>
+                                    <td th:text="${adv.clicks}">adv_name</td>
                                     <td>
                                         <a th:href="@{/toeditadv/}+${adv.id}" ><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <button  th:attr="del_uri = @{/adv/}+${adv.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
