@@ -32,7 +32,8 @@
         </form>
     </div>
 
-    <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}" th:value="${reward.id}" th:attr="price = ${reward.price}">
+    <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}" th:value="${reward.id}" th:attr="price = ${reward.times}">
+
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/public/option.js}"></script>
