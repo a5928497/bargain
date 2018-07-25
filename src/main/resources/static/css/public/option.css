@@ -11,33 +11,24 @@
     min-width: 100%;
     min-height: 88.4%;
 }
-#reward_img {
-    margin-left: 12%;
+#reward_container {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png");
     background-size: 100% 100%;
-    margin-top: 20%;
-    margin-left: 15%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+    border-color: transparent;
     outline: none;
-    min-width: 10%;
+    width: 15%;
 }
-
 #arrow_right_BTN {
     background: url("../../images/arrows_right.png");
     background-size: 100% 100%;
-    margin-top: 20%;
-    margin-left: 10%;
-    border-bottom: transparent;
-    border-top: transparent;
-    border-left: transparent;
-    border-right: transparent;
+    border-color: transparent;
     outline: none;
-    min-width: 10%;
+    width: 15%;
 }
 .arrows_holder {
     min-width: 100%;
