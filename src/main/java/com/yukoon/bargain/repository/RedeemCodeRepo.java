@@ -14,4 +14,7 @@ public interface RedeemCodeRepo extends JpaRepository<RedeemCode,Integer> {
 
     @Query("select r from RedeemCode r where r.code = :code")
     public List<RedeemCode> findCodeByCode(@Param("code")String code);
+
+    @Query("select r from RedeemCode r where r.winner.id = :winner_id and r.activity.id = :act_id")
+    public RedeemCode findByWinnerAndAct(@Param("winner_id")Integer winner_id,@Param("act_id")Integer act_id);
 }

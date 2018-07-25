@@ -25,7 +25,6 @@ span {
     display: inline-block;
     font-size: 10pt;
     color: black;
-    /*font-style: italic;*/
     font-weight: bold;
 }
 #act_name {
@@ -47,4 +46,18 @@ a {
 }
 #empty_msg {
     padding-left: 22%;
+}
+.codeInfoBTN {
+    background-color: transparent;
+    border-color: transparent;
+    color: blue;
+    outline: none;
+}
+.code_msg {
+    width: 80%;
+    margin: 0 auto;
+
+    color: blue;
+    font-weight: bold;
+    border-bottom: solid 1px black;
 }

@@ -20,8 +20,9 @@
         <div class="info" th:each="gameInfo:${gameInfos}" th:if="${gameInfos != null}">
             <span id="act_name" th:text="${gameInfo.activity.act_name}"></span>
             <span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>
-            <span id="status" th:text="${gameInfo.activity.act_status} eq 1?进行中:已结束"></span>
-            <a id="option" th:href="@{/game/}+${gameInfo.id}">查看</a>
+            <span id="status" th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中"></span>
+            <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
+            <button class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</button>
         </div>
         <div class="info" th:if="${gameInfos == null}">
             <span id="empty_msg">您目前还没有参加任何活动！</span>
@@ -29,6 +30,7 @@
     </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/public/user_info.js}"></script>
 </body>
 
 </html>

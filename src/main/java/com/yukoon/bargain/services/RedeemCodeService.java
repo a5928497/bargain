@@ -112,4 +112,9 @@ public class RedeemCodeService {
     public void deleteRedeemCode(Integer id) {
         redeemCodeRepo.delete(id);
     }
+
+    @Transactional
+    public RedeemCode findByWinnerAndAct(Integer winner_id,Integer act_id) {
+        return redeemCodeRepo.findByWinnerAndAct(winner_id,act_id);
+    }
 }

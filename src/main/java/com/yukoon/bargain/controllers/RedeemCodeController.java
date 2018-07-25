@@ -1,18 +1,19 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.Page;
 import com.yukoon.bargain.entities.RedeemCode;
-import com.yukoon.bargain.services.RedeemCodeService;
-import com.yukoon.bargain.services.RewardService;
+import com.yukoon.bargain.entities.User;
+import com.yukoon.bargain.services.*;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.persistence.Id;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,6 +23,12 @@ public class RedeemCodeController {
     private RedeemCodeService redeemCodeService;
     @Autowired
     private RewardService rewardService;
+    @Autowired
+    private GameService gameService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ActivityService activityService;
 
     @ModelAttribute
     public void getCode(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
@@ -133,5 +140,27 @@ public class RedeemCodeController {
             attributes.addFlashAttribute("msg",msg);
         }
         return "redirect:/awards/"+act_id;
+    }
+
+    //前台查询某一用户某一活动下的中奖信息
+    @ResponseBody
+    @GetMapping("/getcodeinfo/{gameinfoId}")
+    public String getCodeInfo(@PathVariable("gameinfoId")Integer gameinfoId) {
+        Subject subject = SecurityUtils.getSubject();
+        String username = (String) subject.getPrincipal();
+        GameInfo gi = gameService.findById(gameinfoId);
+        String result = "您的查询信息有误，请更正后重新查询！";
+        if (null != gi && null != username) {
+            //检查登录信息与查询是否一致，防止盗查
+            RedeemCode redeemCode = redeemCodeService.findByWinnerAndAct(gi.getUser().getId(),gi.getActivity().getId());
+            User user = userService.findByUsername(username);
+            result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
+            if (null != redeemCode && null != user && redeemCode.getWinner().getId() == user.getId()){
+                result = "兑换码：" + redeemCode.getCode() + "，" +result;
+            }else if (null == redeemCode && gi.getPriceLeft() <= 0) {
+                result = "您的兑换码正在路上，请您耐心等待，稍后再查询！";
+            }
+        }
+        return result;
     }
 }
