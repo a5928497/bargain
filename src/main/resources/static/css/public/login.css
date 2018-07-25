@@ -13,17 +13,18 @@ form {
 #main_body
 {
     min-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
 #username{
-    margin-left: 10%;
     text-align: center;
     font-size: 18pt;
     background: white;
     border-color: black;
     outline: none;
-    max-width: 80%;
+    width: 77%;
 }
-
 
 #password {
     margin-top: 3%;
@@ -31,24 +32,19 @@ form {
     text-align: center;
     background: white;
     border-color: black;
-    margin-left: 10%;
     outline: none;
-    max-width: 38%;
+    width: 38%;
 }
 
 #vaildateBTN {
-    margin-left: 50%;
-    margin-top: -11%;
     background-color: transparent;
     border-color: black;
     outline: none;
     width: 38%;
-    vertical-align: top;
     font-size: 18pt;
     color: black;
 }
 #submitBTN {
-    margin-left: 29%;
     font-size: 18pt;
     text-align: center;
     background-size: 100% 100%;
@@ -64,4 +60,6 @@ form {
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 14%;
+    margin: 0 auto;
+    text-align: center;
 }

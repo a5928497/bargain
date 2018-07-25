@@ -12,8 +12,6 @@
     width: 100%;
     text-align: center;
 }
-#reward_img {
-}
 #money_left {
     margin: 0 auto;
     text-align: center;
@@ -80,7 +78,8 @@
     font-weight: bold;
 }
 #adv_container {
-    padding-left: 4.5%;
+    margin: 0 auto;
+    text-align: center;
     width: 100%;
 }
 .adv_imgs {

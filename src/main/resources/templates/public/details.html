@@ -49,6 +49,7 @@
         <div id="adv_container">
             <a th:each="adv:${advs}" th:href="@{/toadv/}+${adv.id}">
                 <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
+
             </a>
         </div>
         <div id="share_container">
