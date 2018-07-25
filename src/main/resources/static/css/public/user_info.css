@@ -52,11 +52,11 @@ a {
     border-color: transparent;
     color: blue;
     outline: none;
+    padding: -20%;
 }
 .code_msg {
     width: 80%;
     margin: 0 auto;
-
     color: blue;
     font-weight: bold;
     border-bottom: solid 1px black;
