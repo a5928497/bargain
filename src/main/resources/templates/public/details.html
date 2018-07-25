@@ -18,16 +18,22 @@
         <div id="img_container">
             <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
         </div>
-        <p id="money_left" th:if="${gameInfo.priceLeft} gt 0">
+        <p id="money_left" th:if="${status == 1}">
             <span class="introduce">还差</span>
             <span id="price_left" th:text="${gameInfo.timesLeft}+个队友"></span>
-            <span class="introduce">就免费领</span>
+            <span class="introduce">就免费领</span><br>
+            <span class="introduce">就剩</span>
+            <span id="reward_left" th:text="${reward.surplus}+件"></span>
+            <span class="introduce">赶紧抢啊</span>
         </p>
-        <p id="win_msg" th:if="${gameInfo.priceLeft} eq 0">
+        <p id="win_msg" th:if="${status == 2}">
             <span class="introduce">砍价成功，可以免费领取！</span>
         </p>
+        <p id="lose_msg" th:if="${status == 0}">
+            <span class="introduce">商品已经被抢光了，请下次努力！</span>
+        </p>
         <div id="BTNs_container">
-            <a th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN">帮他砍一刀</button></a>
+            <a th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN">帮他一把</button></a>
             <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN">我也要参加</button></a>
             <div class="border"></div>
             <button class="BTN" id="share_BTN">分享</button>
@@ -36,7 +42,7 @@
         <div id="helper_container">
             <p th:each="helper:${helpers}" id="helper_info">
                 <span th:text="${helper.helper.username}"></span>
-                <span>已助我一臂之力！</span>
+                <span>已助一臂之力！</span>
             </p>
             <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
         </div>

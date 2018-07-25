@@ -3,9 +3,6 @@ package com.yukoon.bargain.utils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
-import java.text.DecimalFormat;
-import java.util.Random;
-
 public class EncodeUtil {
 
 	public static String encodePassword (Object credentials,String username) {

@@ -74,7 +74,7 @@ public class GameService {
 
 //	private final static String SUCCESS_SUFFIX = "太厉害了，您成功的砍下了";
 //	private final static String SUCCESS_PREFIX = "元！";
-	private final static String BARGAIN_SUCCESS = "您已成功加入，他离成功越来越近了！";
+	private final static String BARGAIN_SUCCESS = "您已成功助力！";
 	private final static String COMPLETED = "恭喜您，你成功砍下了最后一刀！";
 	private final static String NOT_FOUND = "没有这条记录！";
 	private final static String HAD_BARGAIN = "您已经砍过了，不要贪心哟！";
@@ -90,7 +90,14 @@ public class GameService {
 		String msg = null;
 		boolean hadBargain  = helperInfoService.hadBargain(gameInfo.getId(),helperInfo.getHelper().getId());
 		boolean notFinished  = gameInfo.getPriceLeft() >0;
-		//若记录存在且砍价者没帮这个用户进行过砍价且还没砍到0元且没有超出该活动的砍价次数限制的
+		/*
+		* 砍价条件，需要完全符合才触发砍价：
+		* 记录存在
+		* 礼品数量足够（在GameController处控制）
+		* 砍价者没帮这个用户进行过砍价
+		* 还没砍到0元
+		* 没有超出该活动的砍价次数限制
+		 */
 		if (gameInfo != null && !hadBargain && notFinished &&(people_chain == null || people_chain > bargainedTimes)) {
 			DecimalFormat df = new DecimalFormat("#.##");
 			df.setMaximumFractionDigits(2);
@@ -108,9 +115,12 @@ public class GameService {
 			helperInfo.setBarginPrice(bargainPrice);
 			helperInfoRepo.saveAndFlush(helperInfo);
 			msg = BARGAIN_SUCCESS;
-			//若砍价后完成游戏，即砍完
+			//若砍价后完成游戏，即砍完，扣减
 			if(gameInfo.getPriceLeft() == 0) {
 				msg = msg + COMPLETED;
+				Reward reward = rewardRepo.findOne(gameInfo.getReward().getId());
+				reward.setSurplus(reward.getSurplus()-1);
+				rewardRepo.saveAndFlush(reward);
 			}
 		}
 		else if (gameInfo == null) {

@@ -33,6 +33,11 @@ public class Activity {
     @Setter
     private String cashingInfo;
 
+    @Column(name = "INTRODUCE")
+    @Getter
+    @Setter
+    private String introduce;
+
     @Column(name = "PEOPLE_CHAIN")
     @Getter
     @Setter

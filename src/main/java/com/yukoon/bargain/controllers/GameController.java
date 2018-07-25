@@ -125,10 +125,18 @@ public class GameController {
             String username = (String) currentUser.getPrincipal();
             GameInfo gi = gameService.findById(gameInfoId);
             User user = userService.findByUsername(username);
-            HelperInfo hi = new HelperInfo();
-            hi.setGameInfo(gi).setHelper(user);
-            String msg = gameService.bargain(hi);
-            attributes.addFlashAttribute("msg",msg);
+            Reward reward = rewardService.findById(gi.getReward().getId());
+            if (null != gi && null != user && null != reward && reward.getSurplus() >0) {
+                //以上三项均不为空且礼品数量大于0
+                HelperInfo hi = new HelperInfo();
+                hi.setGameInfo(gi).setHelper(user);
+                String msg = gameService.bargain(hi);
+                attributes.addFlashAttribute("msg",msg);
+            }else if (reward.getSurplus() <= 0) {
+                attributes.addFlashAttribute("msg","很遗憾，商品已被抢光了，请下次努力！");
+            }else {
+                attributes.addFlashAttribute("msg","查询不到相应信息，请重试！");
+            }
             //砍价完成后返回当前活动页面
             return "redirect:/game/"+gameInfoId;
         }else {
@@ -137,7 +145,13 @@ public class GameController {
         }
     }
 
-    //前台跳转到抽奖页面
+    /*
+    * 前台跳转到抽奖页面
+    * status:
+    * 0 商品没剩余
+    * 1 商品有剩余且砍价未结束
+    * 2 砍价已结束
+     */
     @GetMapping("/game/{gameInfoId}")
     public String gameInfoWithAllHelpers(@PathVariable("gameInfoId")Integer gameInfoId, Map<String,Object> map,String msg) {
         if (msg != null) {
@@ -146,6 +160,21 @@ public class GameController {
         List<HelperInfo> helpers = helperInfoService.getHelpers(gameInfoId);
         GameInfo gameInfo = gameService.findById(gameInfoId);
         if (null != gameInfo) {
+            Reward reward = rewardService.findById(gameInfo.getReward().getId());
+            if (null != reward && gameInfo.getPriceLeft() > 0) {
+                //若砍价未结束，检查商品是否有剩余
+                if (reward.getSurplus() <= 0 ) {
+                    //商品不足，则为0
+                    map.put("status",0);
+                }else {
+                    //商品充足，则为1
+                    map.put("status",1);
+                    map.put("reward",reward);
+                }
+            }else {
+                //已经砍到商品，则为2
+                map.put("status",2);
+            }
             map.put("gameInfo",gameInfo);
             map.put("helpers",helpers);
             map.put("gameInfoId",gameInfoId);

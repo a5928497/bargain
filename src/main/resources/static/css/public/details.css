@@ -14,12 +14,24 @@
     padding-left: 35%;
 }
 #money_left {
-    padding-left: 23%;
+    margin: 0 auto;
+    text-align: center;
     font-size: 25pt;
 }
 #win_msg {
-    padding-left: 23%;
+    margin: 0 auto;
+    text-align: center;
     font-size: 25pt;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#lose_msg {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25pt;
+    font-style: italic;
+    font-weight: bold;
 }
 .introduce {
     color: black;
@@ -31,9 +43,15 @@
     font-style: italic;
     font-weight: bold;
 }
+#reward_left {
+    color: red;
+    font-size: 15pt;
+    font-style: italic;
+    font-weight: bold;
+}
 #BTNs_container {
-    margin-top: 5%;
-    padding-left: 18%;
+    margin: 5% auto;
+    text-align: center;
 }
 .border {
     height: 5px;
@@ -49,10 +67,10 @@
 }
 
 #helper_info {
-    padding-left: 30%;
-    margin-top: 3%;
+    margin: 3% auto;
     font-size: 11pt;
     color: black;
+    text-align: center;
 }
 
 #all_helpers {
