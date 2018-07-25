@@ -54,13 +54,11 @@ public class UserController {
     //后台分页查询某一注册用户
     @RequiresRoles("admin")
     @PostMapping("/searchuser")
-    public String searchUser(String username,Map<String,Object> map,
-                             @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
-        if (pageNo <1) {
-            pageNo = 1;
-        }
-        Page page = userService.searchUserByUsername(pageNo,PAGE_SIZE,username);
+    public String searchUser(String username,Map<String,Object> map) {
+        Page page = new Page();
+        page.setList(userService.searchUserByUsername(username));
         map.put("page",page);
+        map.put("nopage",1);
         return "backend/all_user_list";
     }
 
@@ -82,12 +80,10 @@ public class UserController {
     //后台分页搜索某一活动下的用户
     @RequiresRoles("admin")
     @PostMapping("/finduser")
-    public String findUser(String username,Integer act_id,Map<String,Object> map,
-                           @RequestParam(value = "pageNo",required = false,defaultValue = "1")Integer pageNo) {
-        if (pageNo <1) {
-            pageNo = 1;
-        }
-        Page page = gameInfoService.searchUser(act_id,pageNo,PAGE_SIZE,username);
+    public String findUser(String username,Integer act_id,Map<String,Object> map) {
+        Page page = new Page();
+        page.setList(gameInfoService.searchUser(act_id,username));
+        map.put("nopage",1);
         map.put("page",page);
         map.put("act_id",act_id);
         return "backend/user_list";
@@ -108,6 +104,7 @@ public class UserController {
         map.put("page",page);
         map.put("act_id",act_id);
         map.put("export",0);
+        map.put("signal","/awards/"+act_id);
         return "backend/winner_list";
     }
 
@@ -123,6 +120,7 @@ public class UserController {
         map.put("page",page);
         map.put("act_id",act_id);
         map.put("export",1);
+        map.put("signal","/ucawards/"+act_id);
         return "backend/winner_list";
     }
     //后台分页查询某一活动下已有兑换券的完成砍价得奖的用户
@@ -137,6 +135,7 @@ public class UserController {
         map.put("page",page);
         map.put("act_id",act_id);
         map.put("export",2);
+        map.put("signal","/cawards/"+act_id);
         return "backend/winner_list";
     }
 

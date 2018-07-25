@@ -81,15 +81,15 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            <p>
+                            <p th:if="${nopage==null}">
                                 <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
                                 <span th:text="当前为第+${page.pageNo}+页"></span>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
-                                <a th:href="@{/users/2?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo -2}" th:text="${page.pageNo -2}" th:if="${page.pageNo -2 } ge 1"></a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo -1}" th:text="${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1"></a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo +1}" th:text="${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo +2}" th:text="${page.pageNo +2}" th:if="${page.pageNo +2 } le ${page.pageTotal}"></a>
+                                <a th:href="@{/helpers/}+${gameInfo_Id}+@{?pageNo=}+${page.pageNo +1}" th:if="${page.pageNo +1 } le ${page.pageTotal}">下一页</a>
                             </p>
                         </div>
                     </div>

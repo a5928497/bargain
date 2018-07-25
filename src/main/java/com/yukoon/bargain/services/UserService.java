@@ -69,9 +69,9 @@ public class UserService {
 	}
 
 	@Transactional
-	public Page searchUserByUsername(Integer pageNo,Integer pageSize,String username) {
+	public List<User> searchUserByUsername(String username) {
 		username = "%"+username+"%";
-		return PageableUtil.page(pageNo,pageSize,userRepo.seachUserByUsername(username));
+		return userRepo.seachUserByUsername(username);
 	}
 
 	@Transactional
