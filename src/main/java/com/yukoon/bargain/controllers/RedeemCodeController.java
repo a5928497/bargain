@@ -50,6 +50,7 @@ public class RedeemCodeController {
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("reward_id",reward_id);
         map.put("page",page);
+        map.put("singal","/code/"+reward_id);
         return "backend/redeem_codes_list";
     }
 
@@ -65,6 +66,7 @@ public class RedeemCodeController {
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("page",page);
         map.put("reward_id",reward_id);
+        map.put("singal","/usedcode/"+reward_id);
         return "backend/redeem_codes_list";
     }
 
@@ -80,6 +82,7 @@ public class RedeemCodeController {
         map.put("act_id",rewardService.findById(reward_id).getActivity().getId());
         map.put("page",page);
         map.put("reward_id",reward_id);
+        map.put("singal","/unusedcode/"+reward_id);
         return "backend/redeem_codes_list";
     }
 

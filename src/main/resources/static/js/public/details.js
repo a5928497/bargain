@@ -24,12 +24,5 @@ $(function () {
         $share_QR.attr("src",url).css("margin-left","33%").show();
        return false;
     });
-    // wx.config({
-    //     debug:true,
-    //     appid: 'gh_523b786c48c0',
-    //     timestamp: ,
-    //     nonceStr: '',
-    //     signature: '',
-    //     jsApliList: []
-    // });
+
 })

@@ -6,12 +6,11 @@
     min-height: 100%;
 }
 #img_container {
-    padding-top: 20%;
+    padding-top: 18%;
+    margin: 0 auto;
     height: 30%;
-}
-#reward_img {
-    margin-top: 5%;
-    padding-left: 35%;
+    width: 100%;
+    text-align: center;
 }
 #money_left {
     margin: 0 auto;
@@ -79,7 +78,8 @@
     font-weight: bold;
 }
 #adv_container {
-    padding-left: 4.5%;
+    margin: 0 auto;
+    text-align: center;
     width: 100%;
 }
 .adv_imgs {

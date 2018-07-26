@@ -23,8 +23,8 @@ public class GameInfoService {
 	}
 
 	@Transactional
-	public Page searchUser(Integer act_id,Integer pageNo,Integer pageSize,String username) {
-		return PageableUtil.page(pageNo,pageSize,gameInfoRepo.searchGameInfoByUsernameAndActid("%"+username+"%",act_id));
+	public List<GameInfo> searchUser(Integer act_id,String username) {
+		return gameInfoRepo.searchGameInfoByUsernameAndActid("%"+username+"%",act_id);
 	}
 
 	//查询某一活动下获奖者

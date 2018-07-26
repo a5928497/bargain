@@ -11,7 +11,7 @@ $(function () {
     //初始化图片
     $reward_img.attr("src","/reward_images/reward"+$(".rewards:eq(0)").val() +".png")
     $reward_name.text($(".rewards:eq(0)").attr("name"));
-    $reward_price.text("价值："+$(".rewards:eq(0)").attr("price")+"元");
+    $reward_price.text("需要队友："+$(".rewards:eq(0)").attr("price")+"人");
     $reward_id.val($(".rewards:eq(0)").val());
     $arrow_left.click(function () {
         location = location -1;
@@ -20,7 +20,7 @@ $(function () {
         }
         $reward_img.attr("src","/reward_images/reward"+$(".rewards:eq("+location+")").val() +".png")
         $reward_name.text($(".rewards:eq("+location+")").attr("name"));
-        $reward_price.text("价值："+$(".rewards:eq("+location+")").attr("price")+"元");
+        $reward_price.text("需要队友："+$(".rewards:eq("+location+")").attr("price")+"人");
         $reward_id.val($(".rewards:eq("+location+")").val());
        return false;
     });
@@ -31,7 +31,7 @@ $(function () {
         }
         $reward_img.attr("src","/reward_images/reward"+$(".rewards:eq("+location+")").val() +".png")
         $reward_name.text($(".rewards:eq("+location+")").attr("name"));
-        $reward_price.text("价值："+$(".rewards:eq("+location+")").attr("price")+"元");
+        $reward_price.text("需要队友："+$(".rewards:eq("+location+")").attr("price")+"人");
         $reward_id.val($(".rewards:eq("+location+")").val());
         return false;
     });

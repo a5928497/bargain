@@ -7,7 +7,7 @@
     <title>ACT_INFO</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/activity_info.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/activity_info.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -17,7 +17,7 @@
     <div id="main_container">
     </div>
         <div id="details_holder">
-            <p id="details" th:text="活动说明：+${activity.cashingInfo}"></p>
+            <p id="details" th:text="活动说明：+${activity.introduce}"></p>
             <button type="submit" id="join_BTN" >我要参与</div></button>
         </div>
 
@@ -27,7 +27,7 @@
         </form>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/act_info.js}"></script>
+    <script th:src="@{/js/public/act_info.min.js}"></script>
 </body>
 
 </html>

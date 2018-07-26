@@ -81,7 +81,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            <p>
+                            <p th:if="${nopage==null}">
                                 <span th:text="查找到+${page.recordTotal}+条记录，+共有+${page.pageTotal}+页 "></span>
                                 <span th:text="当前为第+${page.pageNo}+页"></span>
                                 <a th:href="@{/allusers?pageNo=}+${page.pageNo -1}" th:if="${page.pageNo -1 } ge 1">上一页</a>
