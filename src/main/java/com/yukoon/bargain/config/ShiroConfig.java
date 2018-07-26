@@ -58,6 +58,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/myrecords","anon");
 		filterChainDefinitionMap.put("/vaildatecode","anon");
 		filterChainDefinitionMap.put("/public/**","anon");
+		filterChainDefinitionMap.put("/MP_verify_T4I74DmPydPYAMfI.txt","anon");
 		filterChainDefinitionMap.put("/test**","anon");
 		filterChainDefinitionMap.put("/test/**","anon");
 		filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问
