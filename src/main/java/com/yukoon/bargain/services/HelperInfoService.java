@@ -2,6 +2,7 @@ package com.yukoon.bargain.services;
 
 import com.yukoon.bargain.entities.HelperInfo;
 import com.yukoon.bargain.entities.Page;
+import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.repository.HelperInfoRepo;
 import com.yukoon.bargain.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,30 +24,58 @@ public class HelperInfoService {
         return (helperInfoRepo.hadBargain(gameInfoId,helper_id) != null);
     }
 
-    @Transactional
     public List<HelperInfo> getAllHelpers(Integer gameInfoId) {
         List<HelperInfo> list = helperInfoRepo.findAllByGameInfo(gameInfoId);
+        List<HelperInfo> maskedList = new ArrayList<>();
+        //遮盖真实号码,保留四位尾号
+        for (HelperInfo hi : list) {
+            HelperInfo temp = new HelperInfo();
+            String username = hi.getHelper().getUsername();
+            String masked;
+            if (username.length() <11) {
+                masked = username.substring(0,username.length()-2) + "**";
+            }else {
+                masked = username.substring(0,3) + "****" + username.substring(7,11);
+            }
+            temp.setId(hi.getId()).setBarginPrice(hi.getBarginPrice()).setGameInfo(hi.getGameInfo())
+                    .setHelper(new User().setUsername(masked));
+            maskedList.add(temp);
+        }
         //倒序排列
-        Collections.sort(list, new Comparator<HelperInfo>() {
+        Collections.sort(maskedList, new Comparator<HelperInfo>() {
             @Override
             public int compare(HelperInfo o1, HelperInfo o2) {
                 return o2.getId().compareTo(o1.getId());
             }
         });
-        return list;
+        return maskedList;
     }
 
-    @Transactional
     public List<HelperInfo> getHelpers(Integer gameInfoId) {
-        List<HelperInfo> list = new ArrayList<>();
+        List<HelperInfo> maskedList = new ArrayList<>();
         List<HelperInfo> helpers = helperInfoRepo.findAllByGameInfo(gameInfoId);
-        if (helpers.size() > 3) {
+        //遮盖真实号码,保留四位尾号
+        for (HelperInfo hi : helpers) {
+            HelperInfo temp = new HelperInfo();
+            String username = hi.getHelper().getUsername();
+            String masked;
+            if (username.length() <11) {
+                masked = username.substring(0,username.length()-2) + "**";
+            }else {
+                masked = username.substring(0,3) + "****" + username.substring(7,11);
+            }
+            temp.setId(hi.getId()).setBarginPrice(hi.getBarginPrice()).setGameInfo(hi.getGameInfo())
+                    .setHelper(new User().setUsername(masked));
+            maskedList.add(temp);
+        }
+        List<HelperInfo> list = new ArrayList<>();
+        if (maskedList.size() > 3) {
             for (int i = 1;i<4 ;i++) {
-                list.add(helpers.get(helpers.size()-i));
+                list.add(maskedList.get(maskedList.size()-i));
             }
             return list;
         }else {
-            return helpers;
+            return maskedList;
         }
     }
 
