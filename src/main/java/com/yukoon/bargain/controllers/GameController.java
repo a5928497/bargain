@@ -37,22 +37,14 @@ public class GameController {
     @Autowired
     private AdvertisementService advertisementService;
 
-
-    /*
-    * @return true
-    * 一切正常
-    * @return null
-    * 加入活动失败
-    * @return false
-    * 用户已经加入过记录了
-     */
     @PostMapping("/joinIn")
     public String joinIn(Integer act_id, Map<String,Object> map, String url) {
         Boolean result = null;
-        //先验证用户是否登录
+        //先验证用户是否登录和检查礼品数量
         Subject currentUser = SecurityUtils.getSubject();
-        if (currentUser.isAuthenticated() || currentUser.isRemembered()) {
-            //若用户已登录
+        List<Reward> rewards = rewardService.findSurplusRewards(act_id);
+        if ((currentUser.isAuthenticated() || currentUser.isRemembered()) && rewards.size() > 0 ) {
+            //若用户已登录且该活动下礼品充足
             String username = (String) currentUser.getPrincipal();
             Integer user_id = userService.findIdByUsername(username);
             result = gameService.joinIn(user_id,act_id);
@@ -68,12 +60,15 @@ public class GameController {
                 //若加入失败，result为空，返回当前页面
                 return "redirect:" + url;
             }
+        }else if (rewards.size() <= 0){
+            map.put("back_url",url);
+            map.put("act_id",act_id);
+            return "public/option";
         }else {
             //若用户未登录，返回登录页面
             return "redirect:/login?url="+url;
         }
         //若加入成功且未开记录，前往奖品选择页面
-        List<Reward> rewards = rewardService.findAllByActid(act_id);
         map.put("back_url",url);
         map.put("act_id",act_id);
         map.put("rewards",rewards);

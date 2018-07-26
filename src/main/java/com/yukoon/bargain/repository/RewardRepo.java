@@ -11,4 +11,7 @@ public interface RewardRepo extends JpaRepository<Reward,Integer>{
 
 	@Query("select r from Reward r where act_id = :act_id")
 	public List<Reward> findAllByActid(@Param("act_id") Integer act_id);
+
+	@Query("select r from Reward r where act_id = :act_id and surplus > 0")
+	public List<Reward> findAllSurplusRewardsByActid(@Param("act_id")Integer act_id);
 }

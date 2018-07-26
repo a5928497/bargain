@@ -47,6 +47,6 @@ public class BargainApplicationTests {
 	private HelperInfoRepo helperInfoRepo;
 	@Test
 	public void contextLoads() {
-		System.out.println(redeemCodeRepo.findByWinnerAndAct(33,2) == null);
+		System.out.println(rewardRepo.findAllSurplusRewardsByActid(2).size());
 		}
 }

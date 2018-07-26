@@ -6,6 +6,7 @@ $(function () {
     $reward_id = $("#reward_id");
     $arrow_left = $("#arrow_left_BTN");
     $arrow_right = $("#arrow_right_BTN");
+    $backBTN = $("#backBTN");
     var size = $rewards.size();
     var location = 0;
     //初始化图片
@@ -33,6 +34,11 @@ $(function () {
         $reward_name.text($(".rewards:eq("+location+")").attr("name"));
         $reward_price.text("需要队友："+$(".rewards:eq("+location+")").attr("price")+"人");
         $reward_id.val($(".rewards:eq("+location+")").val());
+        return false;
+    });
+    $backBTN.click(function () {
+        var uri = $(this).attr("back_url");
+        window.location.replace(uri);
         return false;
     });
 })
