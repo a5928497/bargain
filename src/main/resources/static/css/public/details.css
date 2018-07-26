@@ -1,12 +1,18 @@
-#main_container
+#main_head
 {
-    background: url(../../images/game_background.jpg) no-repeat;
+    background: url(../../images/option_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 11.6%;
+}
+#main_container
+{
+    background: url(../../images/option_background_foot.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 88.4%;
 }
 #img_container {
-    padding-top: 18%;
     margin: 0 auto;
     height: 30%;
     width: 100%;
