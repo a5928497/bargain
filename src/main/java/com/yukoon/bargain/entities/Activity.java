@@ -43,6 +43,16 @@ public class Activity {
     @Setter
     private Integer people_chain;
 
+    @Column(name = "WX_TITLE")
+    @Getter
+    @Setter
+    private String title;
+
+    @Column(name = "WX_DESC")
+    @Getter
+    @Setter
+    private String desc;
+
     //中间表被控方
     @ManyToMany(mappedBy = "actList",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @Getter

@@ -2,6 +2,7 @@ package com.yukoon.bargain.services;
 
 import com.yukoon.bargain.entities.AccessToken;
 import com.yukoon.bargain.entities.JSAPI_Ticket;
+import com.yukoon.bargain.entities.WeChatConfig;
 import com.yukoon.bargain.utils.KeyUtil;
 import com.yukoon.bargain.utils.SHA1Util;
 import lombok.experimental.Accessors;
@@ -37,8 +38,7 @@ public class WeChatService {
         return responseEntity.getBody();
     }
 
-    public Map<String,String> signature(JSAPI_Ticket ticket,String url) {
-        Map<String,String> map = new HashMap<>();
+    public WeChatConfig signature(JSAPI_Ticket ticket, String url) {
         String jsapi_ticket = ticket.getTicket();
         String nonceStr = KeyUtil.getKey(16);
         String timestamp = createTimestamp();
@@ -49,21 +49,20 @@ public class WeChatService {
                 "&timestamp=" + timestamp +
                 "&url=" + url;
         signature = SHA1Util.encode(string1);
-
-        map.put("url",url);
-        map.put("jsapi_ticket",jsapi_ticket);
-        map.put("nonceStr",nonceStr);
-        map.put("timestamp",timestamp);
-        map.put("signature",signature);
-        map.put("appid",APPID);
+        WeChatConfig weChatConfig = new WeChatConfig();
+        weChatConfig.setAppid(APPID).setJsapi_ticket(jsapi_ticket).setTimestamp(timestamp).setNonceStr(nonceStr)
+                .setSignature(signature);
         System.out.println(signature);
-        return map;
+        return weChatConfig;
     }
 
     public String createTimestamp() {
         return Long.toString(System.currentTimeMillis() /1000);
     }
 
+    public WeChatConfig getWeChatConfig(String url) {
+        return signature(getTicket(),url);
+    }
     public static void main(String[] args) {
        WeChatService weChatService = new WeChatService();
        weChatService.signature(weChatService.getTicket(),"www.baidu.com");
