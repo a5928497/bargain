@@ -7,22 +7,9 @@ $(function () {
     var pos=url.indexOf(pathName);
     var localhostPaht=url.substring(0,pos);
     var gameInfo_id = $("#gameInfoId").val();
-    //配置信息
-    wx.config({
-        debug: false,////生产环境需要关闭debug模式
-        appId: '',//appId通过微信服务号后台查看
-        timestamp: '',//生成签名的时间戳
-        nonceStr: '',//生成签名的随机字符串
-        signature: '',//签名
-        jsApiList: [//需要调用的JS接口列表
-            'checkJsApi',//判断当前客户端版本是否支持指定JS接口
-            'onMenuShareTimeline',//分享给好友
-            'onMenuShareAppMessage'//分享到朋友圈
-        ]
-    });
-    var title;
-    var desc;
     function Share() {
+        var title;
+        var desc;
         $.ajax({
             type : "get",
             url : "/getwechatconfig",
@@ -30,10 +17,19 @@ $(function () {
             async : false,
             data:{url:url,gameInfo_id:gameInfo_id},
             success : function(data) {
-                wx.config.appId =data.appid;
-                wx.config.timestamp=data.timestamp;
-                wx.config.nonceStr= data.nonceStr;
-                wx.config.signature= data.signature;
+                //配置信息
+                wx.config({
+                    debug: false,////生产环境需要关闭debug模式
+                    appId: data.appid,//appId通过微信服务号后台查看
+                    timestamp: data.timestamp,//生成签名的时间戳
+                    nonceStr: data.nonceStr,//生成签名的随机字符串
+                    signature: data.signature,//签名
+                    jsApiList: [//需要调用的JS接口列表
+                        'checkJsApi',//判断当前客户端版本是否支持指定JS接口
+                        'onMenuShareTimeline',//分享给好友
+                        'onMenuShareAppMessage'//分享到朋友圈
+                    ]
+                });
                 title = data.title;
                 desc = data.desc;
             },
