@@ -115,4 +115,16 @@ public class UploadController {
         }
         return "redirect:/touploadcode/"+act_id;
     }
+
+    //后台前往分享缩略图上传
+    @RequiresRoles("admin")
+    @GetMapping("/touploadshareimg/{act_id}")
+    public String toUploadShareImg(@PathVariable("act_id")Integer act_id,
+                                    Map<String,Object> map,String uploadMsg) {
+        if (uploadMsg != null) {
+            map.put("uploadMsg",uploadMsg);
+        }
+        map.put("act_id",act_id);
+        return "backend/reward_img_upload";
+    }
 }

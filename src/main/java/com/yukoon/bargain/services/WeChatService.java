@@ -49,9 +49,10 @@ public class WeChatService {
         //获取配置信息，使用list防止意外插入
         String jsapi_ticket;
         List<WeChatConfig> list = weChatConfigRepo.findAll();
+        WeChatConfig weChatConfig;
         if (list.size() > 0 ) {
             //比较时间戳
-            WeChatConfig weChatConfig = list.get(0);
+            weChatConfig = list.get(0);
             Long expiresTime = Long.valueOf(weChatConfig.getTimestamp()) + 7140;
             Long currentTime = System.currentTimeMillis() / 1000;
             if (currentTime >= expiresTime) {
@@ -69,9 +70,14 @@ public class WeChatService {
                 weChatConfig.setAppid(APPID).setJsapi_ticket(jsapi_ticket).setTimestamp(timestamp).setNonceStr(nonceStr)
                         .setSignature(signature);
                 System.out.println(signature);
-                return weChatConfigRepo.saveAndFlush(weChatConfig);
+                weChatConfig =  weChatConfigRepo.saveAndFlush(weChatConfig);
             }else {
-                return weChatConfig;
+                //若没过期，直接根据url签名
+                String string1 = "jsapi_ticket=" + weChatConfig.getJsapi_ticket() +
+                        "&noncestr=" + weChatConfig.getNonceStr() +
+                        "&timestamp=" + weChatConfig.getTimestamp() +
+                        "&url=" + url;
+                weChatConfig.setSignature(SHA1Util.encode(string1));
             }
         }else {
             //若还没创建WeChatConfig记录
@@ -85,12 +91,13 @@ public class WeChatService {
                     "&timestamp=" + timestamp +
                     "&url=" + url;
             signature = SHA1Util.encode(string1);
-            WeChatConfig weChatConfig = new WeChatConfig();
+            weChatConfig = new WeChatConfig();
             weChatConfig.setAppid(APPID).setJsapi_ticket(jsapi_ticket).setTimestamp(timestamp).setNonceStr(nonceStr)
                     .setSignature(signature);
             System.out.println(signature);
-            return weChatConfigRepo.saveAndFlush(weChatConfig);
+            weChatConfig =  weChatConfigRepo.saveAndFlush(weChatConfig);
         }
+        return weChatConfig;
     }
 
     public String createTimestamp() {

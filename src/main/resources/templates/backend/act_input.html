@@ -7,14 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Activity</title>
-
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/logout.css}" rel="stylesheet" >
     <link th:href="@{/webjars/awesome-bootstrap-checkbox/1.0.0/awesome-bootstrap-checkbox.css}" rel="stylesheet">
-
+    <style>
+        .border {
+            height: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,6 +38,8 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
+            <a th:href="@{/touploadshareimg/}+${activity.id}" th:if="${activity != null}"><button class="btn btn-sm btn-info">上传分享缩略图</button></a>
+            <div class="border" th:if="${activity != null}"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">

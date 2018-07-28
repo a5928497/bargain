@@ -16,11 +16,12 @@ public class WeChatConfig {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Integer id;
-	private String signature;
 	private String nonceStr;
 	private String timestamp;
 	private String appid;
 	private String jsapi_ticket;
+	@Transient
+	private String signature;
 	@Transient
 	private String imgName;
 	@Transient
