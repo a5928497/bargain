@@ -7,50 +7,68 @@ $(function () {
     var pos=url.indexOf(pathName);
     var localhostPaht=url.substring(0,pos);
     var gameInfo_id = $("#gameInfoId").val();
-    console.log(localhostPaht)
-    $.ajax({
-        type : "get",
-        url : "/getwechatconfig",
-        dataType : "json",
-        async : false,
-        data:{url:url,gameInfo_id:gameInfo_id},
-        success : function(data) {
-            wx.config({
-                debug: false,////生产环境需要关闭debug模式
-                appId: data.appid,//appId通过微信服务号后台查看
-                timestamp: data.timestamp,//生成签名的时间戳
-                nonceStr: data.nonceStr,//生成签名的随机字符串
-                signature: data.signature,//签名
-                jsApiList: [//需要调用的JS接口列表
-                    'checkJsApi',//判断当前客户端版本是否支持指定JS接口
-                    'onMenuShareTimeline',//分享给好友
-                    'onMenuShareAppMessage'//分享到朋友圈
-                ]
-            });
-
-            wx.ready(function () {
-
-                // 微信分享的数据
-                var shareData = {
-                    "imgUrl" : pathName+"/thanks.png",    // 分享显示的缩略图地址
-                    "link" : window.location.href,    // 分享地址
-                    "desc" : data.desc,   // 分享描述
-                    "title" : data.title,   // 分享标题
-                    success : function () {
-                        }
-                    };
-                //分享朋友圈
-                wx.onMenuShareTimeline(shareData);
-                //分享给好友
-                wx.onMenuShareAppMessage(shareData);
-                wx.error(function (res) {
-                    alert(res.errMsg);
-                });
-            });
-        },
-        error: function(xhr, status, error) {
-            //alert(status);
-            //alert(xhr.responseText);
-        }
+    //配置信息
+    wx.config({
+        debug: false,////生产环境需要关闭debug模式
+        appId: '',//appId通过微信服务号后台查看
+        timestamp: '',//生成签名的时间戳
+        nonceStr: '',//生成签名的随机字符串
+        signature: '',//签名
+        jsApiList: [//需要调用的JS接口列表
+            'checkJsApi',//判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',//分享给好友
+            'onMenuShareAppMessage'//分享到朋友圈
+        ]
     });
+    var title;
+    var desc;
+    function Share() {
+        $.ajax({
+            type : "get",
+            url : "/getwechatconfig",
+            dataType : "json",
+            async : false,
+            data:{url:url,gameInfo_id:gameInfo_id},
+            success : function(data) {
+                wx.config.appId =data.appid;
+                wx.config.timestamp=data.timestamp;
+                wx.config.nonceStr= data.nonceStr;
+                wx.config.signature= data.signature;
+                title = data.title;
+                desc = data.desc;
+            },
+            error: function(xhr, status, error) {
+                //alert(status);
+                //alert(xhr.responseText);
+            }
+        });
+        console.log(wx.config.appId)
+        wx.ready(function () {
+            // 微信分享的数据
+            var shareData = {
+                "imgUrl" : localhostPaht+"/thanks.png",    // 分享显示的缩略图地址
+                "link" : url,    // 分享地址
+                "desc" : desc,   // 分享描述
+                "title" : title,   // 分享标题
+                success : function () {
+                },
+                cancel: function (res) {
+                    alert('已取消');
+                },
+                fail: function (res) {
+                    alert("失败");
+                }
+            };
+            //分享朋友圈
+            wx.onMenuShareTimeline(shareData);
+            //分享给好友
+            wx.onMenuShareAppMessage(shareData);
+            wx.error(function (res) {
+                alert(res.errMsg);
+            });
+        });
+    }
+
+    Share();
+
 });
