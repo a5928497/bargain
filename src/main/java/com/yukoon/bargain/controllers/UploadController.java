@@ -125,6 +125,35 @@ public class UploadController {
             map.put("uploadMsg",uploadMsg);
         }
         map.put("act_id",act_id);
-        return "backend/reward_img_upload";
+        return "backend/share_img_upload";
+    }
+
+    //后台分享缩略图上传
+    @RequiresRoles("admin")
+    @PostMapping("/shareimgupload")
+    public String uploadShareImg(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
+            , Integer act_id,RedirectAttributes attributes){
+        String filePath = pathConfig.getShareImgPath();
+        String fileName = pic.getOriginalFilename();
+        String uploadMsg = "图片上传成功!";
+        if (!FileUtil.isImg(fileName)){
+            uploadMsg = "该文件不是图片格式,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            return "redirect:/touploadshareimg/"+act_id;
+        }
+        //重命名文件
+        fileName = "share"+act_id+".png";
+        try {
+            //上传图片
+            FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
+            //压缩图片
+            FileUtil.resizeImg(filePath+fileName,150,150);
+        }catch (Exception e) {
+            uploadMsg = "图片上传出现错误,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            return "redirect:/touploadshareimg/"+act_id;
+        }
+        attributes.addFlashAttribute("uploadMsg",uploadMsg);
+        return "redirect:/touploadshareimg/"+act_id;
     }
 }

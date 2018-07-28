@@ -7,6 +7,7 @@ $(function () {
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
     var gameInfo_id = $("#gameInfoId").val();
+    var act_id = $("#act_id").val();
     Share();
     function Share() {
         var title;
@@ -44,7 +45,7 @@ $(function () {
         wx.ready(function () {
             // 微信分享的数据
             var shareData = {
-                "imgUrl" : localhostPaht+"/images/thanks.png",    // 分享显示的缩略图地址
+                "imgUrl" : localhostPaht+"/share_images/share"+ act_id +".png",    // 分享显示的缩略图地址
                 "link" : url,    // 分享地址
                 "desc" : desc,   // 分享描述
                 "title" : title,   // 分享标题

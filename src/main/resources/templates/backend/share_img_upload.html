@@ -22,10 +22,7 @@
 </head>
 
 <body>
-    <input type="hidden"  id="img_path" th:value="${img_path}">
     <div id="wrapper">
-
-
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
         </div>
@@ -50,10 +47,10 @@
                 </div>
                 <div class="ibox-content">
                     <div id="img_container">
-                    <img src="#" id="reward" >
+                    <img src="#" id="share" >
                     </div>
-                    <p>注意：为了效果美观，图片应为透明背景，若预览图中图片背景为红色，则表示图片为透明背景！</p>
-                    <form action="/rewardimgupload" enctype="multipart/form-data" method="post">
+                    <p>注意：为了效果美观，图片应为正方形！</p>
+                    <form action="/shareimgupload" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
                                 <span class="fileinput-filename"></span>
@@ -62,12 +59,12 @@
                                     <span class="fileinput-new">Select file</span>
                                     <span class="fileinput-exists">Change</span>
                                     <input type="file" name="pic"/>
-                                    <input type="hidden" id="reward_id" name="reward_id" th:value="${reward_id}">
+                                    <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
                                 </span>
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
                         <div>
-                            <button th:attr="back_uri = @{/rewards/}+${act_id}"  class="btn btn-white backBTN" >返回</button>
+                            <button th:attr="back_uri =@{/act/}+${act_id}"  class="btn btn-white backBTN" >返回</button>
                             <button class="btn btn-primary commitBTN" type="submit">上传</button>
                         </div>
                     </form>
@@ -83,7 +80,6 @@
     <script type="text/javascript" th:src="@{/webjars/jasny-bootstrap/3.1.2/dist/js/jasny-bootstrap.min.js}"></script>
 <script>
     $backBTN = $(".backBTN");
-
     $fileinput = $(".fileinput");
     $fileinput.css("width",300);
     $backBTN.click(function () {
@@ -97,12 +93,10 @@
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
-    var reward_id = $("#reward_id").val();
-    //设置背景色为红色
-    $("#img_container").css("background-color","red");
+    var act_id = $("#act_id").val();
     //根据路径获取图片
-    var img_url  ="/reward_images/reward"+reward_id + ".png?"+Math.random();
-    $("#reward").attr("src",img_url).one("error",function (e) {
+    var img_url  ="/share_images/share"+act_id + ".png?"+Math.random();
+    $("#share").attr("src",img_url).one("error",function (e) {
         $(this).parent().remove();
     });
 </script>

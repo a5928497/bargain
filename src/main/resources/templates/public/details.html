@@ -50,7 +50,6 @@
         <div id="adv_container">
             <a th:each="adv:${advs}" th:href="@{/toadv/}+${adv.id}">
                 <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
-
             </a>
         </div>
         <div id="share_container">
@@ -60,6 +59,7 @@
     </div>
     <input type="hidden" id="msg" th:value="${msg}">
     <input type="hidden" id="gameInfoId" th:value="${gameInfo.id}">
+    <input type="hidden" id="act_id" th:value="${gameInfo.activity.id}">
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
