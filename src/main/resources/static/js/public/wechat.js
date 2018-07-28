@@ -2,14 +2,16 @@ $(function () {
     new_element=document.createElement("script");
     new_element.setAttribute("type","text/javascript");
     new_element.setAttribute("src","http://res.wx.qq.com/open/js/jweixin-1.2.0.js");
-    var url = window.document.location.href;//url不能写死
+    var curWwwPath = window.document.location.href;
     var pathName=window.document.location.pathname;
-    var pos=url.indexOf(pathName);
-    var localhostPaht=url.substring(0,pos);
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
     var gameInfo_id = $("#gameInfoId").val();
+    Share();
     function Share() {
         var title;
         var desc;
+        var url = location.href.split('#').toString();//url不能写死
         $.ajax({
             type : "get",
             url : "/getwechatconfig",
@@ -49,10 +51,8 @@ $(function () {
                 success : function () {
                 },
                 cancel: function (res) {
-                    alert('已取消');
                 },
                 fail: function (res) {
-                    alert("失败");
                 }
             };
             //分享朋友圈
@@ -64,7 +64,4 @@ $(function () {
             });
         });
     }
-
-    Share();
-
 });
