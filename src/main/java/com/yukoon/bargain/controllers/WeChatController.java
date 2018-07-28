@@ -24,7 +24,7 @@ public class WeChatController {
     @ResponseBody
     @GetMapping("/getwechatconfig")
     public WeChatConfig getAccessToken(@RequestParam("url")String url,@RequestParam("gameInfo_id")Integer gameInfo_id) {
-        WeChatConfig weChatConfig = weChatService.getWeChatConfig(url);
+        WeChatConfig weChatConfig = weChatService.signature(url);
         Activity activity = gameService.findById(gameInfo_id).getActivity();
         weChatConfig.setTitle(activity.getTitle()).setDesc(activity.getDesc());
         return weChatConfig;
