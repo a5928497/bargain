@@ -37,8 +37,6 @@ $(function () {
                 desc = data.desc;
             },
             error: function(xhr, status, error) {
-                //alert(status);
-                //alert(xhr.responseText);
             }
         });
         console.log(wx.config.appId)
@@ -61,7 +59,6 @@ $(function () {
             //分享给好友
             wx.onMenuShareAppMessage(shareData);
             wx.error(function (res) {
-                alert(res.errMsg);
             });
         });
     }
