@@ -14,49 +14,54 @@
 </head>
 
 <body class="gray-bg">
-    <div id="main_head"></div>
-        <div id="img_container">
-            <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
-        </div>
-        <div id="body_container">
-            <p id="money_left" th:if="${status == 1}">
-                <span class="introduce">还差</span>
-                <span id="price_left" th:text="${gameInfo.timesLeft}+个队友"></span>
-                <span class="introduce">就免费领</span><br>
-                <span class="introduce">就剩</span>
-                <span id="reward_left" th:text="${reward.surplus}+件"></span>
-                <span class="introduce">赶紧抢啊</span>
-            </p>
-            <p id="win_msg" th:if="${status == 2}">
-                <span class="introduce">砍价成功，可以免费领取！</span>
-            </p>
-            <p id="lose_msg" th:if="${status == 0}">
-                <span class="introduce">商品已经被抢光了，请下次努力！</span>
-            </p>
-            <div id="BTNs_container">
-                <a th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN">帮他一把</button></a>
-                <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN">我也要参加</button></a>
-                <div class="border"></div>
-                <button class="BTN" id="share_BTN">分享</button>
-                <a th:href="@{/myrecords}"><button class="BTN">我的记录</button></a>
+
+        <div id="main_head"></div>
+            <div id="img_container">
+                <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
             </div>
-            <div id="helper_container">
-                <p th:each="helper:${helpers}" id="helper_info">
-                    <span th:text="${helper.helper.username}"></span>
-                    <span>已助一臂之力！</span>
-                </p>
-                <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
+            <div id="body_container">
+                <div id="reward_left_container" th:if="${status == 1}">
+                    <span id="reward_left" th:text="礼品剩余+${reward.surplus}+件"></span>
+                </div>
+
+                <div class="times_left_container" th:if="${status ==1}">
+                    <span class="introduce" th:text="仅需"></span>
+                    <span id="times_left" th:text="${gameInfo.timesLeft}+刀"></span>
+                    <span class="introduce" th:text="立即免费拿"></span>
+                </div>
+                <div class="times_left_container" th:if="${status == 2}">
+                    <span class="introduce">砍价成功，可以免费领</span>
+                </div>
+                <div class="times_left_container" th:if="${status == 0}">
+                    <span class="introduce">商品已经被抢光了，请下次努力</span>
+                </div>
+                <div id="BTNs_container">
+                    <div class="border"></div>
+                    <a th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN" id="help_BTN">帮他一把</button></a>
+                    <a th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN" id="join_BTN">我也要参加</button></a>
+                    <div class="border"></div>
+                    <button class="BTN" id="share_BTN">分享</button>
+                    <a th:href="@{/myrecords}"><button class="BTN" id="record_BTN">我的记录</button></a>
+                </div>
+                <div id="helper_container">
+                    <p th:each="helper:${helpers}" id="helper_info">
+                        <span th:text="${helper.helper.username}"></span>
+                        <span>已助一臂之力！</span>
+                    </p>
+                    <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
+                </div>
             </div>
-        </div>
-        <div id="adv_container">
-            <a th:each="adv:${advs}" th:href="@{/toadv/}+${adv.id}">
-                <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
-            </a>
-        </div>
-        <div id="share_container">
-            <p id="share_msg">识别图中二维码来帮我一把！</p>
-            <img id="share_QR" src="">
-        </div>
+            <div id="footer_container">
+                <div class="adv_container" th:each="adv:${advs}">
+                    <a th:href="@{/toadv/}+${adv.id}">
+                        <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
+                    </a>
+                    <a th:href="@{/toadv/}+${adv.id}">
+                        <span class="adv_infos" th:text="${adv.adv_name}"></span>
+                    </a>
+                </div>
+            </div>
+
     <input type="hidden" id="msg" th:value="${msg}">
     <input type="hidden" id="gameInfoId" th:value="${gameInfo.id}">
     <input type="hidden" id="act_id" th:value="${gameInfo.activity.id}">

@@ -7,7 +7,7 @@
     <title>USERINFO</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/user_info.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/user_info.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -17,13 +17,32 @@
     <div id="main_container">
     </div>
     <div id="body">
-        <div class="info" th:each="gameInfo:${gameInfos}" th:if="${gameInfos != null}">
-            <span id="act_name" th:text="${gameInfo.activity.act_name}"></span>
-            <span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>
-            <span id="status" th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中"></span>
-            <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
-            <a class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
-        </div>
+        <table class="custom_tb" th:if="${gameInfos != null}">
+            <thead>
+            <tr>
+                <th id="1">活动名称</th>
+                <th>奖品名</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tr th:each="gameInfo:${gameInfos}">
+                <td th:text="${gameInfo.activity.act_name}">活动名称</td>
+                <td th:text="${gameInfo.reward.rewardName}">奖品名</td>
+                <td th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中">状态</td>
+                <td>
+                    <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
+                    <a class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
+                </td>
+            </tr>
+        </table>
+        <!--<div class="info" th:each="gameInfo:${gameInfos}" th:if="${gameInfos != null}">-->
+            <!--<span id="act_name" th:text="${gameInfo.activity.act_name}"></span>-->
+            <!--<span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>-->
+            <!--<span id="status" th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中"></span>-->
+            <!--<a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>-->
+            <!--<a class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>-->
+        <!--</div>-->
         <div class="info" th:if="${gameInfos == null}">
             <span id="empty_msg">您目前还没有参加任何活动！</span>
         </div>

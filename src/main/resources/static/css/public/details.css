@@ -1,9 +1,13 @@
+body {
+    background: url(../../images/details_footer_background.jpg);
+    background-size: 100% 100%;
+}
 #main_head
 {
     background: url(../../images/option_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 10%;
+    height: 9.3%;
 }
 #img_container {
     background: url(../../images/details_reward_background.jpg) no-repeat;
@@ -11,94 +15,115 @@
     margin: 0 auto;
     height: 30%;
     min-width: 100%;
-    min-height: 41.6%;
+    min-height: 35.8%;
     text-align: center;
+}
+#reward_img {
+    padding-top: 15%;
+    width: 40%;
 }
 #body_container {
     background: url(../../images/details_body_background.jpg) no-repeat;
     background-size: 100% 100%;
     margin: 0 auto;
-    width: 100%;
+    min-width: 100%;
+    min-height: 45.1%;
     text-align: center;
 }
-#adv_container {
-    background: url(../../images/details_footer_background.jpg);
+.times_left_container {
+    background: url(../../images/times_left_background.png);
     background-size: 100% 100%;
     margin: 0 auto;
     text-align: center;
-    min-width: 100%;
-    min-height: 46.4%;
-}
-#money_left {
-    margin: 0 auto;
-    text-align: center;
     font-size: 25pt;
+    width: 80%;
+    font-weight: bold;
 }
-#win_msg {
+.border {
+    height: 10%;
+}
+#reward_left_container {
     margin: 0 auto;
-    text-align: center;
-    font-size: 25pt;
-    font-style: italic;
+    text-align: right;
+    width: 80%;
+}
+#reward_left {
+    color: rgb(254,255,71);
+    font-size: 11pt;
     font-weight: bold;
 }
 
-#lose_msg {
-    margin: 0 auto;
-    text-align: center;
-    font-size: 25pt;
-    font-style: italic;
-    font-weight: bold;
-}
 .introduce {
-    color: black;
+    color: white;
+    font-size: 15pt;
+    padding-top: -15%;
+}
+#times_left {
+    color: rgb(250,214,67);
     font-size: 15pt;
 }
-#price_left {
-    color: black;
-    font-size: 15pt;
-    font-style: italic;
-    font-weight: bold;
-}
-#reward_left {
-    color: red;
-    font-size: 15pt;
-    font-style: italic;
-    font-weight: bold;
-}
+
 #BTNs_container {
-    margin: 5% auto;
+    margin: 0 auto;
     text-align: center;
 }
 .border {
     height: 5px;
 }
 .BTN {
-    background-color: transparent;
-    border-color: black;
+    border-color: transparent;
     font-size: 14pt;
-    color: black;
+    color: transparent;
     outline: none;
     min-width: 40%;
     vertical-align: top;
 }
+#help_BTN {
+    background: url(../../images/help_btn.png);
+    background-size: 100% 100%;
+}
+#join_BTN {
+    background: url(../../images/details_join_btn.png);
+    background-size: 100% 100%;
+}
+#share_BTN {
+    background: url(../../images/share_btn.png);
+    background-size: 100% 100%;
+}
+#record_BTN {
+    background: url(../../images/records_btn.png);
+    background-size: 100% 100%;
+}
 
-#helper_info {
-    margin: 3% auto;
-    font-size: 11pt;
-    color: black;
+#helper_container {
+    margin: 0 auto;
     text-align: center;
+}
+#helper_info {
+    font-size: 11pt;
+    color: rgb(255,232,169);
 }
 
 #all_helpers {
-    padding-left: 43%;
-    color: black;
+    color: rgb(255,232,169);
     font-weight: bold;
 }
-
-.adv_imgs {
-    padding-top: 1%;
+#footer_container {
+    float: left;
+    padding-left: 10%;
+}
+.adv_container {
     width: 45%;
-    height: 45%;
+    float: left;
+}
+.adv_imgs {
+    width: 100%;
+    padding-left: 2%;
+}
+.adv_infos {
+    width: 100%;
+    padding-left: 2%;
+    background-color: white;
 }
 #share_container {
     width: 100%;

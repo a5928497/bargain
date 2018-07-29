@@ -11,53 +11,40 @@
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 41%;
+    margin: 0 auto;
+    text-align: center;
 }
-.info {
-    margin-left: 10%;
+table{
+    /*border-collapse: collapse;*/
+    margin: auto;
     width: 80%;
-    display: inline-block;
-    display: flex;
-    align-items:Center;
+    border-spacing:0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: rgb(255,232,169);
+}
 
-    border-bottom: solid black 2px;
+.custom_tb th,.custom_tb td{
+    border: 1px solid rgb(255,232,169);
+    padding: 4px;
+    text-align: center;
 }
-span {
-    display: inline-block;
-    font-size: 10pt;
-    color: black;
-    font-weight: bold;
+.custom_tb th{
+    background-color: transparent;
+    color: white;
 }
-#act_name {
-    margin-left: 3%;
-    width: 30%;
+.custom_tb th:first-child{
+    border-radius: 10px 0 0 0;
 }
-#reward_name {
-    margin-left: 3%;
-    width: 30%;
+.custom_tb th:last-child{
+    border-radius: 0 6px 0 0;
 }
-#status {
-    width: 18%;
+.custom_tb tr:last-child td:first-child{
+    border-radius: 0 0 0 6px;
+}
+.custom_tb tr:last-child td:last-child{
+    border-radius: 0 0 6px 0;
 }
 a {
-    display: inline-block;
-    font-size: 10pt;
-    margin-left: 2%;
-    width: 12%;
-}
-#empty_msg {
-    padding-left: 22%;
-}
-.codeInfoBTN {
-    background-color: transparent;
-    border-color: transparent;
-    color: blue;
-    outline: none;
-    padding: -20%;
-}
-.code_msg {
-    width: 80%;
-    margin: 0 auto;
-    color: blue;
-    font-weight: bold;
-    border-bottom: solid 1px black;
+    color: rgb(255,232,169);
 }
