@@ -72,11 +72,14 @@ body {
 }
 .BTN {
     border-color: transparent;
-    font-size: 14pt;
+    font-size: 18pt;
     color: transparent;
     outline: none;
     min-width: 40%;
     vertical-align: top;
+}
+.btn_a {
+    text-decoration: none;
 }
 #help_BTN {
     background: url(../../images/help_btn.png);

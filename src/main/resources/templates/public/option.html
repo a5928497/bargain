@@ -7,7 +7,7 @@
     <title>选择礼品</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/option.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/option.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -15,34 +15,48 @@
 
 <body class="gray-bg">
     <div id="main_container">
+        <div id="cmb_logo_container">
+        <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
     </div>
-    <div id="footer">
-        <div id="reward_container" th:if="${rewards != null}">
+    </div>
+    <div id="body_container" th:if="${rewards != null}">
+        <div id="reward_container">
             <button id="arrow_left_BTN" ><div class="arrows_holder"></div></button>
             <img id="reward_img"></img>
             <button id="arrow_right_BTN" ><div class="arrows_holder"></div></button>
         </div>
+    </div>
+    <div id="no_reward_container" th:if="${rewards == null}">
+            <img id="thanks_img" th:src="@{/images/cat.png}">
+            <div class="times_left_container">
+                <span class="introduce" th:text="奖品已被抢光了！"></span>
+            </div>
+    </div>
+    <div id="footer">
+        <div id="reward_left_container" th:if="${rewards != null}">
+            <span id="reward_left" ></span>
+        </div>
         <p id="reward_name" th:if="${rewards != null}"></p>
-        <p id="reward_price" th:if="${rewards != null}"></p>
+        <div class="times_left_container" th:if="${rewards != null}">
+            <span class="introduce" th:text="仅需"></span>
+            <span id="reward_price"></span>
+            <span class="introduce" th:text="立即免费拿"></span>
+        </div>
         <form modelAttribute="gameInfo" action="/newRrcord" method="post" th:if="${rewards != null}">
             <input type="hidden" id="reward_id" name="reward.id">
             <input type="hidden" id="activity.id" name="activity.id" th:value="${act_id}">
             <input type="hidden" id="back_url" name="url" th:value="${back_url!=null}?${back_url}">
             <button type="submit" id="submitBTN" >就选它了</button>
         </form>
-        <div id="err_container" th:if="${rewards == null}">
-            <img id="thanks_img" th:src="@{/images/thanks.png}">
-            <p id="no_rewards_msg">您来晚了，所有奖品已被抢光了！</p>
-            <button id="backBTN" th:attr="back_url = ${back_url}" >返回</button>
-        </div>
+        <button id="backBTN" th:attr="back_url = ${back_url}" >返回</button>
     </div>
 
     <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}"
-           th:value="${reward.id}" th:attr="price = ${reward.times}" th:if="${rewards != null}">
+           th:value="${reward.id}" th:attr="price = ${reward.times},surplus = ${reward.surplus}" th:if="${rewards != null}">
 
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/option.min.js}"></script>
+    <script th:src="@{/js/public/option.js}"></script>
 </body>
 
 </html>
