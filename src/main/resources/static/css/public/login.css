@@ -5,6 +5,14 @@
     min-width: 100%;
     height: 56%;
 }
+#cmb_logo_container {
+    width: 100%;
+    padding-top: 5%;
+    padding-left: 5%;
+}
+#cmb_logo {
+    width: 33%;
+}
 form {
     min-height: 30%;
     background: url(../../images/background_body.jpg) no-repeat;
@@ -19,9 +27,10 @@ form {
 }
 #username{
     text-align: center;
+    border-radius: 10px;
     font-size: 18pt;
     background: white;
-    border-color: black;
+    border-color: rgb(206,206,206);
     outline: none;
     width: 77%;
 }
@@ -30,28 +39,30 @@ form {
     margin-top: 3%;
     font-size: 18pt;
     text-align: center;
+    border-radius: 10px;
     background: white;
-    border-color: black;
+    border-color: rgb(206,206,206);
     outline: none;
     width: 38%;
 }
 
 #vaildateBTN {
-    background-color: transparent;
-    border-color: black;
+    background: url(../../images/vaildate_btn.png) no-repeat;
+    background-size: 100% 100%;
+    border-color: transparent;
     outline: none;
     width: 38%;
     font-size: 18pt;
-    color: black;
+    color: transparent;
 }
 #submitBTN {
     font-size: 18pt;
     text-align: center;
+    background: url(../../images/login_btn.png) no-repeat;
     background-size: 100% 100%;
-    background-color: transparent;
-    color: black;
+    color: transparent;
     width: 40%;
-    border-color: black;
+    border-color: transparent;
     outline: none;
 }
 #main_footer

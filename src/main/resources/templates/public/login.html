@@ -7,17 +7,21 @@
     <title>Login</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/login.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/login.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
 </head>
 
 <body class="gray-bg">
-        <div id="main_header"></div>
+        <div id="main_header">
+            <div id="cmb_logo_container">
+                <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
+            </div>
+        </div>
             <form method="post" id="loginForm" action="/login">
                 <div id="main_body">
-                    <input type="text" id="username" name="username" th:placeholder="手机号">
+                    <input type="text" id="username" name="username" th:placeholder="手机号码">
                     <input type="text" id="password" name="password" th:placeholder="验证码">
                 <input type="hidden" name="url" th:if="${url!= null}" th:value="${url}">
                 <button id="vaildateBTN" >取验证码</button>
