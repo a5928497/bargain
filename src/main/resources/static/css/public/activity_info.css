@@ -3,28 +3,35 @@
     background: url(../../images/act_info_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 51%;
+    min-height: 65.6%;
 }
-
+#cmb_logo_container {
+    width: 100%;
+    padding-top: 5%;
+    padding-left: 5%;
+}
+#cmb_logo {
+    width: 33%;
+}
 #details_holder {
     background: url(../../images/act_info_background_foot.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 49%;
+    min-height: 34.4%;
+    text-align: center;
 }
 #details {
     max-width: 80%;
-    margin-left: 11%;
-    color: black;
+    color: rgb(255,232,169);
     font-size: 11pt;
 }
 #join_BTN {
-    background-color: transparent;
+    background: url(../../images/join_btn.png) no-repeat;
+    background-size: 100% 100%;
     font-size: 18pt;
-    color: black;
-    margin-top: 20%;
-    margin-left: 17%;
-    border-color: black;
+    color: transparent;
+    margin-top: 25%;
+    border-color: transparent;
     outline: none;
-    min-width: 68%;
+    min-width: 40%;
 }
