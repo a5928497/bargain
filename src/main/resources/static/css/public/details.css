@@ -3,20 +3,31 @@
     background: url(../../images/option_background_head.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 11.6%;
-}
-#main_container
-{
-    background: url(../../images/option_background_foot.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 88.4%;
+    min-height: 10%;
 }
 #img_container {
+    background: url(../../images/details_reward_background.jpg) no-repeat;
+    background-size: 100% 100%;
     margin: 0 auto;
     height: 30%;
+    min-width: 100%;
+    min-height: 41.6%;
+    text-align: center;
+}
+#body_container {
+    background: url(../../images/details_body_background.jpg) no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
     width: 100%;
     text-align: center;
+}
+#adv_container {
+    background: url(../../images/details_footer_background.jpg);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 100%;
+    min-height: 46.4%;
 }
 #money_left {
     margin: 0 auto;
@@ -83,11 +94,7 @@
     color: black;
     font-weight: bold;
 }
-#adv_container {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-}
+
 .adv_imgs {
     padding-top: 1%;
     width: 45%;
