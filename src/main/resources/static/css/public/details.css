@@ -9,6 +9,14 @@ body {
     min-width: 100%;
     height: 9.3%;
 }
+#cmb_logo_container {
+    width: 100%;
+    padding-top: 5%;
+    padding-left: 5%;
+}
+#cmb_logo {
+    width: 33%;
+}
 #img_container {
     background: url(../../images/details_reward_background.jpg) no-repeat;
     background-size: 100% 100%;
@@ -21,7 +29,7 @@ body {
 #reward_img {
     padding-top: 15%;
     width: 40%;
-    height: 80%;
+    height: 85%;
 }
 #body_container {
     background: url(../../images/details_body_background.jpg) no-repeat;
@@ -35,8 +43,6 @@ body {
 .times_left_container {
     background: url(../../images/times_left_background.png);
     background-size: 100% 100%;
-    /*display: table-cell;*/
-    /*vertical-align: middle;*/
     margin: 0 auto;
     text-align: center;
     line-height: 40px;
@@ -86,6 +92,7 @@ body {
 }
 .btn_a {
     text-decoration: none;
+    outline: none;
 }
 #help_BTN {
     background: url(../../images/help_btn.png);
@@ -117,26 +124,5 @@ body {
     color: rgb(255,232,169);
     font-weight: bold;
 }
-#footer_container {
-    float: left;
-    padding-left: 10%;
-}
-.adv_container {
-    width: 45%;
-    float: left;
-}
-.adv_imgs {
-    width: 100%;
-    padding-left: 2%;
-}
-.adv_infos {
-    width: 100%;
-    padding-left: 2%;
-    background-color: white;
-}
-#share_container {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-}
+
 

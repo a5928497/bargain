@@ -1,10 +1,5 @@
 $(function () {
     $shareBTN = $("#share_BTN");
-    $share_msg = $("#share_msg");
-    $share_QR = $("#share_QR");
-    $BTNs = $("#BTNs_container");
-    $helpers = $("#helper_container");
-    $advs = $("#adv_container");
     var msg = $("#msg").val();
     $share_msg.hide();
     $share_QR.hide();
@@ -15,12 +10,7 @@ $(function () {
         alert(msg);
     }
     $shareBTN.click(function () {
-        //点击分享按钮，清空元素
-        $BTNs.remove();
-        $helpers.remove();
-        $advs.remove();
-        $share_msg.css("color","red").css("font-style","italic").css("font-weight","bold").show();
-        $share_QR.attr("src",url).show();
+        //点击分享按钮
        return false;
     });
 
