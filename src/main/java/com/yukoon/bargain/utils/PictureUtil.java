@@ -5,138 +5,253 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Iterator;
 
 public class PictureUtil {
+	/** 图片格式：JPG */
+	private static final String PICTRUE_FORMATE_JPG = "jpg";
 
 	/**
-	 * @Description:图片处理工具
-	 * @author:liuyc
-	 * @time:2016年5月27日 上午10:18:00
+	 * 添加图片水印
+	 *
+	 * @param targetImg
+	 *            目标图片路径
+	 * @param waterImg
+	 *            水印图片路径
+	 * @param x
+	 *            水印图片距离目标图片左侧的偏移量，如果x<0, 则在正中间
+	 * @param y
+	 *            水印图片距离目标图片上侧的偏移量，如果y<0, 则在正中间
+	 * @param alpha
+	 *            透明度(0.0 -- 1.0, 0.0为完全透明，1.0为完全不透明)
 	 */
+	public final static void addImageWeatermark(String targetImg, String waterImg, int x, int y, float alpha) {
+		try {
+			File file = new File(targetImg);
+			Image image = ImageIO.read(file);
+			int width = image.getWidth(null);
+			int height = image.getHeight(null);
+			BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = bufferedImage.createGraphics();
+			g.drawImage(image, 0, 0, width, height, null);
 
+			Image waterImage = ImageIO.read(new File(waterImg)); // 水印文件
+			int width_1 = waterImage.getWidth(null);
+			int height_1 = waterImage.getHeight(null);
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 
-		/**
-		 * @Description:截图
-		 * @author:liuyc
-		 * @time:2016年5月27日 上午10:18:23
-		 * @param srcFile 源图片、targetFile截好后图片全名、startAcross 开始截取位置横坐标、StartEndlong开始截图位置纵坐标、width截取的长，hight截取的高
-		 */
-		public static void cutImage(String srcFile, String targetFile, int startAcross, int StartEndlong, int width,
-									int hight) throws Exception {
-			// 取得图片读入器
-			Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName("jpg");
-			ImageReader reader = readers.next();
-			// 取得图片读入流
-			InputStream source = new FileInputStream(srcFile);
-			ImageInputStream iis = ImageIO.createImageInputStream(source);
-			reader.setInput(iis, true);
-			// 图片参数对象
-			ImageReadParam param = reader.getDefaultReadParam();
-			Rectangle rect = new Rectangle(startAcross, StartEndlong, width, hight);
-			param.setSourceRegion(rect);
-			BufferedImage bi = reader.read(0, param);
-			ImageIO.write(bi, targetFile.split("\\.")[1], new File(targetFile));
+			int widthDiff = width - width_1;
+			int heightDiff = height - height_1;
+			if (x < 0) {
+				x = widthDiff / 2;
+			} else if (x > widthDiff) {
+				x = widthDiff;
+			}
+			if (y < 0) {
+				y = heightDiff / 2;
+			} else if (y > heightDiff) {
+				y = heightDiff;
+			}
+			g.drawImage(waterImage, x, y, width_1, height_1, null); // 水印文件结束
+			g.dispose();
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, file);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
 
-		/**
-		 * @Description:图片拼接 （注意：必须两张图片长宽一致哦）
-		 * @author:liuyc
-		 * @time:2016年5月27日 下午5:52:24
-		 * @param :files 要拼接的文件列表
-		 * @param :type1 横向拼接， 2 纵向拼接
-		 */
-		public static void mergeImage(String[] files, int type, String targetFile) {
-			int len = files.length;
-			if (len < 1) {
-				throw new RuntimeException("图片数量小于1");
+	/**
+	 * 添加文字水印
+	 *
+	 * @param targetImg
+	 *            目标图片路径
+	 * @param pressText
+	 *            水印文字， 如：中国证券网
+	 * @param fontName
+	 *            字体名称， 如：宋体
+	 * @param fontStyle
+	 *            字体样式，如：粗体和斜体(Font.BOLD|Font.ITALIC)
+	 * @param fontSize
+	 *            字体大小，单位为像素
+	 * @param color
+	 *            字体颜色
+	 * @param x
+	 *            水印文字距离目标图片左侧的偏移量，如果x<0, 则在正中间
+	 * @param y
+	 *            水印文字距离目标图片上侧的偏移量，如果y<0, 则在正中间
+	 * @param alpha
+	 *            透明度(0.0 -- 1.0, 0.0为完全透明，1.0为完全不透明)
+	 */
+	public static void addTextWeatermark(String targetImg, String pressText, String fontName, int fontStyle,
+										 int fontSize, Color color, int x, int y, float alpha) {
+		try {
+			File file = new File(targetImg);
+
+			Image image = ImageIO.read(file);
+			int width = image.getWidth(null);
+			int height = image.getHeight(null);
+			BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = bufferedImage.createGraphics();
+			g.drawImage(image, 0, 0, width, height, null);
+			g.setFont(new Font(fontName, fontStyle, fontSize));
+			g.setColor(color);
+			// g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP,
+			// alpha));
+
+			int width_1 = fontSize * getLength(pressText);
+			int height_1 = fontSize;
+			int widthDiff = width - width_1;
+			int heightDiff = height - height_1;
+			if (x < 0) {
+				x = widthDiff / 2;
+			} else if (x > widthDiff) {
+				x = widthDiff;
 			}
-			File[] src = new File[len];
-			BufferedImage[] images = new BufferedImage[len];
-			int[][] ImageArrays = new int[len][];
-			for (int i = 0; i < len; i++) {
-				try {
-					src[i] = new File(files[i]);
-					images[i] = ImageIO.read(src[i]);
-				} catch (Exception e) {
-					throw new RuntimeException(e);
+			if (y < 0) {
+				y = heightDiff / 2;
+			} else if (y > heightDiff) {
+				y = heightDiff;
+			}
+
+			g.drawString(pressText, x, y + height_1);
+			g.dispose();
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 获取字符长度，一个汉字作为 1 个字符, 一个英文字母作为 0.5 个字符
+	 *
+	 * @param text
+	 * @return 字符长度，如：text="中国",返回 2；text="test",返回 2；text="中国ABC",返回 4.
+	 */
+	public static int getLength(String text) {
+		int textLength = text.length();
+		int length = textLength;
+		for (int i = 0; i < textLength; i++) {
+			if (String.valueOf(text.charAt(i)).getBytes().length > 1) {
+				length++;
+			}
+		}
+		return (length % 2 == 0) ? length / 2 : length / 2 + 1;
+	}
+
+	/**
+	 * 图片缩放
+	 *
+	 * @param filePath
+	 *            图片路径
+	 * @param height
+	 *            高度
+	 * @param width
+	 *            宽度
+	 * @param bb
+	 *            比例不对时是否需要补白
+	 */
+	public static void resize(String filePath, int height, int width, boolean bb) {
+		try {
+			double ratio = 0; // 缩放比例
+			File f = new File(filePath);
+			BufferedImage bi = ImageIO.read(f);
+			Image itemp = bi.getScaledInstance(width, height, BufferedImage.SCALE_SMOOTH);
+			// 计算比例
+			if ((bi.getHeight() > height) || (bi.getWidth() > width)) {
+				if (bi.getHeight() > bi.getWidth()) {
+					ratio = (new Integer(height)).doubleValue() / bi.getHeight();
+				} else {
+					ratio = (new Integer(width)).doubleValue() / bi.getWidth();
 				}
-				int width = images[i].getWidth();
-				int height = images[i].getHeight();
-				ImageArrays[i] = new int[width * height];
-				ImageArrays[i] = images[i].getRGB(0, 0, width, height, ImageArrays[i], 0, width);
+				AffineTransformOp op = new AffineTransformOp(AffineTransform.getScaleInstance(ratio, ratio), null);
+				itemp = op.filter(bi, null);
 			}
-			int newHeight = 0;
-			int newWidth = 0;
-			for (int i = 0; i < images.length; i++) {
-				// 横向
-				if (type == 1) {
-					newHeight = newHeight > images[i].getHeight() ? newHeight : images[i].getHeight();
-					newWidth += images[i].getWidth();
-				} else if (type == 2) {// 纵向
-					newWidth = newWidth > images[i].getWidth() ? newWidth : images[i].getWidth();
-					newHeight += images[i].getHeight();
-				}
+			if (bb) {
+				BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+				Graphics2D g = image.createGraphics();
+				g.setColor(Color.white);
+				g.fillRect(0, 0, width, height);
+				if (width == itemp.getWidth(null))
+					g.drawImage(itemp, 0, (height - itemp.getHeight(null)) / 2, itemp.getWidth(null),
+							itemp.getHeight(null), Color.white, null);
+				else
+					g.drawImage(itemp, (width - itemp.getWidth(null)) / 2, 0, itemp.getWidth(null),
+							itemp.getHeight(null), Color.white, null);
+				g.dispose();
+				itemp = image;
 			}
-			if (type == 1 && newWidth < 1) {
-				return;
+			ImageIO.write((BufferedImage) itemp, "jpg", f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 图片合并(将两张图片合并为一张图片)
+	 *
+	 * @param oneSrc
+	 * @param twoSrc
+	 * @param mergeSrc
+	 *            合并后的图片路径
+	 */
+	public static void mergeImage(String oneSrc, String twoSrc, String mergeSrc) {
+		String postFix = mergeSrc.substring(mergeSrc.lastIndexOf(".") + 1, mergeSrc.length());
+		try {
+			File fileOne = new File(oneSrc);// 读取第一张图片
+			Image src = ImageIO.read(fileOne);
+			int width = src.getWidth(null);
+			int height = src.getHeight(null);
+			if (width > 900 || height > 900) {
+				int num = (int) Math.ceil((double) width / 900);
+				int num2 = (int) Math.ceil((double) height / 900);
+				num = num > num2 ? num : num2;
+				width = width / num;
+				height = height / num;
 			}
-			if (type == 2 && newHeight < 1) {
-				return;
+			BufferedImage bufferedImageOne = null;
+			if ("png".equalsIgnoreCase(postFix.toLowerCase())) {
+				bufferedImageOne = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+			} else {
+				bufferedImageOne = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			}
+			bufferedImageOne.getGraphics().drawImage(src.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0,
+					null);
+			int[] imageArrayOne = new int[width * height];// 从图片中读取RGB
+			imageArrayOne = bufferedImageOne.getRGB(0, 0, width, height, imageArrayOne, 0, width);
+
+			File fileTwo = new File(twoSrc);// 读取第二张图片
+			src = ImageIO.read(fileTwo);
+			BufferedImage bufferedImageTwo = null;
+			if ("png".equalsIgnoreCase(postFix.toLowerCase())) {
+				bufferedImageTwo = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+			} else {
+				bufferedImageTwo = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+			}
+			bufferedImageTwo.getGraphics().drawImage(src.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0,
+					null);
+			int[] imageArrayTwo = new int[width * height];// 从图片中读取RGB
+			imageArrayTwo = bufferedImageTwo.getRGB(0, 0, width, height, imageArrayTwo, 0, width);
 
 			// 生成新图片
-			try {
-				BufferedImage ImageNew = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-				int height_i = 0;
-				int width_i = 0;
-				for (int i = 0; i < images.length; i++) {
-					if (type == 1) {
-						ImageNew.setRGB(width_i, 0, images[i].getWidth(), newHeight, ImageArrays[i], 0,
-								images[i].getWidth());
-						width_i += images[i].getWidth();
-					} else if (type == 2) {
-						ImageNew.setRGB(0, height_i, newWidth, images[i].getHeight(), ImageArrays[i], 0, newWidth);
-						height_i += images[i].getHeight();
-					}
-				}
-				//输出想要的图片
-				ImageIO.write(ImageNew, targetFile.split("\\.")[1], new File(targetFile));
-
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
+			BufferedImage imageNew = new BufferedImage(width * 2, height, BufferedImage.TYPE_INT_RGB);
+			imageNew.setRGB(0, 0, width, height, imageArrayOne, 0, width); // 设置左半部分的RGB
+			imageNew.setRGB(width, 0, width, height, imageArrayTwo, 0, width); // 设置右半部分的RGB
+			File outFile = new File(mergeSrc);
+			// 写图片
+			ImageIO.write(imageNew, postFix, outFile);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		/**
-		 * @Description:小图片贴到大图片形成一张图(合成)
-		 * @author:liuyc
-		 * @time:2016年5月27日 下午5:51:20
-		 */
-		public static final void overlapImage(String bigPath, String smallPath, String outFile) {
-			try {
-				BufferedImage big = ImageIO.read(new File(bigPath));
-				BufferedImage small = ImageIO.read(new File(smallPath));
-				Graphics2D g = big.createGraphics();
-				int x = (big.getWidth() - small.getWidth()) / 2;
-				int y = (big.getHeight() - small.getHeight()) / 2;
-				g.drawImage(small, x, y, small.getWidth()/2, small.getHeight()/2, null);
-				g.dispose();
-				ImageIO.write(big, outFile.split("\\.")[1], new File(outFile));
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
+	}
 
 	public static void main(String[] args) {
-		String big = "f:/material/images/user_info.jpg";
-		String small = "f:/material/images/lottery11.jpg";
-		String outpath = "f:/material/images/lottery13.png";
-		overlapImage(big,small,outpath);
+		String one = "f:/material/images/lottery11.jpg";
+		String two = "f:/material/advImgs/adv7.png";
+		String merge = "f:/material/images/test.jpg";
+		addImageWeatermark(one,two,0,0,1);
 	}
 }
