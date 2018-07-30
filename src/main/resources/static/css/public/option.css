@@ -21,37 +21,46 @@
     min-width: 100%;
     min-height: 35.8%;
 }
-#reward_container {
-    padding-top: 13%;
-}
-img {
-    width: 35%;
-}
-#footer {
-    background: url(../../images/option_background_foot.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 54.9%;
-}
 
+#left_arrow_container {
+    float: left;
+    width: 20%;
+    margin-top: 23%;
+}
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png");
     background-size: 100% 100%;
     border-color: transparent;
     outline: none;
-    width: 15%;
+    width: 100%;
+    font-size: 18pt;
+    color: transparent;
+}
+#img_container {
+    margin-top: 14%;
+    float: left;
+    width: 60%;
+    height: 100%;
+}
+#reward_img {
+    width: 60%;
+    height: 60%;
+}
+#right_arrow_container {
+    float: left;
+    width: 20%;
+    margin-top: 23%;
 }
 #arrow_right_BTN {
     background: url("../../images/arrows_right.png");
     background-size: 100% 100%;
     border-color: transparent;
     outline: none;
-    width: 15%;
+    width: 100%;
+    font-size: 18pt;
+    color: transparent;
 }
-.arrows_holder {
-    min-width: 100%;
-    min-height: 40px;
-}
+
 #reward_left_container {
     margin: 0 auto;
     text-align: right;
@@ -76,7 +85,8 @@ img {
     background-size: 100% 100%;
     margin: 0 auto;
     text-align: center;
-    font-size: 25pt;
+    line-height: 40px;
+    height: 40px;
     width: 80%;
     font-weight: bold;
 }
@@ -102,6 +112,14 @@ img {
     outline: none;
     width: 50%;
 }
+#footer {
+    background: url(../../images/option_background_foot.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 100%;
+    min-height: 54.9%;
+    margin: 0 auto;
+    text-align: center;
+}
 #no_reward_container {
     margin: 0 auto;
     text-align: center;
@@ -111,10 +129,11 @@ img {
     min-height: 35.8%;
 }
 #thanks_img {
-    margin-top: 8%;
+    margin-top: 13%;
     width: 70%;
 }
 #backBTN {
+    margin-top: 20%;
     font-size: 18pt;
     color: transparent;
     background: url(../../images/back_btn.png);

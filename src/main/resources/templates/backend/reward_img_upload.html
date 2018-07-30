@@ -52,7 +52,7 @@
                     <div id="img_container">
                     <img src="#" id="reward" >
                     </div>
-                    <p>注意：为了效果美观，图片应为透明背景，若预览图中图片背景为红色，则表示图片为透明背景！</p>
+                    <p>注意：为了效果美观，图片尺寸应该为400*400(px)或等比例的正方形图片！</p>
                     <form action="/rewardimgupload" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -98,8 +98,6 @@
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
     var reward_id = $("#reward_id").val();
-    //设置背景色为红色
-    $("#img_container").css("background-color","red");
     //根据路径获取图片
     var img_url  ="/reward_images/reward"+reward_id + ".png?"+Math.random();
     $("#reward").attr("src",img_url).one("error",function (e) {

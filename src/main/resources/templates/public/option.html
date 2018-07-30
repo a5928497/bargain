@@ -20,16 +20,14 @@
     </div>
     </div>
     <div id="body_container" th:if="${rewards != null}">
-        <div id="reward_container">
-            <button id="arrow_left_BTN" ><div class="arrows_holder"></div></button>
-            <img id="reward_img"></img>
-            <button id="arrow_right_BTN" ><div class="arrows_holder"></div></button>
-        </div>
+            <div id="left_arrow_container"><button id="arrow_left_BTN" >向左</button></div>
+            <div id="img_container"><img id="reward_img"></img></div>
+            <div id="right_arrow_container"><button id="arrow_right_BTN" >向右</button></div>
     </div>
     <div id="no_reward_container" th:if="${rewards == null}">
             <img id="thanks_img" th:src="@{/images/cat.png}">
             <div class="times_left_container">
-                <span class="introduce" th:text="奖品已被抢光了！"></span>
+                <span class="introduce" th:text="奖品被抢光了！"></span>
             </div>
     </div>
     <div id="footer">
@@ -48,7 +46,7 @@
             <input type="hidden" id="back_url" name="url" th:value="${back_url!=null}?${back_url}">
             <button type="submit" id="submitBTN" >就选它了</button>
         </form>
-        <button id="backBTN" th:attr="back_url = ${back_url}" >返回</button>
+        <button id="backBTN" th:attr="back_url = ${back_url}" th:if="${rewards == null}">返回</button>
     </div>
 
     <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}"

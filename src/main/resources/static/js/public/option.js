@@ -10,8 +10,11 @@ $(function () {
     $reward_left = $("#reward_left");
     var size = $rewards.size();
     var location = 0;
+    var body_container_height = $("#body_container").height();
+    var image_size = body_container_height * 0.66;
     //初始化图片
     $reward_img.attr("src","/reward_images/reward"+$(".rewards:eq(0)").val() +".png")
+        // .css("width",image_size).css("height",image_size).css("margin-top","11%");
     $reward_name.text($(".rewards:eq(0)").attr("name"));
     $reward_price.text($(".rewards:eq(0)").attr("price")+"刀");
     $reward_left.text("商品剩余"+$(".rewards:eq(0)").attr("surplus")+"件");
