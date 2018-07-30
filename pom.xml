@@ -186,6 +186,13 @@
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -205,18 +212,18 @@
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>
-                <!--<excludes>-->
-                    <!--<exclude>application.yml</exclude>-->
-                    <!--<exclude>pathconfig.yml</exclude>-->
-                <!--</excludes>-->
+                <excludes>
+                    <exclude>application.yml</exclude>
+                    <exclude>pathconfig.yml</exclude>
+                </excludes>
             </resource>
-            <!--<resource>-->
-                <!--<directory>src/main/prod_resources</directory>-->
-                <!--<includes>-->
-                    <!--<include>application.yml</include>-->
-                    <!--<include>pathconfig.yml</include>-->
-                <!--</includes>-->
-            <!--</resource>-->
+            <resource>
+                <directory>src/main/prod_resources</directory>
+                <includes>
+                    <include>application.yml</include>
+                    <include>pathconfig.yml</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>

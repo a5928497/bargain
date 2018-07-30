@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享图片</title>
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <style>
+        #share_img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <img id="share_img" th:src="@{/share_QRimages/QR}+${gameInfo_id}">
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script>
+        //完整路径
+        var curWwwPath=window.document.location.href;
+        //后缀
+        var pathName=window.document.location.pathname;
+        //前缀
+        var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+        var suffix = $("#share_img").attr("src");
+        $("#share_img").attr("src",localhostPaht+suffix+".jpg");
+    </script>
+</body>
+
+</html>

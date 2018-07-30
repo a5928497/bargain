@@ -3,3 +3,4 @@ pathconfig:
   rewardImgsPath: f:/material/rewardImgs/
   advImgPath: f:/material/advImgs/
   shareImgPath: f:/material/shareImgs/
+  shareQRImgPath: f:/material/shareQRImgs/

@@ -29,7 +29,7 @@ body {
 #reward_img {
     padding-top: 15%;
     width: 40%;
-    height: 85%;
+    height: 90%;
 }
 #body_container {
     background: url(../../images/details_body_background.jpg) no-repeat;
@@ -125,13 +125,13 @@ body {
     font-weight: bold;
 }
 #adv_container {
-    padding-left: 9%;
+    padding-left: 1%;
     width: 100%;
     float: left;
 
 }
 .advs {
-    width: 45%;
+    width: 49%;
     float: left;
 
 }

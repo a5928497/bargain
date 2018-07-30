@@ -1,19 +1,19 @@
 package com.yukoon.bargain.controllers;
 
+import com.yukoon.bargain.config.PathConfig;
 import com.yukoon.bargain.entities.GameInfo;
 import com.yukoon.bargain.entities.HelperInfo;
 import com.yukoon.bargain.entities.Reward;
 import com.yukoon.bargain.entities.User;
 import com.yukoon.bargain.services.*;
+import com.yukoon.bargain.utils.MatrixToImageWriter;
+import com.yukoon.bargain.utils.PictureUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.transform.Source;
@@ -36,6 +36,8 @@ public class GameController {
     private GameInfoService gameInfoService;
     @Autowired
     private AdvertisementService advertisementService;
+    @Autowired
+    private PathConfig pathConfig;
 
     @PostMapping("/joinIn")
     public String joinIn(Integer act_id, Map<String,Object> map, String url) {
@@ -193,6 +195,29 @@ public class GameController {
         map.put("helpers",helpers);
         map.put("size",-1);
         return "public/details";
+    }
+
+    //前台生成并显示二维码分享图片
+    @GetMapping("/share")
+    public String share(@RequestParam("url")String url,@RequestParam("gameInfo_id")Integer gameInfo_id,
+                        Map<String,Object> map) {
+        System.out.println(url);
+        GameInfo gameInfo = gameService.findById(gameInfo_id);
+        String QRFloder = pathConfig.getShareQRImgPath();
+        String QRPath = QRFloder + "QR"+gameInfo_id + ".jpg";
+        String rewardPath = pathConfig.getRewardImgsPath() +"reward"+ gameInfo.getReward().getId() + ".png";
+        System.out.println(rewardPath);
+        String targetPath = QRFloder + "share_basic.jpg";
+        try {
+            MatrixToImageWriter.writeQR(url,174,"jpg",QRPath);
+            PictureUtil.addImageWeatermark(targetPath,QRPath,QRPath,49,493,1);
+            PictureUtil.addImageWeatermark(QRPath,rewardPath,QRPath,126,125,1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(url);
+        map.put("gameInfo_id",gameInfo_id);
+        return "public/share";
     }
 
 
