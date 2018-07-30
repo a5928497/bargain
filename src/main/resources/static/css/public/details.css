@@ -21,23 +21,29 @@ body {
 #reward_img {
     padding-top: 15%;
     width: 40%;
+    height: 80%;
 }
 #body_container {
     background: url(../../images/details_body_background.jpg) no-repeat;
     background-size: 100% 100%;
     margin: 0 auto;
+    text-align: center;
     min-width: 100%;
     min-height: 45.1%;
-    text-align: center;
+
 }
 .times_left_container {
     background: url(../../images/times_left_background.png);
     background-size: 100% 100%;
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
     margin: 0 auto;
     text-align: center;
-    font-size: 25pt;
+    line-height: 40px;
+    height: 40px;
     width: 80%;
     font-weight: bold;
+
 }
 .border {
     height: 10%;
@@ -55,12 +61,12 @@ body {
 
 .introduce {
     color: white;
-    font-size: 15pt;
-    padding-top: -15%;
+    font-size: 14pt;
 }
 #times_left {
+
     color: rgb(250,214,67);
-    font-size: 15pt;
+    font-size: 14pt;
 }
 
 #BTNs_container {
