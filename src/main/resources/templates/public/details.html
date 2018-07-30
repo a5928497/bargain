@@ -54,15 +54,14 @@
                     </p>
                     <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
                 </div>
+                <div id="adv_container">
+                    <div class="advs" th:each="adv:${advs}">
+                        <a class="adv_a" th:href="@{/toadv/}+${adv.id}">
+                            <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
+                        </a>
+                    </div>
+                </div>
             </div>
-        <div id="adv_container">
-            <div class="advs" th:each="adv:${advs}">
-                <a class="adv_a" th:href="@{/toadv/}+${adv.id}">
-                    <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
-                </a><br>
-                <p class="adv_infos" th:text="${adv.adv_name}"></p>
-            </div>
-        </div>
 
     <input type="hidden" id="msg" th:value="${msg}">
     <input type="hidden" id="gameInfoId" th:value="${gameInfo.id}">

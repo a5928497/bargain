@@ -124,5 +124,21 @@ body {
     color: rgb(255,232,169);
     font-weight: bold;
 }
+#adv_container {
+    padding-left: 9%;
+    width: 100%;
+    float: left;
+
+}
+.advs {
+    width: 45%;
+    float: left;
+
+}
+.adv_imgs {
+    padding-top: 3%;
+    padding-left: 3%;
+    width: 100%;
+}
 
 

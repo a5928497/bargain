@@ -29,9 +29,10 @@ public class PictureUtil {
 	 * @param alpha
 	 *            透明度(0.0 -- 1.0, 0.0为完全透明，1.0为完全不透明)
 	 */
-	public final static void addImageWeatermark(String targetImg, String waterImg, int x, int y, float alpha) {
+	public final static void addImageWeatermark(String targetImg, String waterImg,String outputPath,int x, int y, float alpha) {
 		try {
 			File file = new File(targetImg);
+			File output = new File(outputPath);
 			Image image = ImageIO.read(file);
 			int width = image.getWidth(null);
 			int height = image.getHeight(null);
@@ -58,7 +59,7 @@ public class PictureUtil {
 			}
 			g.drawImage(waterImage, x, y, width_1, height_1, null); // 水印文件结束
 			g.dispose();
-			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, file);
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, output);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -86,11 +87,11 @@ public class PictureUtil {
 	 * @param alpha
 	 *            透明度(0.0 -- 1.0, 0.0为完全透明，1.0为完全不透明)
 	 */
-	public static void addTextWeatermark(String targetImg, String pressText, String fontName, int fontStyle,
+	public static void addTextWeatermark(String targetImg,String outputImg, String pressText, String fontName, int fontStyle,
 										 int fontSize, Color color, int x, int y, float alpha) {
 		try {
 			File file = new File(targetImg);
-
+			File outputfile = new File(outputImg);
 			Image image = ImageIO.read(file);
 			int width = image.getWidth(null);
 			int height = image.getHeight(null);
@@ -119,7 +120,7 @@ public class PictureUtil {
 
 			g.drawString(pressText, x, y + height_1);
 			g.dispose();
-			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, file);
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, outputfile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -249,9 +250,11 @@ public class PictureUtil {
 	}
 
 	public static void main(String[] args) {
-		String one = "f:/material/images/lottery11.jpg";
-		String two = "f:/material/advImgs/adv7.png";
-		String merge = "f:/material/images/test.jpg";
-		addImageWeatermark(one,two,0,0,1);
+		String one = "f:/material/images/adv_basic.png";
+		String two = "f:/material/images/adv9.png";
+		String merge = "f:/material/images/test.png";
+		addTextWeatermark(one,merge,"阿斯蒂芬阿斯蒂芬阿斯","宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+		addTextWeatermark(merge,merge,"阿斯蒂芬阿斯蒂芬阿斯","宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+		addImageWeatermark(merge,two,merge,10,10,1);
 	}
 }

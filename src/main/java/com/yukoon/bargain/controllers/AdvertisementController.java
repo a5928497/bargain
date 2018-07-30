@@ -4,6 +4,7 @@ import com.yukoon.bargain.config.PathConfig;
 import com.yukoon.bargain.entities.Advertisement;
 import com.yukoon.bargain.services.AdvertisementService;
 import com.yukoon.bargain.utils.FileUtil;
+import com.yukoon.bargain.utils.PictureUtil;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
@@ -67,10 +69,32 @@ public class AdvertisementController {
             Advertisement adv = advertisementService.addAdv(advertisement);
             //重命名文件
             fileName = "adv"+adv.getId()+".png";
+            //组合路径
+            String path = filePath+fileName;
             //上传图片
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
             //压缩图片
-            FileUtil.resizeImg(filePath+fileName,200,200);
+            FileUtil.resizeImg(path,250,250);
+            //与背景合成
+            PictureUtil.addImageWeatermark(filePath+"adv_basic.png",path,path,10,10,1);
+            //添加文字，最多两行20字
+            String text = advertisement.getAdv_name();
+            if (text.length() <=10) {
+                //少于10字，输出一行
+                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+            }else if (text.length() >10 && text.length() <20) {
+                //少于20字，输出两行
+                String temp = text.substring(0,10);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                temp = text.substring(10,text.length());
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+            }else {
+                //大于20字，只输出两行
+                String temp = text.substring(0,10);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                temp = text.substring(10,20);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+            }
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
@@ -109,10 +133,32 @@ public class AdvertisementController {
                 Advertisement adv = advertisementService.addAdv(advertisement);
                 //重命名文件
                 fileName = "adv"+adv.getId()+".png";
+                //组合路径
+                String path = filePath+fileName;
                 //上传图片
                 FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
                 //压缩图片
-                FileUtil.resizeImg(filePath+fileName,200,200);
+                FileUtil.resizeImg(path,250,250);
+                //与背景合成
+                PictureUtil.addImageWeatermark(filePath+"adv_basic.png",path,path,10,10,1);
+                //添加文字，最多两行20字
+                String text = advertisement.getAdv_name();
+                if (text.length() <=10) {
+                    //少于10字，输出一行
+                    PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+                }else if (text.length() >10 && text.length() <20) {
+                    //少于20字，输出两行
+                    String temp = text.substring(0,10);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                    temp = text.substring(10,text.length());
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                }else {
+                    //大于20字，只输出两行
+                    String temp = text.substring(0,10);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                    temp = text.substring(10,20);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                }
             }catch (Exception e) {
                 uploadMsg = "图片上传出现错误,请重新上传!";
                 attributes.addFlashAttribute("uploadMsg",uploadMsg);

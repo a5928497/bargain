@@ -13,6 +13,7 @@ public class AdvertisementService {
 
     @Autowired
     private AdvertisementRepo advertisementRepo;
+    private final static String ADV_BACKGROUND_PATH = "";
 
     @Transactional
     public Advertisement addAdv(Advertisement advertisement) {
