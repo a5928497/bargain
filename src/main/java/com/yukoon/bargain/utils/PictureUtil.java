@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class PictureUtil {
 	/** 图片格式：JPG */
-	private static final String PICTRUE_FORMATE_JPG = "jpg";
+	private static final String PICTRUE_FORMATE_JPG = "png";
 
 	/**
 	 * 添加图片水印
