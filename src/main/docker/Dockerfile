@@ -5,7 +5,7 @@ RUN \
 sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
 && apk --update add curl bash ttf-dejavu \
 && apk add fontconfig
-ADD simsun.ttc /usr/shared/fonts/chinese/simsun.ttc
+ADD simsun.ttc /usr/share/fonts/chinese/simsun.ttc
 ADD fonts.conf /etc/fonts/fonts.conf
 RUN fc-cache
 RUN mkdir -p /app
