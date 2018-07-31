@@ -8,6 +8,7 @@ $(function () {
     var localhostPaht=curWwwPath.substring(0,pos);
     var gameInfo_id = $("#gameInfoId").val();
     var act_id = $("#act_id").val();
+    $("#share_img").attr("src",localhostPaht+"/share_images/share"+ act_id +".png");
     Share();
     function Share() {
         var title;
