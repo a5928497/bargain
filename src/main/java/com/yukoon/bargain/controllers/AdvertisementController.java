@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -79,11 +80,10 @@ public class AdvertisementController {
             PictureUtil.addImageWeatermark(filePath+"adv_basic.png",path,path,10,10,1);
             //添加文字，最多两行20字
             String text = advertisement.getAdv_name();
-            System.out.println(text);
-            System.out.println(path);
             if (text.length() <=10) {
                 //少于10字，输出一行
-                PictureUtil.addTextWeatermark(filePath+"adv_basic.png",filePath+"test.png",text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+                System.out.println(new File(path).exists());
+                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
             }else if (text.length() >10 && text.length() <20) {
                 //少于20字，输出两行
                 String temp = text.substring(0,10);
