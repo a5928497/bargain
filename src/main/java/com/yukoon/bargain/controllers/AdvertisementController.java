@@ -26,6 +26,8 @@ public class AdvertisementController {
     private AdvertisementService advertisementService;
     @Autowired
     private PathConfig pathConfig;
+    private final static int FONT_SIZE =20;
+    private final static int ADV_IMG_SIZE = 270;
 
     @ModelAttribute
     public void getAdv(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
@@ -82,14 +84,14 @@ public class AdvertisementController {
             String text = advertisement.getAdv_name();
             if (text.length() <=10) {
                 //少于10字，输出一行
-                System.out.println(new File(path).exists());
-                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                        (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
             }else if (text.length() >10 && text.length() <20) {
                 //少于20字，输出两行
                 String temp = text.substring(0,10);
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,Color.WHITE,30,265,1);
                 temp = text.substring(10,text.length());
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,Color.WHITE,30,290,1);
             }else {
                 //大于20字，只输出两行
                 String temp = text.substring(0,10);
@@ -121,6 +123,7 @@ public class AdvertisementController {
     @PutMapping("/advs")
     public String update(Map<String,Object> map, Advertisement advertisement,RedirectAttributes attributes,
                       @RequestParam(value = "pic",required = false)MultipartFile pic, HttpServletRequest request){
+        boolean textChanged = !advertisement.getAdv_name().equals(advertisementService.findById(advertisement.getId()));
         if (!pic.getOriginalFilename().equals("")) {
             //若图片名不为空，即不需更新图片
             String filePath = pathConfig.getAdvImgPath();
@@ -147,7 +150,8 @@ public class AdvertisementController {
                 String text = advertisement.getAdv_name();
                 if (text.length() <=10) {
                     //少于10字，输出一行
-                    PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+                    PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                            (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
                 }else if (text.length() >10 && text.length() <20) {
                     //少于20字，输出两行
                     String temp = text.substring(0,10);
@@ -168,13 +172,57 @@ public class AdvertisementController {
             }
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
         }else {
-            //若图片名为空，则无需更新图片，只需更新信息即可
-            try {
-                advertisementService.addAdv(advertisement);
-                attributes.addFlashAttribute("uploadMsg","信息更新成功！");
-            }catch (Exception e) {
-                attributes.addFlashAttribute("uploadMsg","更新数据失败，请重试！");
-                return "redirect:/toeditadv/"+advertisement.getId();
+            if (!textChanged) {
+                //若图片名为空，且文字无修改则无需更新图片，只需更新信息即可
+                try {
+                    advertisementService.addAdv(advertisement);
+                    attributes.addFlashAttribute("uploadMsg","信息更新成功！");
+                }catch (Exception e) {
+                    attributes.addFlashAttribute("uploadMsg","更新数据失败，请重试！");
+                    return "redirect:/toeditadv/"+advertisement.getId();
+                }
+            }else {
+                try {
+                    //若文字有修改，则也需更新图片
+                    String filePath = pathConfig.getAdvImgPath();
+                    String uploadMsg = "信息及图片上传成功!";
+                    try {
+                        Advertisement adv = advertisementService.addAdv(advertisement);
+                        //重命名文件
+                        String fileName = "adv"+adv.getId()+".png";
+                        //组合路径
+                        String path = filePath+fileName;
+                        //覆盖文字部分
+                        PictureUtil.addImageWeatermark(path,filePath+"adv_text_basic.png",path,0,260,1);
+                        //添加文字，最多两行20字
+                        String text = advertisement.getAdv_name();
+                        if (text.length() <=10) {
+                            //少于10字，输出一行
+                            PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                                    (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
+                        }else if (text.length() >10 && text.length() <20) {
+                            //少于20字，输出两行
+                            String temp = text.substring(0,10);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                            temp = text.substring(10,text.length());
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                        }else {
+                            //大于20字，只输出两行
+                            String temp = text.substring(0,10);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                            temp = text.substring(10,20);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                        }
+                    }catch (Exception e) {
+                        uploadMsg = "图片上传出现错误,请重新上传!";
+                        attributes.addFlashAttribute("uploadMsg",uploadMsg);
+                        return "redirect:/toeditadv/"+advertisement.getId();
+                    }
+                    attributes.addFlashAttribute("uploadMsg",uploadMsg);
+                }catch (Exception e) {
+                    attributes.addFlashAttribute("uploadMsg","更新数据失败，请重试！");
+                    return "redirect:/toeditadv/"+advertisement.getId();
+                }
             }
         }
         return "redirect:/toeditadv/"+advertisement.getId();
