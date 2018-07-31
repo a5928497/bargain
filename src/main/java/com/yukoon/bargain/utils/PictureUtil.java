@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class PictureUtil {
 	/** 图片格式：JPG */
-	private static final String PICTRUE_FORMATE_JPG = "png";
+	private static final String PICTRUE_FORMATE_PNG = "png";
 
 	/**
 	 * 添加图片水印
@@ -59,7 +59,7 @@ public class PictureUtil {
 			}
 			g.drawImage(waterImage, x, y, width_1, height_1, null); // 水印文件结束
 			g.dispose();
-			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, output);
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_PNG, output);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -120,7 +120,7 @@ public class PictureUtil {
 
 			g.drawString(pressText, x, y + height_1);
 			g.dispose();
-			ImageIO.write(bufferedImage, PICTRUE_FORMATE_JPG, outputfile);
+			ImageIO.write(bufferedImage, PICTRUE_FORMATE_PNG, outputfile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
