@@ -20,8 +20,10 @@
         </div>
     </div>
         <div id="details_holder">
-            <p id="details" th:text="活动说明：+${activity.introduce}"></p>
-            <button type="submit" id="join_BTN" >我要参与</div></button>
+            <div id="details_container">
+                <p id="details" th:text="活动说明：+${activity.introduce}"></p>
+                <button type="submit" id="join_BTN" >我要参与</div></button>
+            </div>
         </div>
 
         <form id="joinForm" method="post" action="/joinIn">

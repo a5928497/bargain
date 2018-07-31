@@ -16,15 +16,22 @@
 #details_holder {
     background: url(../../images/act_info_background_foot.jpg) no-repeat;
     background-size: 100% 100%;
-    min-width: 100%;
+    width: 100%;
     min-height: 34.4%;
     margin: 0 auto;
     text-align: center;
 }
+#details_container {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
 #details {
-    max-width: 80%;
+    width: 80%;
     color: rgb(255,232,169);
     font-size: 11pt;
+    text-align: left;
+    margin: 0 auto;
 }
 #join_BTN {
     background: url(../../images/join_btn.png) no-repeat;
