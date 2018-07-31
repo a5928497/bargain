@@ -78,6 +78,7 @@ body {
 #BTNs_container {
     margin: 0 auto;
     text-align: center;
+    width: 100%;
 }
 .border {
     height: 5px;
@@ -89,6 +90,7 @@ body {
     outline: none;
     width: 35%;
     vertical-align: top;
+    margin: 0 auto;
 }
 .btn_a {
     text-decoration: none;
