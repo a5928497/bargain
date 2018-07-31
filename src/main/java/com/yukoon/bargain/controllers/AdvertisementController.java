@@ -83,7 +83,7 @@ public class AdvertisementController {
             System.out.println(path);
             if (text.length() <=10) {
                 //少于10字，输出一行
-                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
+                PictureUtil.addTextWeatermark(filePath+"adv_basic.png",filePath+"test.png",text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
             }else if (text.length() >10 && text.length() <20) {
                 //少于20字，输出两行
                 String temp = text.substring(0,10);
