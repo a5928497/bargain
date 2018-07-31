@@ -1,12 +1,10 @@
 FROM openjdk:8-jdk-alpine
 ENV TIME_ZONE Asia/Shanghai
 ARG FINAL_NAME
-RUN yum -y install fontconfig \
+RUN apk add fontconfig \
 && cd /usr/shared/fonts \
 && mkdir chinese \
 ADD simsun.ttc /usr/shared/fonts/chinese/simsun.ttc
-RUN yum -y install ttmkfdir \
-&& ttmkfdir -e /usr/share/X11/fonts/encodings/encodings.dir
 ADD fonts.conf /etc/fonts/fonts.conf
 RUN fc-cache
 RUN mkdir -p /app
