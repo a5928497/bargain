@@ -70,6 +70,8 @@ public class PictureUtil {
 	 *
 	 * @param targetImg
 	 *            目标图片路径
+	 * @param outputImg
+	 * 			  输出路径
 	 * @param pressText
 	 *            水印文字， 如：中国证券网
 	 * @param fontName

@@ -79,6 +79,7 @@ public class AdvertisementController {
             PictureUtil.addImageWeatermark(filePath+"adv_basic.png",path,path,10,10,1);
             //添加文字，最多两行20字
             String text = advertisement.getAdv_name();
+            System.out.println(text);
             if (text.length() <=10) {
                 //少于10字，输出一行
                 PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,20,Color.WHITE,30,275,1);
