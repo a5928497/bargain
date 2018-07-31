@@ -1,7 +1,8 @@
 FROM openjdk:8-jdk-alpine
 ENV TIME_ZONE Asia/Shanghai
 ARG FINAL_NAME
-RUN apk add fontconfig \
+RUN apk --update add curl bash ttf-dejavu
+&& apk add fontconfig \
 && cd /usr/shared/fonts \
 && mkdir chinese \
 ADD simsun.ttc /usr/shared/fonts/chinese/simsun.ttc
