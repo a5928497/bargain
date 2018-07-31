@@ -87,7 +87,7 @@ body {
     font-size: 18pt;
     color: transparent;
     outline: none;
-    width: 40%;
+    max-width: 40%;
     vertical-align: top;
 }
 .btn_a {
