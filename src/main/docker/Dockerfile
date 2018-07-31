@@ -1,7 +1,8 @@
 FROM openjdk:8-jdk-alpine
 ENV TIME_ZONE Asia/Shanghai
 ARG FINAL_NAME
-RUN apk --update add curl bash ttf-dejavu \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+&& apk --update add curl bash ttf-dejavu \
 && apk add fontconfig \
 && cd /usr/shared/fonts \
 && mkdir chinese
@@ -11,8 +12,7 @@ RUN fc-cache
 RUN mkdir -p /app
 ADD ${FINAL_NAME} /app/
 RUN \
-sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-&& apk update \
+apk update \
 && apk add --no-cache tzdata \
 && echo "${TIME_ZONE}" > /etc/timezone \
 && cp -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \
