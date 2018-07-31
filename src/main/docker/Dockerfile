@@ -1,10 +1,14 @@
 FROM openjdk:8-jdk-alpine
 ENV TIME_ZONE Asia/Shanghai
 ARG FINAL_NAME
-RUN echo -e "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.4/main\n\
-https://mirror.tuna.tsinghua.edu.cn/alpine/v3.4/community" > /etc/apk/repositories
-RUN apk --update add curl bash ttf-dejavu && \
-      rm -rf /var/cache/apk/*
+RUN yum -y install fontconfig \
+&& cd /usr/shared/fonts \
+&& mkdir chinese \
+ADD simsun.ttc /usr/shared/fonts/chinese/simsun.ttc
+RUN yum -y install ttmkfdir \
+&& ttmkfdir -e /usr/share/X11/fonts/encodings/encodings.dir
+ADD fonts.conf /etc/fonts/fonts.conf
+RUN fc-cache
 RUN mkdir -p /app
 ADD ${FINAL_NAME} /app/
 RUN \
