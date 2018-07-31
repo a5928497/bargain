@@ -20,6 +20,7 @@ public class WeChatConfig {
 	private String timestamp;
 	private String appid;
 	private String jsapi_ticket;
+	private Integer act_id;
 	@Transient
 	private String signature;
 	@Transient

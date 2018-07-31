@@ -45,10 +45,10 @@ public class WeChatService {
         return responseEntity.getBody();
     }
 
-    public WeChatConfig signature(String url) {
+    public WeChatConfig signature(String url,Integer act_id) {
         //获取配置信息，使用list防止意外插入
         String jsapi_ticket;
-        List<WeChatConfig> list = weChatConfigRepo.findAll();
+        List<WeChatConfig> list = weChatConfigRepo.findByAct_id(act_id);
         WeChatConfig weChatConfig;
         if (list.size() > 0 ) {
             //比较时间戳
@@ -93,7 +93,7 @@ public class WeChatService {
             signature = SHA1Util.encode(string1);
             weChatConfig = new WeChatConfig();
             weChatConfig.setAppid(APPID).setJsapi_ticket(jsapi_ticket).setTimestamp(timestamp).setNonceStr(nonceStr)
-                    .setSignature(signature);
+                    .setSignature(signature).setAct_id(act_id);
             System.out.println(signature);
             weChatConfig =  weChatConfigRepo.saveAndFlush(weChatConfig);
         }
@@ -107,6 +107,6 @@ public class WeChatService {
 
     public static void main(String[] args) {
        WeChatService weChatService = new WeChatService();
-       weChatService.signature("www.baidu.com");
+//       weChatService.signature("www.baidu.com");
     }
 }
