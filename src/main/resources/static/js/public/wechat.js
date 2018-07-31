@@ -48,6 +48,7 @@ $(function () {
                 "desc" : desc,   // 分享描述
                 "title" : title,   // 分享标题
                 success : function () {
+                    console.log(shareData.imgUrl);
                 },
                 cancel: function (res) {
                 },
