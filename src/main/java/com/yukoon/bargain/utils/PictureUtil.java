@@ -119,7 +119,7 @@ public class PictureUtil {
 			} else if (y > heightDiff) {
 				y = heightDiff;
 			}
-
+			System.out.println("presstext:"+pressText);
 			g.drawString(pressText, x, y + height_1);
 			g.dispose();
 			ImageIO.write(bufferedImage, PICTRUE_FORMATE_PNG, outputfile);
