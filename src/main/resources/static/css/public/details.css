@@ -97,20 +97,20 @@ body {
     outline: none;
 }
 #help_BTN {
-    background: url(../../images/help_btn.png);
-    background-size: 100% 100%;
+    background: url(../../images/help_btn.png) no-repeat center top;
+    background-size: 90% 90%;
 }
 #join_BTN {
-    background: url(../../images/details_join_btn.png);
-    background-size: 100% 100%;
+    background: url(../../images/details_join_btn.png) no-repeat center top;
+    background-size: 90% 90%;
 }
 #share_BTN {
     background: url(../../images/share_btn.png);
     background-size: 100% 100%;
 }
 #record_BTN {
-    background: url(../../images/records_btn.png);
-    background-size: 100% 100%;
+    background: url(../../images/records_btn.png) no-repeat center top;
+    background-size: 90% 90%;
 }
 
 #helper_container {
