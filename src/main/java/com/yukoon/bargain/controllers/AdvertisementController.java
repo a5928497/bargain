@@ -84,20 +84,20 @@ public class AdvertisementController {
             String text = advertisement.getAdv_name();
             if (text.length() <=10) {
                 //少于10字，输出一行
-                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,new Color(122,20,20),
                         (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
             }else if (text.length() >10 && text.length() <20) {
                 //少于20字，输出两行
                 String temp = text.substring(0,10);
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,Color.WHITE,30,265,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,new Color(122,20,20),30,265,1);
                 temp = text.substring(10,text.length());
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,Color.WHITE,30,290,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,FONT_SIZE,new Color(122,20,20),30,290,1);
             }else {
                 //大于20字，只输出两行
                 String temp = text.substring(0,10);
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,265,1);
                 temp = text.substring(10,20);
-                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,290,1);
             }
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
@@ -150,20 +150,20 @@ public class AdvertisementController {
                 String text = advertisement.getAdv_name();
                 if (text.length() <=10) {
                     //少于10字，输出一行
-                    PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                    PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,new Color(122,20,20),
                             (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
                 }else if (text.length() >10 && text.length() <20) {
                     //少于20字，输出两行
                     String temp = text.substring(0,10);
-                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,265,1);
                     temp = text.substring(10,text.length());
-                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,290,1);
                 }else {
                     //大于20字，只输出两行
                     String temp = text.substring(0,10);
-                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,265,1);
                     temp = text.substring(10,20);
-                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                    PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,290,1);
                 }
             }catch (Exception e) {
                 uploadMsg = "图片上传出现错误,请重新上传!";
@@ -198,20 +198,20 @@ public class AdvertisementController {
                         String text = advertisement.getAdv_name();
                         if (text.length() <=10) {
                             //少于10字，输出一行
-                            PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,Color.WHITE,
+                            PictureUtil.addTextWeatermark(path,path,text,"宋体", Font.BOLD,FONT_SIZE,new Color(122,20,20),
                                     (ADV_IMG_SIZE/2)-((FONT_SIZE*text.length())/2),275,1);
                         }else if (text.length() >10 && text.length() <20) {
                             //少于20字，输出两行
                             String temp = text.substring(0,10);
-                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,265,1);
                             temp = text.substring(10,text.length());
-                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,290,1);
                         }else {
                             //大于20字，只输出两行
                             String temp = text.substring(0,10);
-                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,265,1);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,265,1);
                             temp = text.substring(10,20);
-                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,Color.WHITE,30,290,1);
+                            PictureUtil.addTextWeatermark(path,path,temp,"宋体",Font.BOLD,20,new Color(122,20,20),30,290,1);
                         }
                     }catch (Exception e) {
                         uploadMsg = "图片上传出现错误,请重新上传!";
