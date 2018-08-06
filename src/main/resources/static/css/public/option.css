@@ -135,8 +135,8 @@
     margin-top: 20%;
     font-size: 18pt;
     color: transparent;
-    background: url(../../images/back_btn.png);
-    background-size: 100% 100%;
+    background: url(../../images/back_btn.png) no-repeat top center;
+    background-size: 95% 95%;
     border-color: transparent;
     outline: none;
     width: 50%;
