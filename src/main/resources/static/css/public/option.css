@@ -37,14 +37,14 @@
     color: transparent;
 }
 #img_container {
-    margin-top: 14%;
+    margin-top: 11%;
     float: left;
     width: 60%;
     height: 100%;
 }
 #reward_img {
-    width: 60%;
-    height: 60%;
+    width: 55%;
+    height: 55%;
 }
 #right_arrow_container {
     float: left;
