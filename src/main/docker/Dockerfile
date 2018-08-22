@@ -8,6 +8,7 @@ sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
 ADD simsun.ttc /usr/share/fonts/chinese/simsun.ttc
 ADD fonts.conf /etc/fonts/fonts.conf
 ADD root /var/spool/cron/crontabs/root
+RUN crond
 RUN fc-cache
 RUN mkdir -p /app
 ADD ${FINAL_NAME} /app/
