@@ -29,35 +29,35 @@
 }
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png") no-repeat top center;
-    background-size: 65% 65%;
+    background-size: 65% 95%;
     border-color: transparent;
     outline: none;
     width: 100%;
-    font-size: 23pt;
+    font-size: 20pt;
     color: transparent;
 }
 #img_container {
-    margin-top: 14%;
+    margin-top: 11%;
     float: left;
     width: 60%;
     height: 100%;
 }
 #reward_img {
-    width: 60%;
-    height: 60%;
+    width: 55%;
+    height: 55%;
 }
 #right_arrow_container {
     float: left;
     width: 20%;
-    margin-top: 21%;
+    margin-top: 23%;
 }
 #arrow_right_BTN {
     background: url("../../images/arrows_right.png") no-repeat top center;
-    background-size: 65% 65%;
+    background-size: 65% 95%;
     border-color: transparent;
     outline: none;
     width: 100%;
-    font-size: 23pt;
+    font-size: 20pt;
     color: transparent;
 }
 
@@ -132,12 +132,12 @@
     width: 70%;
 }
 #backBTN {
-    margin-top: 20%;
+    margin: 20% auto;
     font-size: 18pt;
     color: transparent;
     background: url(../../images/back_btn.png) no-repeat top center;
     background-size: 95% 95%;
     border-color: transparent;
     outline: none;
-    width: 50%;
+    width: 45%;
 }
