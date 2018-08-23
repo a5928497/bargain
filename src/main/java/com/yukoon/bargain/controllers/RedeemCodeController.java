@@ -157,9 +157,14 @@ public class RedeemCodeController {
             //检查登录信息与查询是否一致，防止盗查
             RedeemCode redeemCode = redeemCodeService.findByWinnerAndAct(gi.getUser().getId(),gi.getActivity().getId());
             User user = userService.findByUsername(username);
-            result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
+            //获取该条记录奖品的兑奖信息，若礼品有独立的兑奖信息，则获取该礼品的兑奖信息
+            result = rewardService.findById(gi.getReward().getId()).getTips();
+            if (null == result || "".equals(result)) {
+                //若该礼品没有独立的兑奖信息，则获取该活动的通用兑奖信息
+                result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
+            }
             if (null != redeemCode && null != user && redeemCode.getWinner().getId() == user.getId()){
-                result = "兑换码：" + redeemCode.getCode() + "，" +result;
+                result = "您的兑换码为：" + redeemCode.getCode() + "，兑奖方式：" +result;
             }else if (null == redeemCode && gi.getPriceLeft() <= 0) {
                 result = "您的兑换码正在路上，请您耐心等待，稍后再查询！";
             }

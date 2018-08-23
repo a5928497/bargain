@@ -32,6 +32,9 @@ public class Reward {
     @Column(name = "SURPLUS")
     private Integer surplus;
 
+    @Column(name = "tips")
+    private String tips;
+
     @JoinColumn(name = "ACT_ID")
     @ManyToOne
     private Activity activity;

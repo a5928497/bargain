@@ -54,6 +54,7 @@
                                     <th data-hide="all">人头数</th>
                                     <th data-hide="all">总数</th>
                                     <th data-hide="all">剩余数</th>
+                                    <th data-hide="all">兑奖信息</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -65,6 +66,7 @@
                                     <td th:text="${reward.times}">times</td>
                                     <td th:text="${reward.total}">total</td>
                                     <td th:text="${reward.surplus}">surplus</td>
+                                    <td>请在编辑处查看</td>
                                     <td>
                                         <a th:href="@{/reward/}+${reward.id}" th:if="${act_status!=2}"><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <a th:href="@{/code/}+${reward.id}" ><button class="btn btn-sm btn-success">兑换券</button></a>
