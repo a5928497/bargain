@@ -165,8 +165,10 @@ public class RedeemCodeController {
             }
             if (null != redeemCode && null != user && redeemCode.getWinner().getId() == user.getId()){
                 result = "您的兑换码为：" + redeemCode.getCode() + "，兑奖方式：" +result;
-            }else if (null == redeemCode && gi.getPriceLeft() <= 0) {
+            }else if ((null == redeemCode || "".equals(redeemCode)) && gi.getPriceLeft() <= 0) {
                 result = "您的兑换码正在路上，请您耐心等待，稍后再查询！";
+            }else {
+                result = "您的查询信息有误，请更正后重新查询！";
             }
         }
         return result;
