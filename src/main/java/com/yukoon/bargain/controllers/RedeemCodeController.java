@@ -163,7 +163,8 @@ public class RedeemCodeController {
                 //若该礼品没有独立的兑奖信息，则获取该活动的通用兑奖信息
                 result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
             }
-            if (null != redeemCode && null != user && redeemCode.getWinner().getId() == user.getId()){
+//             && null != user && redeemCode.getWinner().getId() == user.getId()
+            if (null != redeemCode){
                 result = "您的兑换码为：" + redeemCode.getCode() + "，兑奖方式：" +result;
             }else if ((null == redeemCode || "".equals(redeemCode)) && gi.getPriceLeft() <= 0) {
                 result = "您的兑换码正在路上，请您耐心等待，稍后再查询！";
