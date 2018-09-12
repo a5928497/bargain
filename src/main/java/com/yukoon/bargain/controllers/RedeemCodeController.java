@@ -153,22 +153,21 @@ public class RedeemCodeController {
         String username = (String) subject.getPrincipal();
         GameInfo gi = gameService.findById(gameinfoId);
         String result = "您的查询信息有误，请更正后重新查询！";
-        if (null != gi && null != username) {
+        if (null != gi && null != username && gi.getPriceLeft() <= 0) {
             //检查登录信息与查询是否一致，防止盗查
             RedeemCode redeemCode = redeemCodeService.findByWinnerAndAct(gi.getUser().getId(),gi.getActivity().getId());
             User user = userService.findByUsername(username);
-            //获取该条记录奖品的兑奖信息，若礼品有独立的兑奖信息，则获取该礼品的兑奖信息
-            result = rewardService.findById(gi.getReward().getId()).getTips();
-            if (null == result || "".equals(result)) {
-                //若该礼品没有独立的兑奖信息，则获取该活动的通用兑奖信息
-                result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
-            }
-            if (null != redeemCode && null != user && redeemCode.getWinner().getId() == user.getId()){
+//             && null != user && redeemCode.getWinner().getId() == user.getId()
+            if (null != redeemCode){
+                //获取该条记录奖品的兑奖信息，若礼品有独立的兑奖信息，则获取该礼品的兑奖信息
+                result = rewardService.findById(gi.getReward().getId()).getTips();
+                if (null == result || "".equals(result)) {
+                    //若该礼品没有独立的兑奖信息，则获取该活动的通用兑奖信息
+                    result = activityService.findById(gi.getActivity().getId()).getCashingInfo();
+                }
                 result = "您的兑换码为：" + redeemCode.getCode() + "，兑奖方式：" +result;
-            }else if ((null == redeemCode || "".equals(redeemCode)) && gi.getPriceLeft() <= 0) {
-                result = "您的兑换码正在路上，请您耐心等待，稍后再查询！";
             }else {
-                result = "您的查询信息有误，请更正后重新查询！";
+                result = "恭喜您已获奖，活动结束将有专人跟你联系，烦请等待！";
             }
         }
         return result;

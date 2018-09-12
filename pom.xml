@@ -4,7 +4,7 @@
 
     <groupId>com.yukoon</groupId>
     <artifactId>bargain</artifactId>
-    <version>0.0.116-SNAPSHOT</version>
+    <version>0.0.120-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>bargain</name>
@@ -212,18 +212,18 @@
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>
-                <excludes>
-                    <exclude>application.yml</exclude>
-                    <exclude>pathconfig.yml</exclude>
-                </excludes>
+                <!--<excludes>-->
+                    <!--<exclude>application.yml</exclude>-->
+                    <!--<exclude>pathconfig.yml</exclude>-->
+                <!--</excludes>-->
             </resource>
-            <resource>
-                <directory>src/main/prod_resources</directory>
-                <includes>
-                    <include>application.yml</include>
-                    <include>pathconfig.yml</include>
-                </includes>
-            </resource>
+            <!--<resource>-->
+                <!--<directory>src/main/prod_resources</directory>-->
+                <!--<includes>-->
+                    <!--<include>application.yml</include>-->
+                    <!--<include>pathconfig.yml</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
         </resources>
         <plugins>
             <plugin>
