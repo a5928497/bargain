@@ -7,7 +7,7 @@
     <title>我的记录</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/user_info.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/user_info.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -32,24 +32,32 @@
                 <td th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中" style="width: 20%">状态</td>
                 <td style="width: 15%">
                     <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
-                    <a class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
+                    <a class="codeInfoBTN" th:attr="gameinfo = ${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
                 </td>
             </tr>
         </table>
-        <!--<div class="info" th:each="gameInfo:${gameInfos}" th:if="${gameInfos != null}">-->
-            <!--<span id="act_name" th:text="${gameInfo.activity.act_name}"></span>-->
-            <!--<span id="reward_name" th:text="${gameInfo.reward.rewardName}"></span>-->
-            <!--<span id="status" th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中"></span>-->
-            <!--<a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>-->
-            <!--<a class="codeInfoBTN" th:attr="uri = @{/getcodeinfo/}+${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>-->
-        <!--</div>-->
         <div class="info" th:if="${gameInfos == null}">
             <span id="empty_msg">您目前还没有参加任何活动！</span>
         </div>
+        <form id="addressForm" method="post" action="/address" modelAttribute="address">
+            <div>
+                <input type="text" name="contactName" placeholder="联系人">
+            </div>
+            <div>
+                <input type="tel" name="phoneNum" placeholder="联系电话">
+            </div>
+            <div>
+                <input type="text" name="addressDetails" placeholder="联系地址">
+            </div>
+            <input id="gameinfo_input" type="hidden" name="gameInfo.id" value="">
+            <div>
+                <button type="submit">保存</button>
+            </div>
+        </form>
     </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/user_info.min.js}"></script>
+    <script th:src="@{/js/public/user_info.js}"></script>
 </body>
 
 </html>

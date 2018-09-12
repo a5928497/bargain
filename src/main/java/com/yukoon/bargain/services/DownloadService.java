@@ -44,7 +44,7 @@ public class DownloadService {
     //根据某条活动记录导出帮助者名单
     public XSSFWorkbook exportAllHelperByActId(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
 //        List<HelperExport> list = convert2HE(helperInfoRepo.findAllByGameInfo(gameInfoId));
-        List<HelperExport> list = new ArrayList<>(repeatFliter(convert2HE(helperInfoRepo.findAllByActId(act_id))));;
+        List<HelperExport> list = convert2HE(new ArrayList<>(repeatFliter(helperInfoRepo.findAllByActId(act_id))));
         List<Excel> excels = new ArrayList<>();
         //设置标题栏
         excels.add(new Excel("参与者手机号","username",0));
@@ -159,10 +159,10 @@ public class DownloadService {
         return list;
     }
     //去重
-    public Set<HelperExport> repeatFliter(List<HelperExport> helperExports) {
-        Set<HelperExport> set = new HashSet<>();
-        for (HelperExport he : helperExports) {
-            set.add(he);
+    public Set<HelperInfo> repeatFliter(List<HelperInfo> helperInfos) {
+        Set<HelperInfo> set = new HashSet<>();
+        for (HelperInfo hi : helperInfos) {
+            set.add(hi);
         }
         return set;
     }

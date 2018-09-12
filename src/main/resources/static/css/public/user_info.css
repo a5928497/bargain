@@ -48,3 +48,25 @@ table{
 a {
     color: rgb(255,232,169);
 }
+#addressForm {
+    width: 100%;
+    margin-top: 3%;
+}
+#addressForm input {
+    text-align: center;
+    color: rgb(255,232,169);
+    border-color: transparent transparent rgb(255,232,169) transparent;
+    outline: none;
+    background: transparent;
+}
+#addressForm input::-webkit-input-placeholder {
+    color: rgb(255,232,169);
+    text-align: center;
+}
+
+#addressForm button {
+    margin-top: 3%;
+    background: transparent;
+    color: rgb(255,232,169);
+    border-color:rgb(255,232,169) ;
+}

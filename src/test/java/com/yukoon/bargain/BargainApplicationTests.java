@@ -45,8 +45,10 @@ public class BargainApplicationTests {
 	private AdvertisementRepo advertisementRepo;
 	@Autowired
 	private HelperInfoRepo helperInfoRepo;
+	@Autowired
+	private AddressRepo addressRepo;
 	@Test
 	public void contextLoads() {
-		System.out.println(rewardRepo.findAllSurplusRewardsByActid(2).size());
+		System.out.println(addressRepo.findByGameInfoId(5).size());
 		}
 }
