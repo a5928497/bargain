@@ -20,4 +20,7 @@ public interface HelperInfoRepo extends JpaRepository<HelperInfo,Integer> {
 
     @Query("select h from HelperInfo h where h.gameInfo.activity.id = :act_id and h.helper.id = :helper_id")
     public List<HelperInfo> findByActIdAndHelperId(@Param("act_id")Integer act_id,@Param("helper_id")Integer helper_id);
+
+    @Query("select h from HelperInfo h where h.gameInfo.activity.id = :act_id")
+    public List<HelperInfo> findAllByActId(@Param("act_id")Integer act_id);
 }

@@ -68,6 +68,7 @@
                                         <a th:href="@{/awards/}+${act.id}"><button class="btn btn-sm btn-info">得奖者</button></a>
                                         <a th:href="@{/users/}+${act.id}"><button class="btn btn-sm btn-warning">参与者</button></a>
                                         <a th:href="@{/act/}+${act.id}"><button class="btn btn-sm btn-success">编辑活动</button></a>
+                                        <a th:href="@{/exportallhelperinact/}+${act.id}"><button class="btn btn-sm btn-success">所有帮砍者</button></a>
                                         <a th:href="@{/actopen/}+${act.id}" th:if="${act.act_status==0}"><button class="btn btn-sm btn-primary" id="openBTN">开启</button></a>
                                         <a th:href="@{/actclose/}+${act.id}" th:if="${act.act_status==1}"><button class="btn btn-sm btn-danger" id="closeBTN">关闭</button></a>
                                     </td>

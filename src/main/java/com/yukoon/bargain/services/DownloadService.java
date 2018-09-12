@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class DownloadService {
@@ -35,6 +32,19 @@ public class DownloadService {
     //根据某条活动记录导出帮助者名单
     public XSSFWorkbook exportAllHelperByGameInfoId(Integer gameInfoId) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
         List<HelperExport> list = convert2HE(helperInfoRepo.findAllByGameInfo(gameInfoId));
+        List<Excel> excels = new ArrayList<>();
+        //设置标题栏
+        excels.add(new Excel("参与者手机号","username",0));
+        excels.add(new Excel("帮助者手机号","helperName",0));
+        excels.add(new Excel("帮砍价值","bargainPrice",0));
+        String excelName = list.get(0).getUsername()+"的帮助者统计";
+        return exportExcel(list,excels,excelName,HelperExport.class);
+    }
+
+    //根据某条活动记录导出帮助者名单
+    public XSSFWorkbook exportAllHelperByActId(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+//        List<HelperExport> list = convert2HE(helperInfoRepo.findAllByGameInfo(gameInfoId));
+        List<HelperExport> list = new ArrayList<>(repeatFliter(convert2HE(helperInfoRepo.findAllByActId(act_id))));;
         List<Excel> excels = new ArrayList<>();
         //设置标题栏
         excels.add(new Excel("参与者手机号","username",0));
@@ -148,5 +158,12 @@ public class DownloadService {
         }
         return list;
     }
-
+    //去重
+    public Set<HelperExport> repeatFliter(List<HelperExport> helperExports) {
+        Set<HelperExport> set = new HashSet<>();
+        for (HelperExport he : helperExports) {
+            set.add(he);
+        }
+        return set;
+    }
 }
