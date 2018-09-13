@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reward</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/footable/2.0.3/css/footable.core.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
+                    <h2>管理后台</h2>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <a th:href="@{/exportaddress/}+${act_id}"><button class="btn btn-danger">批量导出</button></a>
+            <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
+            <div class="border"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>发奖地址</h5>
+
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                <thead>
+                                <tr>
+                                    <th data-hide="all">ID</th>
+                                    <th data-hide="all">奖品</th>
+                                    <th data-hide="all">联系人</th>
+                                    <th data-hide="all">电话号码</th>
+                                    <th data-hide="all">收货地址</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="address:${addresses}">
+                                    <td th:text="${address.id}">id</td>
+                                    <td th:text="${address.rewardName}">rewardName</td>
+                                    <td th:text="${address.contactName}">contactName</td>
+                                    <td th:text="${address.phoneNum}">times</td>
+                                    <td th:text="${address.addressDetails}">total</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    <!-- Mainly scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+
+    <script>
+        $deleteBTNs = $(".deleteBTN")
+        $deleteForm = $("#deleteForm");
+        $border = $(".border");
+        $border.css("height",10);
+        $deleteBTNs.click(function () {
+            var isok = confirm("确定删除吗？");
+            if (isok) {
+                $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            }
+            return false;
+        });
+    </script>
+
+</body>
+
+</html>

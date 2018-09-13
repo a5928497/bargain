@@ -49,6 +49,6 @@ public class BargainApplicationTests {
 	private AddressRepo addressRepo;
 	@Test
 	public void contextLoads() {
-		System.out.println(addressRepo.findByGameInfoId(5).size());
+		System.out.println(addressRepo.findAllByActId(3).size());
 		}
 }

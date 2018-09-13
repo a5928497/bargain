@@ -1,6 +1,7 @@
 package com.yukoon.bargain.services;
 
 import com.yukoon.bargain.entities.*;
+import com.yukoon.bargain.repository.AddressRepo;
 import com.yukoon.bargain.repository.GameInfoRepo;
 import com.yukoon.bargain.repository.HelperInfoRepo;
 import com.yukoon.bargain.utils.ExcelUtil;
@@ -19,6 +20,8 @@ public class DownloadService {
     private GameInfoRepo gameInfoRepo;
     @Autowired
     private HelperInfoRepo helperInfoRepo;
+    @Autowired
+    private AddressRepo addressRepo;
 
     public XSSFWorkbook exportExcel(List list,List<Excel> excels,String excelName,Class clazz) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException {
         Map<Integer,List<Excel>> map = new LinkedHashMap<>();
@@ -126,6 +129,19 @@ public class DownloadService {
         excels.add(new Excel("兑换码","redeemCode",0));
         String excelName = list_temp.get(0).getActName()+"所有已兑奖者统计";
         return exportExcel(list_temp,excels,excelName,GameInfoExport.class);
+    }
+
+    //根据活动导出所有得奖者地址
+    public XSSFWorkbook exportAllAddressByActid(Integer act_id) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        List<Address> list = addressRepo.findAllByActId(act_id);
+        List<Excel> excels = new ArrayList<>();
+        //设置标题栏
+        excels.add(new Excel("奖品名","rewardName",0));
+        excels.add(new Excel("联系人","contactName",0));
+        excels.add(new Excel("电话号码","phoneNum",0));
+        excels.add(new Excel("收货地址","addressDetails",0));
+        String excelName = "发货地址";
+        return exportExcel(list,excels,excelName,Address.class);
     }
 
     //GameInfo对象转换

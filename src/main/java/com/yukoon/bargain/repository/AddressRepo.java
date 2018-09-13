@@ -11,4 +11,7 @@ public interface AddressRepo extends JpaRepository<Address,Integer> {
 
 	@Query("select a from Address a where a.gameInfo.id = :gameinfo_id")
 	public List<Address> findByGameInfoId(@Param("gameinfo_id")Integer gameinfo_id);
+
+	@Query("select a from Address a where a.gameInfo.activity.id = :act_id")
+	public List<Address> findAllByActId(@Param("act_id")Integer act_id);
 }
