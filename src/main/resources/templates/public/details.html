@@ -56,6 +56,10 @@
                     <a href="#" id="share_a" class="btn_a"><button class="BTN" id="share_BTN">分享</button></a>
                     <a class="btn_a" th:href="@{/myrecords}"><button class="BTN" id="record_BTN">记录</button></a>
                 </div>
+                <div class="share">
+                    <div  class="sns" onclick="ShareHot('weixinsession')"><span>微信</span></div>
+                    <div class="friend" onclick="ShareHot('weixintimeline')"><span>朋友圈</span></div>
+                </div>
                 <div id="helper_container">
                     <p th:each="helper:${helpers}" id="helper_info">
                         <span th:text="${helper.helper.username}"></span>
@@ -70,10 +74,7 @@
                         </a>
                     </div>
                 </div>
-                <section class="share">
-                    <div  class="sns" onclick="ShareHot('weixinsession')"><span>微信</span></div>
-                    <div class="friend" onclick="ShareHot('weixintimeline')"><span>朋友圈</span></div>
-                </section>
+
             </div>
 
     <input type="hidden" id="msg" th:value="${msg}">

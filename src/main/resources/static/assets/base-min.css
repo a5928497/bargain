@@ -7,12 +7,12 @@ section img {width:100%; max-width: 100%;height: auto;display: block;}
 section a{display: block;}
 
 /******分享*****/
-.share{width:100%;margin:0; padding:0; background:#eaeaea; display:-webkit-box; height:40px; line-height:40px;}
+.share{width:75%;margin:0; padding:0; background:transparent; display:-webkit-box; height:40px; line-height:40px;margin: 1% auto;}
 .share .sns,.share .friend{ width:50%; height:24px; line-height:24px; margin:0; padding:0; text-align:center; margin-top:8px;}
 .share .friend{border-left:1px solid #ccc;}
-.share .sns span{ background:transparent url(../assets/sns.png) no-repeat left center; background-size:24px 24px;width:60px; height:24px; display:inline-block; margin:0; padding:0; font-size:12px; text-indent:30px; color:#0074e1;}
+.share .sns span{ background:transparent url(../assets/sns.png) no-repeat left center; background-size:24px 24px;width:60px; height:24px; display:inline-block; margin:0; padding:0; font-size:12px; text-indent:30px; color:rgb(255,232,169);}
 .share .friend span{background:transparent url(../assets/friend.png) no-repeat left center;background-size:24px 24px; width:72px; height:24px; 
-                    display:inline-block;margin:0; padding:0;font-size:12px; text-indent:30px; color:#0074e1;}
+                    display:inline-block;margin:0; padding:0;font-size:12px; text-indent:30px; color:rgb(255,232,169);}
                     
 .cmbshare{display:-webkit-box; height:60px;border-bottom:1px solid #ccc;}
 .cmblogo{ background:url(../assets/logo.png) no-repeat center center; background-size:36px 36px; height:60px; width:36px; margin-left:15px;}
