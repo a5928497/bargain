@@ -10,7 +10,16 @@
     <link th:href="@{/css/public/details.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
-
+    <link type="text/css" th:href="@{/assets/base-min.css}" rel="stylesheet">
+    <script th:src="@{/assets/sdc_web.js}" type="text/javascript"></script>
+    <script th:src="@{/Scripts/CMBLS-AppLog-Dev.js}"></script>
+    <script type="text/javascript">
+        var pageName = "zh_lcyy_liujia_xnlc2018";
+        window.onload = function () {
+            getAppVersion();
+            pageLoadAppLog();
+        }
+    </script>
 </head>
 
 <body class="gray-bg">
@@ -61,6 +70,10 @@
                         </a>
                     </div>
                 </div>
+                <section class="share">
+                    <div  class="sns" onclick="ShareHot('weixinsession')"><span>微信</span></div>
+                    <div class="friend" onclick="ShareHot('weixintimeline')"><span>朋友圈</span></div>
+                </section>
             </div>
 
     <input type="hidden" id="msg" th:value="${msg}">
@@ -71,5 +84,16 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script th:src="@{/js/public/details.min.js}"></script>
     <script th:src="@{/js/public/wechat.min.js}"></script>
+        <script type="text/javascript">
+            CMBLS.socialShare = {};
+            CMBLS.socialShare.successCallback = function(id, strXML) {}
+            CMBLS.socialShare.failCallback = function(id, strXML) {}
+            function ShareHot(channel) {
+                var titles = encodeURIComponent("新年理财赚头彩");
+                var content = encodeURIComponent("稳健理财，上日年化最高达5.05%。");
+                var url = "https://market.cmbchina.com/personal/xnlc2018/xnlc2018.htm";
+                window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + url;
+            }
+        </script>
 </body>
 </html>
