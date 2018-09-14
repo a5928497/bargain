@@ -85,16 +85,5 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script th:src="@{/js/public/details.min.js}"></script>
     <script th:src="@{/js/public/wechat.min.js}"></script>
-        <script type="text/javascript">
-            CMBLS.socialShare = {};
-            CMBLS.socialShare.successCallback = function(id, strXML) {}
-            CMBLS.socialShare.failCallback = function(id, strXML) {}
-            function ShareHot(channel) {
-                var titles = encodeURIComponent("新年理财赚头彩");
-                var content = encodeURIComponent("稳健理财，上日年化最高达5.05%。");
-                var url = location.href.split('#').toString();
-                window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + url;
-            }
-        </script>
 </body>
 </html>
