@@ -4,7 +4,7 @@
 
     <groupId>com.yukoon</groupId>
     <artifactId>bargain</artifactId>
-    <version>0.0.126</version>
+    <version>0.0.127-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>bargain</name>
@@ -382,7 +382,7 @@
         <url>https://github.com/a5928497/bargain.git</url>
         <connection>scm:git:https://github.com/a5928497/bargain.git</connection>
         <developerConnection>scm:git:https://github.com/a5928497/bargain.git</developerConnection>
-        <tag>0.0.126</tag>
+        <tag>0.0.106</tag>
     </scm>
     <distributionManagement>
         <repository>
