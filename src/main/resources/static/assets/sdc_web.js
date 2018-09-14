@@ -13,7 +13,7 @@ if ((typeof(gConvert)!="undefined")&&gConvert&&(document.cookie.indexOf(gFpc+"="
 
 setTimeout('setsdcjs()',0);
 function setsdcjs(){   
-   var js_path="assets/sdc_cmb.js";                     
+   var js_path="/assets/sdc_cmb.js";
    var SDC_js=document.createElement("script");
     var curWwwPath = window.document.location.href;
     var pathName=window.document.location.pathname;

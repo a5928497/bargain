@@ -62,14 +62,5 @@ $(function () {
             wx.error(function (res) {
             });
         });
-
-        CMBLS.socialShare = {};
-        CMBLS.socialShare.successCallback = function(id, strXML) {}
-        CMBLS.socialShare.failCallback = function(id, strXML) {}
-        function ShareHot(channel) {
-            var titles = encodeURIComponent(title);
-            var content = encodeURIComponent(desc);
-            window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + url;
-        }
     }
 });
