@@ -92,7 +92,7 @@
             function ShareHot(channel) {
                 var titles = encodeURIComponent("新年理财赚头彩");
                 var content = encodeURIComponent("稳健理财，上日年化最高达5.05%。");
-                var url = "https://market.cmbchina.com/personal/xnlc2018/xnlc2018.htm";
+                var url = location.href.split('#').toString();
                 window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + url;
             }
         </script>
