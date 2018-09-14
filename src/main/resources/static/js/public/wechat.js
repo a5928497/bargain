@@ -69,7 +69,6 @@ $(function () {
         function ShareHot(channel) {
             var titles = encodeURIComponent(title);
             var content = encodeURIComponent(desc);
-            var url = location.href.split('#').toString();
             window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + url;
         }
     }
