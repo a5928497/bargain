@@ -85,16 +85,5 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script th:src="@{/js/public/details.min.js}"></script>
     <script th:src="@{/js/public/wechat.min.js}"></script>
-    <script>
-        CMBLS.socialShare = {};
-        CMBLS.socialShare.successCallback = function(id, strXML) {}
-        CMBLS.socialShare.failCallback = function(id, strXML) {}
-        function ShareHot(channel) {
-            var titles = encodeURIComponent("test");
-            var content = encodeURIComponent("test");
-            var curWwwPath = window.document.location.href;
-            window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + curWwwPath;
-        }
-    </script>
 </body>
 </html>

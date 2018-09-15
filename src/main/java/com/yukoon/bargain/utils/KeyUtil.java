@@ -3,7 +3,7 @@ package com.yukoon.bargain.utils;
 import java.util.Random;
 
 public class KeyUtil {
-    private static final String chars = "abcdefghijklmnopqrstuvwxyz1234567890";
+    private static final String chars = "1234567890";
 
     public static String getKey(int length) {
         Random random = new Random();
