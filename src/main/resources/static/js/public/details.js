@@ -9,6 +9,9 @@ $(function () {
     //分享图片地址
     $share_a.attr("href","/share?url="+curWwwPath+"&gameInfo_id="+$("#gameInfoId").val());
     //转发跳转
+    var pageName = "zh_lcyy_liujia_xnlc2018";
+    getAppVersion();
+    pageLoadAppLog();
     CMBLS.socialShare = {};
     CMBLS.socialShare.successCallback = function(id, strXML) {}
     CMBLS.socialShare.failCallback = function(id, strXML) {}
