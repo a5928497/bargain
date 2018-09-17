@@ -33,6 +33,8 @@ public class WeChatController {
     @ResponseBody
     @GetMapping("/getsharedetails")
     public Activity getActShareDetails(@RequestParam("gameInfo_id")Integer gameInfo_id) {
-        return gameService.findById(gameInfo_id).getActivity();
+        Activity activity = gameService.findById(gameInfo_id).getActivity();
+        Activity result = new Activity().setTitle(activity.getTitle()).setDesc(activity.getDesc());
+        return result;
     }
 }
