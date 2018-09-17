@@ -100,7 +100,7 @@
                     title = encodeURIComponent(data.title);
                     content = encodeURIComponent(data.desc);
                     var curWwwPath = window.document.location.href;
-                    window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + titles + "&channel=" + channel + "&url=" + curWwwPath;
+                    window.location.href = "http://CMBLS/socialShare?id=0&type=url&text=" + content + "&title=" + title + "&channel=" + channel + "&url=" + curWwwPath;
                 },
                 error: function(xhr, status, error) {
                 }
