@@ -16,16 +16,19 @@
 #body_container {
     margin: 0 auto;
     text-align: center;
-    background: url(../../images/details_reward_background.jpg) no-repeat;
+    background: url(../../images/option_no_reward_body.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 35.8%;
+    position: relative;
 }
 
 #left_arrow_container {
     float: left;
     width: 20%;
-    margin-top: 23%;
+    position: absolute;
+    top: 40%;
+    left: 0;
 }
 #arrow_left_BTN {
     background: url("../../images/arrows_left.png") no-repeat top center;
@@ -36,20 +39,39 @@
     font-size: 20pt;
     color: transparent;
 }
-#img_container {
-    margin-top: 11%;
+#img_wrap {
+    background: url("../../images/reward_container.png") no-repeat center center;
+    background-size: 100% auto;
     float: left;
     width: 60%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+#img_wrap > div {
     height: 100%;
+    width: 100%;
+    text-align: center;
+}
+#img_wrap > div:after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0px;
+    vertical-align: middle;
 }
 #reward_img {
-    width: 55%;
-    height: 55%;
+    width: 80%;
 }
 #right_arrow_container {
     float: left;
     width: 20%;
-    margin-top: 23%;
+    position: absolute;
+    top: 40%;
+    right: 0;
 }
 #arrow_right_BTN {
     background: url("../../images/arrows_right.png") no-repeat top center;

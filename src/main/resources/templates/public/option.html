@@ -21,7 +21,7 @@
     </div>
     <div id="body_container" th:if="${rewards != null}">
             <div id="left_arrow_container"><button id="arrow_left_BTN" >向左</button></div>
-            <div id="img_container"><img id="reward_img"></img></div>
+            <div id="img_wrap"><div><img id="reward_img"></img></div></div>
             <div id="right_arrow_container"><button id="arrow_right_BTN" >向右</button></div>
     </div>
     <div id="no_reward_container" th:if="${rewards == null}">
