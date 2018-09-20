@@ -86,9 +86,17 @@ public class ActivityController {
         return "redirect:/acts";
     }
 
-    //前台前往活动详情页面
+    //前台前往活动详情页面,get方法
     @GetMapping("/actInfo/{act_id}")
-    public String toActInfo(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
+    public String toActInfoGET(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
+        map.put("act_id",act_id);
+        map.put("activity",activityService.findById(act_id));
+        return "public/activity_info";
+    }
+
+    //前台前往活动详情页面,post方法
+    @PostMapping("/actInfo/{act_id}")
+    public String toActInfoPOST(@PathVariable("act_id")Integer act_id,Map<String,Object> map) {
         map.put("act_id",act_id);
         map.put("activity",activityService.findById(act_id));
         return "public/activity_info";
