@@ -4,3 +4,4 @@ pathconfig:
   advImgPath: f:/material/advImgs/
   shareImgPath: f:/material/shareImgs/
   shareQRImgPath: f:/material/shareQRImgs/
+  basicImgPath: f:/material/basicImgs/

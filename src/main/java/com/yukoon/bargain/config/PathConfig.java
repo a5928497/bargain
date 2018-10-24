@@ -38,6 +38,10 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 	@Setter
 	@Value("${shareQRImgPath}")
 	private String shareQRImgPath;
+	@Getter
+	@Setter
+	@Value("${basicImgPath}")
+	private String basicImgPath;
 	@Resource(name="thymeleafViewResolver")
 	private ThymeleafViewResolver thymeleafViewResolver;
 
@@ -49,6 +53,7 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 			map.put("adv_img_path",advImgPath);
 			map.put("shareImgPath",shareImgPath);
 			map.put("shareQRImgPath",shareQRImgPath);
+			map.put("basicImgPath",basicImgPath);
 			thymeleafViewResolver.setStaticVariables(map);
 		}
 		super.configureViewResolvers(registry);
@@ -61,6 +66,7 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/adv_images/**").addResourceLocations("file:"+advImgPath);
 		registry.addResourceHandler("/share_images/**").addResourceLocations("file:"+shareImgPath);
 		registry.addResourceHandler("/share_QRimages/**").addResourceLocations("file:"+shareQRImgPath);
+		registry.addResourceHandler("/basic_images/**").addResourceLocations("file:"+basicImgPath);
         super.addResourceHandlers(registry);
     }
 

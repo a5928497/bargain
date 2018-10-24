@@ -58,6 +58,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/toadv/**","anon");
 		filterChainDefinitionMap.put("/share**","anon");
 		filterChainDefinitionMap.put("/share_QRimages/**","anon");
+		filterChainDefinitionMap.put("/basic_images/**","anon");
 		filterChainDefinitionMap.put("/allhelpers/**","anon");
 		filterChainDefinitionMap.put("/myrecords","anon");
 		filterChainDefinitionMap.put("/getwechatconfig/**","anon");
