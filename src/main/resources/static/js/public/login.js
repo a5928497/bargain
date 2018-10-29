@@ -1,6 +1,17 @@
 $(function () {
     $vaildateBTN =$("#vaildateBTN");
     $submitBTN = $("#submitBTN");
+    //完整路径
+    var curWwwPath=window.document.location.href;
+    //后缀
+    var pathName=window.document.location.pathname;
+    //前缀
+    var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+    $wrapper = $("#main_wrapper");
+    //初始化图片元素
+    $wrapper.css("background-image","url("+ localhostPaht +"/basic_images/login_pg/login_background.jpg)");
+    $vaildateBTN.css("background-image","url("+ localhostPaht +"/basic_images/login_pg/vaildate_btn.png)");
+    $submitBTN.css("background-image","url("+ localhostPaht +"/basic_images/login_pg/login_btn.png)");
 
     $submitBTN.click(function () {
         $("#loginForm").submit();

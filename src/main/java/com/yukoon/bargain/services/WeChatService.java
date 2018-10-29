@@ -108,5 +108,6 @@ public class WeChatService {
     public static void main(String[] args) {
        WeChatService weChatService = new WeChatService();
 //       weChatService.signature("www.baidu.com");
+        System.out.println(weChatService.getAccessToken());
     }
 }
