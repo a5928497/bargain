@@ -7,32 +7,30 @@
     <title>登录</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/login.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/login.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
 </head>
 
 <body class="gray-bg">
-        <div id="main_header">
+        <div id="main_wrapper">
             <div id="cmb_logo_container">
                 <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
             </div>
-        </div>
             <form method="post" id="loginForm" action="/login">
                 <div id="main_body">
                     <input type="text" id="username" name="username" th:placeholder="手机号码">
                     <input type="text" id="password" name="password" th:placeholder="验证码">
-                <input type="hidden" name="url" th:if="${url!= null}" th:value="${url}">
-                <button id="vaildateBTN" >验证</button>
+                    <input type="hidden" name="url" th:if="${url!= null}" th:value="${url}">
+                    <button type="button" id="vaildateBTN" >验证</button>
                 </div>
-            </form>
-        <div id="main_footer">
-            <button id="submitBTN">登陆</button>
-            <form id="vaildateForm">
-                <input type="hidden" name="phone_number" id="phone_number">
+                <button id="submitBTN">登陆</button>
             </form>
         </div>
+        <form id="vaildateForm">
+            <input type="hidden" name="phone_number" id="phone_number">
+        </form>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/public/login.min.js}"></script>

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class BargainApplicationTests {
 	private AddressRepo addressRepo;
 	@Test
 	public void contextLoads() {
-		System.out.println(addressRepo.findAllByActId(3).size());
+		String filePath = "../../../../../../../main/resources/static/images/cat.png";
+		File file = new File(filePath);
+		System.out.println(file.exists());
 		}
 }

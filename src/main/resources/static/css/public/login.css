@@ -1,9 +1,15 @@
-#main_header
+html,body {
+    height: 100%;
+    width: 100%;
+}
+#main_wrapper
 {
-    background: url(../../images/background_head.jpg) no-repeat;
+    background: url(../../images/login_background.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    height: 56%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 #cmb_logo_container {
     width: 100%;
@@ -13,10 +19,11 @@
 #cmb_logo {
     width: 33%;
 }
-form {
+#loginForm {
     min-height: 30%;
-    background: url(../../images/background_body.jpg) no-repeat;
-    background-size: 100% 100%;
+    height: 44%;
+    position: absolute;
+    top: 58%;
 }
 #main_body
 {
@@ -65,13 +72,6 @@ form {
     width: 40%;
     border-color: transparent;
     outline: none;
-}
-#main_footer
-{
-    background: url(../../images/background_foot.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 14%;
-    margin: 0 auto;
-    text-align: center;
+    position: absolute;
+    left: 30%;
 }
