@@ -14,17 +14,15 @@
 </head>
 
 <body class="gray-bg">
-    <div id="main_container">
+    <div id="main_wrapper">
         <div id="cmb_logo_container">
             <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
         </div>
-    </div>
-        <div id="details_holder">
-            <div id="details_container">
-                <p id="details" th:text="活动说明：+${activity.introduce}"></p>
-                <button type="submit" id="join_BTN" >我要参与</div></button>
-            </div>
+        <div id="details_container">
+            <p id="details" th:text="活动说明：+${activity.introduce}"></p>
+            <button type="submit" id="join_BTN" >我要参与</button>
         </div>
+    </div>
 
         <form id="joinForm" method="post" action="/joinIn">
             <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
