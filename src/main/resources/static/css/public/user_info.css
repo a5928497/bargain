@@ -24,6 +24,15 @@ table{
     top: 67%;
     left: 7.5%;
 }
+.info {
+    width: 55%;
+    position: absolute;
+    top: 67%;
+    left: 28%;
+}
+.info > #empty_msg {
+    color: rgb(255,232,169);
+}
 
 .custom_tb th,.custom_tb td{
     border: 1px solid rgb(255,232,169);
