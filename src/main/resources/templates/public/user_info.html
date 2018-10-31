@@ -7,7 +7,7 @@
     <title>我的记录</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/user_info.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/user_info.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -15,47 +15,49 @@
 
 <body class="gray-bg">
     <div id="main_wrapper">
-        <table class="custom_tb" th:if="${gameInfos != null}">
-            <thead>
-            <tr>
-                <th>活动名称</th>
-                <th>奖品名</th>
-                <th>状态</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tr th:each="gameInfo:${gameInfos}">
-                <td th:text="${gameInfo.activity.act_name}" style="width: 25%">活动名称</td>
-                <td th:text="${gameInfo.reward.rewardName}" style="width: 40%">奖品名</td>
-                <td th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中" style="width: 20%">状态</td>
-                <td style="width: 15%">
-                    <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
-                    <a class="codeInfoBTN" th:attr="gameinfo = ${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
-                </td>
-            </tr>
-        </table>
+        <div class="custom_wrapper">
+            <table class="custom_tb" th:if="${gameInfos != null}">
+                <thead>
+                <tr>
+                    <th>活动名称</th>
+                    <th>奖品名</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tr th:each="gameInfo:${gameInfos}">
+                    <td th:text="${gameInfo.activity.act_name}" style="width: 25%">活动名称</td>
+                    <td th:text="${gameInfo.reward.rewardName}" style="width: 40%">奖品名</td>
+                    <td th:text="${gameInfo.timesLeft ==0} ?已获奖:进行中" style="width: 20%">状态</td>
+                    <td style="width: 15%">
+                        <a id="option" th:href="@{/game/}+${gameInfo.id}" th:if="${gameInfo.timesLeft !=0}">查看</a>
+                        <a class="codeInfoBTN" th:attr="gameinfo = ${gameInfo.id}" th:if="${gameInfo.timesLeft == 0}">查询</a>
+                    </td>
+                </tr>
+            </table>
+            <form id="addressForm" method="post" action="/address" modelAttribute="address">
+                <div>
+                    <input type="text" name="contactName" placeholder="联系人">
+                </div>
+                <div>
+                    <input type="tel" name="phoneNum" placeholder="联系电话">
+                </div>
+                <div>
+                    <input type="text" name="addressDetails" placeholder="联系地址">
+                </div>
+                <input id="gameinfo_input" type="hidden" name="gameInfo.id" value="">
+                <div class="btn_wrapper">
+                    <button type="submit">保存</button>
+                </div>
+            </form>
+        </div>
         <div class="info" th:if="${gameInfos == null}">
             <span id="empty_msg">您目前还没有参加任何活动！</span>
         </div>
-        <form id="addressForm" method="post" action="/address" modelAttribute="address">
-            <div>
-                <input type="text" name="contactName" placeholder="联系人">
-            </div>
-            <div>
-                <input type="tel" name="phoneNum" placeholder="联系电话">
-            </div>
-            <div>
-                <input type="text" name="addressDetails" placeholder="联系地址">
-            </div>
-            <input id="gameinfo_input" type="hidden" name="gameInfo.id" value="">
-            <div>
-                <button type="submit">保存</button>
-            </div>
-        </form>
     </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/user_info.js}"></script>
+    <script th:src="@{/js/public/user_info.min.js}"></script>
 </body>
 
 </html>
