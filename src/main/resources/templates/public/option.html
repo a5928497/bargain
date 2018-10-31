@@ -14,23 +14,21 @@
 </head>
 
 <body class="gray-bg">
-    <div id="main_container">
+    <div id="main_wrapper">
         <div id="cmb_logo_container">
             <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
         </div>
-    </div>
-    <div id="body_container" th:if="${rewards != null}">
+        <div id="body_container" th:if="${rewards != null}">
             <div id="left_arrow_container"><button id="arrow_left_BTN" >向左</button></div>
             <div id="img_wrap"><div><img id="reward_img"></img></div></div>
             <div id="right_arrow_container"><button id="arrow_right_BTN" >向右</button></div>
-    </div>
-    <div id="no_reward_container" th:if="${rewards == null}">
+        </div>
+        <div id="no_reward_container" th:if="${rewards == null}">
             <img id="thanks_img" th:src="@{/images/cat.png}">
             <div class="times_left_container">
                 <span class="introduce" th:text="奖品已被抢光了"></span>
             </div>
-    </div>
-    <div id="footer">
+        </div>
         <div id="reward_left_container" th:if="${rewards != null}">
             <span id="reward_left" ></span>
         </div>
@@ -46,15 +44,14 @@
             <input type="hidden" id="back_url" name="url" th:value="${back_url!=null}?${back_url}">
             <button type="submit" id="submitBTN" >就选它了</button>
         </form>
-        <button id="backBTN" th:attr="back_url = ${back_url}" th:if="${rewards == null}">返回</button>
+        <button id="backBTN" type="button" th:attr="back_url = ${back_url}" th:if="${rewards == null}">返回</button>
     </div>
-
     <input type="hidden" th:each="reward:${rewards}" class="rewards" th:name="${reward.rewardName}"
            th:value="${reward.id}" th:attr="price = ${reward.times},surplus = ${reward.surplus}" th:if="${rewards != null}">
 
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/option.min.js}"></script>
+    <script th:src="@{/js/public/option.js}"></script>
 </body>
 
 </html>

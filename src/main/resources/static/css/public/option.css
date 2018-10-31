@@ -1,9 +1,10 @@
-#main_container
+#main_wrapper
 {
-    background: url(../../images/option_background_head.jpg) no-repeat;
+    background: url(../../images/option_background.jpg) no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
-    min-height: 9.3%;
+    min-height: 100%;
+    position: relative;
 }
 #cmb_logo_container {
     width: 100%;
@@ -142,24 +143,26 @@
     text-align: center;
 }
 #no_reward_container {
-    margin: 0 auto;
     text-align: center;
-    background: url(../../images/option_no_reward_body.jpg) no-repeat;
-    background-size: 100% 100%;
     min-width: 100%;
     min-height: 35.8%;
+    position: absolute;
+    top: 15%;
 }
 #thanks_img {
     margin-top: 13%;
     width: 70%;
 }
 #backBTN {
-    margin: 20% auto;
     font-size: 18pt;
     color: transparent;
     background: url(../../images/back_btn.png) no-repeat top center;
     background-size: 95% 95%;
     border-color: transparent;
     outline: none;
+    display: inline-block;
     width: 45%;
+    position: absolute;
+    top: 60%;
+    left: 27.5%;
 }
