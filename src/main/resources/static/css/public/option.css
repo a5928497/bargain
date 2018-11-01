@@ -21,14 +21,13 @@
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 35.8%;
-    position: relative;
 }
 
 #left_arrow_container {
     float: left;
     width: 20%;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 0;
 }
 #arrow_left_BTN {
@@ -48,7 +47,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: -35%;
     bottom: 0;
     margin: 0 auto;
 }
@@ -71,7 +70,7 @@
     float: left;
     width: 20%;
     position: absolute;
-    top: 40%;
+    top: 30%;
     right: 0;
 }
 #arrow_right_BTN {
@@ -88,6 +87,9 @@
     margin: 0 auto;
     text-align: right;
     width: 80%;
+    position: absolute;
+    top: 50%;
+    left:-18%
 }
 #reward_left {
     color: rgb(254,255,71);
@@ -102,6 +104,8 @@
     margin: 0 auto;
     text-align: center;
     width: 100%;
+    position: absolute;
+    top: 53%;
 }
 .times_left_container {
     background: url(../../images/times_left_background.png);
@@ -112,6 +116,9 @@
     height: 40px;
     width: 80%;
     font-weight: bold;
+    position: absolute;
+    top: 58%;
+    left: 10%;
 }
 .introduce {
     color: white;
@@ -133,6 +140,9 @@
     letter-spacing: 5px;
     outline: none;
     width: 50%;
+    position: absolute;
+    top: 60%;
+    left: 25%;
 }
 #footer {
     background: url(../../images/option_background_foot.jpg) no-repeat;
