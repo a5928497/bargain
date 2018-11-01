@@ -7,7 +7,7 @@
     <title>选择礼品</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/option.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/option.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
 
@@ -33,7 +33,7 @@
             <span id="reward_left" ></span>
         </div>
         <p id="reward_name" th:if="${rewards != null}"></p>
-        <div class="times_left_container" th:if="${rewards != null}">
+        <div class="times_left_container has_reward" th:if="${rewards != null}">
             <span class="introduce" th:text="仅需"></span>
             <span id="reward_price"></span>
             <span class="introduce" th:text="立即免费拿"></span>
@@ -51,7 +51,7 @@
 
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/public/option.js}"></script>
+    <script th:src="@{/js/public/option.min.js}"></script>
 </body>
 
 </html>

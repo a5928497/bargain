@@ -1,6 +1,6 @@
 #main_wrapper
 {
-    background: url(../../images/option_background.jpg) no-repeat;
+    background-repeat: no-repeat;
     background-size: 100% 100%;
     min-width: 100%;
     min-height: 100%;
@@ -14,14 +14,6 @@
 #cmb_logo {
     width: 33%;
 }
-#body_container {
-    margin: 0 auto;
-    text-align: center;
-    background: url(../../images/option_no_reward_body.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 35.8%;
-}
 
 #left_arrow_container {
     float: left;
@@ -31,7 +23,8 @@
     left: 0;
 }
 #arrow_left_BTN {
-    background: url("../../images/arrows_left.png") no-repeat top center;
+    background-color: transparent;
+    background-repeat: no-repeat;
     background-size: 65% 95%;
     border-color: transparent;
     outline: none;
@@ -74,7 +67,8 @@
     right: 0;
 }
 #arrow_right_BTN {
-    background: url("../../images/arrows_right.png") no-repeat top center;
+    background-repeat: no-repeat;
+    background-color: transparent;
     background-size: 65% 95%;
     border-color: transparent;
     outline: none;
@@ -116,10 +110,13 @@
     height: 40px;
     width: 80%;
     font-weight: bold;
+}
+.has_reward {
     position: absolute;
     top: 58%;
     left: 10%;
 }
+
 .introduce {
     color: white;
     font-size: 15pt;
@@ -131,7 +128,7 @@
 }
 
 #submitBTN {
-    background: url(../../images/select_btn.png)no-repeat top center;
+    background: no-repeat top center;
     background-size: 95% 95%;
     margin: 20% auto;
     font-size: 18pt;
@@ -144,14 +141,7 @@
     top: 60%;
     left: 25%;
 }
-#footer {
-    background: url(../../images/option_background_foot.jpg) no-repeat;
-    background-size: 100% 100%;
-    min-width: 100%;
-    min-height: 54.9%;
-    margin: 0 auto;
-    text-align: center;
-}
+
 #no_reward_container {
     text-align: center;
     min-width: 100%;
@@ -166,7 +156,7 @@
 #backBTN {
     font-size: 18pt;
     color: transparent;
-    background: url(../../images/back_btn.png) no-repeat top center;
+    background: no-repeat top center;
     background-size: 95% 95%;
     border-color: transparent;
     outline: none;
