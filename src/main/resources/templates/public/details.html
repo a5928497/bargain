@@ -7,66 +7,68 @@
     <title>您的好友@你</title>
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/public/details.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/public/details.css}" rel="stylesheet"/>
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
     <link type="text/css" th:href="@{/assets/base-min.css}" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
-        <img id="share_img" width="0" height="0">
-        <div id="main_head">
-            <div id="cmb_logo_container">
-                <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
-            </div>
-        </div>
-            <div id="img_container">
+    <!--<img id="share_img" width="0" height="0">-->
+    <div id="main_wrapper">
+        <div id="cmb_logo_container">
+                    <img id="cmb_logo" th:src="@{/images/cmb_logo.png}">
+                </div>
+        <div id="img_wrapper">
+            <div class="img_container">
                 <img id="reward_img" th:src="@{/reward_images/reward}+${gameInfo.reward.id}+@{.png}">
             </div>
-            <div id="body_container">
-                <div id="reward_left_container" th:if="${status == 1}">
-                    <span id="reward_left" th:text="礼品剩余+${reward.surplus}+件"></span>
-                </div>
-
-                <div class="times_left_container" th:if="${status ==1}">
-                    <span class="introduce" th:text="仅需"></span>
-                    <span id="times_left" th:text="${gameInfo.timesLeft}+刀"></span>
-                    <span class="introduce" th:text="立即免费拿"></span>
-                </div>
-                <div class="times_left_container" th:if="${status == 2}">
-                    <span class="introduce">砍价成功，请到我的记录查询</span>
-                </div>
-                <div class="times_left_container" th:if="${status == 0}">
-                    <span class="introduce">商品被抢光了，请下次努力</span>
-                </div>
-                <div id="BTNs_container">
-                    <div class="border"></div>
-                    <a class="btn_a" th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN" id="help_BTN">帮砍</button></a>
-                    <a class="btn_a" th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN" id="join_BTN">参加</button></a>
-                    <div class="border"></div>
-                    <a href="#" id="share_a" class="btn_a"><button class="BTN" id="share_BTN">分享</button></a>
-                    <a class="btn_a" th:href="@{/myrecords}"><button class="BTN" id="record_BTN">记录</button></a>
-                </div>
-                <div class="share">
-                    <div  class="sns" onclick="ShareHot('weixinsession')"><span>微信</span></div>
-                    <div class="friend" onclick="ShareHot('weixintimeline')"><span>朋友圈</span></div>
-                </div>
-                <div id="helper_container">
-                    <p th:each="helper:${helpers}" id="helper_info">
-                        <span th:text="${helper.helper.username}"></span>
-                        <span>已助一臂之力！</span>
-                    </p>
-                    <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
-                </div>
-                <div id="adv_container">
-                    <div class="advs" th:each="adv:${advs}">
-                        <a class="adv_a" th:href="@{/toadv/}+${adv.id}">
-                            <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
-                        </a>
-                    </div>
-                </div>
-
+        </div>
+        <div id="body_container">
+            <div id="reward_left_container" th:if="${status == 1}">
+                <span id="reward_left" th:text="礼品剩余+${reward.surplus}+件"></span>
             </div>
+
+            <div class="times_left_container" th:if="${status ==1}">
+                <span class="introduce" th:text="仅需"></span>
+                <span id="times_left" th:text="${gameInfo.timesLeft}+刀"></span>
+                <span class="introduce" th:text="立即免费拿"></span>
+            </div>
+            <div class="times_left_container" th:if="${status == 2}">
+                <span class="introduce">砍价成功，请到我的记录查询</span>
+            </div>
+            <div class="times_left_container" th:if="${status == 0}">
+                <span class="introduce">商品被抢光了，请下次努力</span>
+            </div>
+            <div id="BTNs_container">
+                <div class="border"></div>
+                <a class="btn_a" th:href="@{/bargain/}+${gameInfo.id}"><button class="BTN" id="help_BTN">帮砍</button></a>
+                <a class="btn_a" th:href="@{/actInfo/}+${gameInfo.activity.id}"><button class="BTN" id="join_BTN">参加</button></a>
+                <div class="border"></div>
+                <a href="#" id="share_a" class="btn_a"><button class="BTN" id="share_BTN">分享</button></a>
+                <a class="btn_a" th:href="@{/myrecords}"><button class="BTN" id="record_BTN">记录</button></a>
+            </div>
+            <div class="share">
+                <div  class="sns" onclick="ShareHot('weixinsession')"><span>微信</span></div>
+                <div class="friend" onclick="ShareHot('weixintimeline')"><span>朋友圈</span></div>
+            </div>
+            <div id="helper_container">
+                <p th:each="helper:${helpers}" id="helper_info">
+                    <span th:text="${helper.helper.username}"></span>
+                    <span>已助一臂之力！</span>
+                </p>
+                <a id="all_helpers" th:href="${gameInfoId != null}?@{/allhelpers/}+${gameInfoId}" th:if="${size} gt 3">查看全部</a>
+            </div>
+            <div id="adv_container">
+                <div class="advs" th:each="adv:${advs}">
+                    <a class="adv_a" th:href="@{/toadv/}+${adv.id}">
+                        <img class="adv_imgs" th:src="@{/adv_images/adv}+${adv.id}+@{.png}">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <input type="hidden" id="msg" th:value="${msg}">
     <input type="hidden" id="gameInfoId" th:value="${gameInfo.id}">
@@ -76,7 +78,7 @@
     <script th:src="@{/assets/sdc_web.js}" type="text/javascript"></script>
     <script th:src="@{/Scripts/CMBLS-AppLog-Dev.js}"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-    <script th:src="@{/js/public/details.min.js}"></script>
+    <script th:src="@{/js/public/details.js}"></script>
     <script th:src="@{/js/public/wechat.min.js}"></script>
     <script>
         //转发跳转
