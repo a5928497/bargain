@@ -8,9 +8,16 @@ $(function () {
     //前缀
     var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
     $wrapper = $("#main_wrapper");
-    $img_con = $("#img_wrapper .img_container");
+    $helpBTN = $("#help_BTN");
+    $joinBTN = $("#join_BTN");
+    $shareBTN = $("#share_BTN");
+    $recordBTN = $("#record_BTN");
     //初始化图片元素
     $wrapper.css("background-image","url("+ localhostPaht +"/basic_images/details_pg/details_background.jpg)");
+    $helpBTN.css("background-image","url("+ localhostPaht +"/basic_images/details_pg/help_btn.png)");
+    $joinBTN.css("background-image","url("+ localhostPaht +"/basic_images/details_pg/details_join_btn.png)");
+    $shareBTN.css("background-image","url("+ localhostPaht +"/basic_images/details_pg/share_btn.png)");
+    $recordBTN.css("background-image","url("+ localhostPaht +"/basic_images/details_pg/records_btn.png)");
     if (msg != "") {
         alert(msg);
     }

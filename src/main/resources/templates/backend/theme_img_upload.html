@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/iCheck/1.0.2/skins/green.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/jasny-bootstrap/3.1.2/dist/css/jasny-bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/codemirror/5.33.0/lib/codemirror.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <input type="hidden"  id="img_path" th:value="${img_path}">
+    <div id="wrapper">
+
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
+                    <h2>编辑</h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>图片上传（注意：文件最大不超过1MB）</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="img_container">
+                    <img src="#" id="reward" >
+                    </div>
+                    <p id="size_tips"></p>
+                    <form action="/rewardimgupload" enctype="multipart/form-data" method="post">
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                            <div class="form-control fileinput" data-trigger="fileinput">
+                                <span class="fileinput-filename"></span>
+                            </div>
+                            <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Select file</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="pic"/>
+                                    <!--<input type="hidden" id="reward_id" name="reward_id" th:value="${reward_id}">-->
+                                </span>
+                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                        <div>
+                            <button th:attr="back_uri = @{/acts/}"  class="btn btn-white backBTN" >返回</button>
+                            <button class="btn btn-primary commitBTN" type="submit">上传</button>
+                        </div>
+                    </form>
+                    <span id="msg" th:text="${uploadMsg}" th:if="${uploadMsg!=null}"></span>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jasny-bootstrap/3.1.2/dist/js/jasny-bootstrap.min.js}"></script>
+<script>
+    $backBTN = $(".backBTN");
+
+    $fileinput = $(".fileinput");
+    $fileinput.css("width",300);
+    $backBTN.click(function () {
+        var uri = $backBTN.attr("back_uri");
+        window.location.replace(uri);
+        return false;
+    })
+</script>
+<script>
+    var curWwwPath=window.document.location.href;
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
+    var reward_id = $("#reward_id").val();
+    //根据路径获取图片
+    var img_url  ="/basic_images/reward"+reward_id + ".png?"+Math.random();
+    $("#reward").attr("src",img_url).one("error",function (e) {
+        $(this).parent().remove();
+    });
+</script>
+
+</body>
+
+</html>

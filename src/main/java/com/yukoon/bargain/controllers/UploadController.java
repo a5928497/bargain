@@ -128,6 +128,16 @@ public class UploadController {
         return "backend/share_img_upload";
     }
 
+    //后台前往主题图片上传
+    @RequiresRoles("admin")
+    @GetMapping("/touploadthemeimg")
+    public String toUploadThemeImg(Map<String,Object> map,String uploadMsg) {
+        if (uploadMsg != null) {
+            map.put("uploadMsg",uploadMsg);
+        }
+        return "backend/theme_img_upload";
+    }
+
     //后台分享缩略图上传
     @RequiresRoles("admin")
     @PostMapping("/shareimgupload")
