@@ -13,13 +13,19 @@ $(function () {
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
     //根据路径获取图片
+    // $prevImg = $("#prevImg");
+    // if ($prevImg.length != 0) {
+    //     $("option[value='"+ $prevImg.val()+"']").attr("selected","selected");
+    //
+    // }
     var img_url  = localhostPaht + "/basic_images/";
     $themeImg = $("#theme_img");
-    $themeImg.attr("src",img_url+$(":selected").val()).css("width",resizeImg($(this).width()));
+    $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
 
+    //切换选项时切换图片
     $("select").change(function () {
         $themeImg.removeAttr("style")
-            .attr("src",img_url+$(":selected").val())
+            .attr("src",img_url+$(":selected").val()+"?"+Math.random())
             .load(function () {
                 $themeImg.css("width",resizeImg($(this).width()));
             });

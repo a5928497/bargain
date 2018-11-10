@@ -138,6 +138,36 @@ public class UploadController {
         return "backend/theme_img_upload";
     }
 
+    //后台主题图片上传
+    @RequiresRoles("admin")
+    @PostMapping("/themeimgupload")
+    public String uploadTheme(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
+            , String themeImg,RedirectAttributes attributes){
+        String filePath = pathConfig.getBasicImgPath();
+        String fileName = pic.getOriginalFilename();
+        String uploadMsg = "图片上传成功!";
+        if (!FileUtil.isImg(fileName)){
+            uploadMsg = "该文件不是图片格式,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            attributes.addFlashAttribute("prevImg",themeImg);
+            return "redirect:/touploadthemeimg";
+        }
+        //重命名文件
+        fileName = themeImg;
+        try {
+            //上传图片
+            FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
+        }catch (Exception e) {
+            uploadMsg = "图片上传出现错误,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            attributes.addFlashAttribute("prevImg",themeImg);
+            return "redirect:/touploadthemeimg";
+        }
+        attributes.addFlashAttribute("uploadMsg",uploadMsg);
+        attributes.addFlashAttribute("prevImg",themeImg);
+        return "redirect:/touploadthemeimg";
+    }
+
     //后台分享缩略图上传
     @RequiresRoles("admin")
     @PostMapping("/shareimgupload")
