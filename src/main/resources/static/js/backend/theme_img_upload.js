@@ -15,14 +15,14 @@ $(function () {
     //根据路径获取图片
     var img_url  = localhostPaht + "/basic_images/";
     $themeImg = $("#theme_img");
-    $themeImg.attr("src",img_url+$(":selected").val()).css("width",resizeImg($(this).width())).one("error",function (e) {
-        // $(this).parent().remove();
-    });
-    console.log(resizeImg(12));
+    $themeImg.attr("src",img_url+$(":selected").val()).css("width",resizeImg($(this).width()));
+
     $("select").change(function () {
-        $themeImg.removeProp("width")
+        $themeImg.removeAttr("style")
             .attr("src",img_url+$(":selected").val())
-            // .css("width",resizeImg($themeImg.width()));
+            .load(function () {
+                $themeImg.css("width",resizeImg($(this).width()));
+            });
     });
     //调整图片函数
     function resizeImg(width) {
@@ -32,7 +32,18 @@ $(function () {
             return width;
         }
     }
-
-
+    //调整背景颜色
+    $switch = $("#bgc_switch");
+    var flag = true;
+    $switch.click(function () {
+        flag = !flag;
+        if (flag) {
+            $("#img_container").css("background","red");
+            $switch.text("关闭背景颜色");
+        }else {
+            $("#img_container").removeAttr("style");
+            $switch.text("开启背景颜色");
+        }
+    });
 
 });
