@@ -13,17 +13,19 @@ $(function () {
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
     //根据路径获取图片
-    // $prevImg = $("#prevImg");
-    // if ($prevImg.length != 0) {
-    //     $("option[value='"+ $prevImg.val()+"']").attr("selected","selected");
-    //
-    // }
-    var img_url  = localhostPaht + "/basic_images/";
+    $prevImg = $("#prevImg");
     $themeImg = $("#theme_img");
-    $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
+    var img_url  = localhostPaht + "/basic_images/";
+    if ($prevImg.length != 0) {
+        $("option[value='"+ $prevImg.val()+"']").attr("selected","selected");
+        $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
+    }else {
+        $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
+    }
 
     //切换选项时切换图片
     $("select").change(function () {
+        $("option[selected='selected']").removeAttr("selected");
         $themeImg.removeAttr("style")
             .attr("src",img_url+$(":selected").val()+"?"+Math.random())
             .load(function () {
