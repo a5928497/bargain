@@ -12,16 +12,24 @@ $(function () {
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
+    var img_width;
+    var img_height;
     //根据路径获取图片
+    $sizeTips = $("#size_tips");
     $prevImg = $("#prevImg");
     $themeImg = $("#theme_img");
     var img_url  = localhostPaht + "/basic_images/";
     if ($prevImg.length != 0) {
         $("option[value='"+ $prevImg.val()+"']").attr("selected","selected");
-        $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
-    }else {
-        $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random()).css("width",resizeImg($(this).width()));
     }
+    $themeImg.attr("src",img_url+$(":selected").val()+"?"+Math.random())
+        .load(function () {
+            img_width = $(this)[0].naturalWidth;
+            img_height = $(this)[0].naturalHeight;
+            $sizeTips.text("原始尺寸（像素）：宽" + img_width + "px，高" + img_height + "px");
+            $(this).css("width",resizeImg(img_width));
+
+        });
 
     //切换选项时切换图片
     $("select").change(function () {
@@ -29,7 +37,10 @@ $(function () {
         $themeImg.removeAttr("style")
             .attr("src",img_url+$(":selected").val()+"?"+Math.random())
             .load(function () {
-                $themeImg.css("width",resizeImg($(this).width()));
+                img_width = $(this)[0].naturalWidth;
+                img_height = $(this)[0].naturalHeight;
+                $sizeTips.text("原始尺寸（像素）：宽" + img_width + "px，高" + img_height + "px");
+                $(this).css("width",resizeImg(img_width));
             });
     });
     //调整图片函数
